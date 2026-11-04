@@ -14,7 +14,7 @@ h1 span{color:#087b70}
 .photo-hero{background-position:0 0;aspect-ratio:1.18}
 .hero-photo figcaption{padding:18px 20px;color:#fff;font-size:14px;font-weight:600;line-height:1.5}
 .module{overflow:hidden;padding-top:23px}
-.module-photo{height:190px;margin:20px -27px 23px}
+.module-photo{aspect-ratio:3 / 2;height:auto;margin:20px -27px 23px;background-size:200% auto}
 .photo-devices{background-position:100% 0}
 .photo-check{background-position:0 100%}
 .photo-route{background-position:100% 100%}
@@ -27,5 +27,5 @@ h1 span{color:#087b70}
 .how>div>p,.learning-steps p{color:#344b34}
 .learning-steps li:before{border:0;background:#173f39;color:white}
 .footer{flex-wrap:wrap}.image-credit{width:100%;font-size:11px!important}
-@media(max-width:1050px){.module-photo{margin-inline:-21px;height:165px}.hero{gap:30px}.how{padding:30px;gap:30px}}
-@media(max-width:760px){.hero{gap:32px;padding-block:37px 48px}.hero-photo{transform:none}.photo-hero{aspect-ratio:1.22}.hero-photo figcaption{padding:15px 18px;font-size:13px}.module-photo{margin-inline:-25px;height:200px}.module h3{min-height:0}.how{width:calc(100% - 36px);padding:27px 22px;margin-block:40px;gap:30px}.how h2{font-size:28px}.footer .image-credit{order:4}.hero-note{color:#405e58}}
+@media(max-width:1050px){.module-photo{margin-inline:-21px}.hero{gap:30px}.how{padding:30px;gap:30px}}
+@media(max-width:760px){.hero{gap:32px;padding-block:37px 48px}.hero-photo{transform:none}.photo-hero{aspect-ratio:1.22}.hero-photo figcaption{padding:15px 18px;font-size:13px}.module-photo{margin-inline:-25px}.module h3{min-height:0}.how{width:calc(100% - 36px);padding:27px 22px;margin-block:40px;gap:30px}.how h2{font-size:28px}.footer .image-credit{order:4}.hero-note{color:#405e58}}
