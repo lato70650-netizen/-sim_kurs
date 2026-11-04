@@ -46,3 +46,11 @@
 @keyframes scooter-journey{from{transform:translateX(0)}to{transform:translateX(calc(100cqw - 145px))}}
 @media(max-width:760px){.scooter-scene{margin-top:-8px}.scooter-road{height:100px}}
 @media(prefers-reduced-motion:reduce){.scooter-rider,.scooter-scene.is-riding .scooter-rider{animation:none!important;transform:translateX(calc(100cqw - 145px))}}
+
+/* Small roadside details; never blink or loop. */
+.how>div:first-child{position:relative;padding-right:65px}
+.learning-road-sign{position:absolute;top:4px;right:0;width:51px;height:51px;transform:rotate(-5deg);transition:transform .3s cubic-bezier(.16,1,.3,1)}
+.how:hover .learning-road-sign,.how:focus-within .learning-road-sign{transform:rotate(0deg)}
+.crossing-sign{position:absolute;bottom:0;left:19%;width:32px;height:61px;transform-origin:center bottom;transition:transform .3s cubic-bezier(.16,1,.3,1)}
+.scooter-road:hover .crossing-sign{transform:rotate(-3deg)}
+@media(max-width:760px){.learning-road-sign{width:40px;height:40px;top:3px}.how>div:first-child{padding-right:43px}.how h2{font-size:clamp(30px,8vw,40px)}.crossing-sign{left:18%;width:28px;height:54px}}
