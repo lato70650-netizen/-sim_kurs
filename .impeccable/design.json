@@ -1,0 +1,31 @@
+{
+  "name": "СИМ — яркая фотографическая тема",
+  "colors": {
+    "paper": "#fffdf6",
+    "ink": "#123c39",
+    "primary": "#087b70",
+    "accent": "#ff703c",
+    "muted": "#405e58",
+    "line": "#c8dacf",
+    "moduleOne": "#d5ee81",
+    "moduleTwo": "#8ee2da",
+    "moduleThree": "#ffc078",
+    "learning": "#ffe46e"
+  },
+  "typography": {
+    "family": "Arial, Helvetica, sans-serif",
+    "body": "16px",
+    "display": "clamp(48px, 4.8vw, 70px)"
+  },
+  "radii": {
+    "surface": "16px",
+    "control": "9px"
+  },
+  "breakpoints": {
+    "compact": "1050px",
+    "mobile": "760px"
+  },
+  "motion": {
+    "reducedMotion": "smooth scrolling disabled"
+  }
+}
