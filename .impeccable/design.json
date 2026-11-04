@@ -1,31 +1,34 @@
 {
-  "name": "СИМ — яркая фотографическая тема",
+  "name": "СИМ — городской журнал",
   "colors": {
-    "paper": "#fffdf6",
-    "ink": "#123c39",
-    "primary": "#087b70",
-    "accent": "#ff703c",
-    "muted": "#405e58",
-    "line": "#c8dacf",
-    "moduleOne": "#d5ee81",
-    "moduleTwo": "#8ee2da",
-    "moduleThree": "#ffc078",
-    "learning": "#ffe46e"
+    "paper": "#d4e9d9",
+    "ink": "#183b35",
+    "primary": "#087467",
+    "accent": "#ff713d",
+    "muted": "#4a6058",
+    "line": "#bdc8ba",
+    "lime": "#d4ef77",
+    "yellow": "#f7dd72",
+    "strip": "#b9dd9d",
+    "moduleOne": "#c2e964",
+    "moduleTwo": "#86d8c8",
+    "moduleThree": "#ffbf8d",
+    "photoCaption": "#086b5d"
   },
   "typography": {
-    "family": "Arial, Helvetica, sans-serif",
+    "family": "Onest, Arial, sans-serif",
     "body": "16px",
-    "display": "clamp(48px, 4.8vw, 70px)"
+    "display": "clamp(48px, 4.8vw, 72px)"
   },
   "radii": {
-    "surface": "16px",
-    "control": "9px"
+    "surface": "14px",
+    "control": "5px"
   },
   "breakpoints": {
     "compact": "1050px",
     "mobile": "760px"
   },
   "motion": {
-    "reducedMotion": "smooth scrolling disabled"
+    "reducedMotion": "all transitions and smooth scrolling disabled"
   }
 }
