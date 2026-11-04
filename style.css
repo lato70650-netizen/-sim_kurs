@@ -31,14 +31,14 @@
 .scooter-scene{padding-top:8px;margin-top:-24px;margin-bottom:15px}
 .scooter-road{position:relative;container-type:inline-size;height:106px;border-bottom:1px solid #759b86}
 .scooter-rider{position:absolute;left:0;bottom:0;width:104px;height:94px;padding:0;background:none;border:0;cursor:pointer;transform:translateX(0);color:var(--ink)}
-.rider-drawing{display:block;width:104px;height:90px;stroke-width:2.5}
-.scooter-wheel{fill:var(--paper);stroke:#376154;stroke-width:2}
-.scooter-frame{stroke:#426b5b;stroke-width:3}
-.rider-leg,.rider-arm{stroke:#183b35;stroke-width:5}
-.rider-body{stroke:#de693c;stroke-width:12}
-.rider-head{fill:#d4e9d9;stroke:#183b35;stroke-width:2}
-.rider-helmet{fill:#087467;stroke:#087467;stroke-width:2}
-.rider-shoe{stroke:#183b35;stroke-width:3}
+.rider-drawing{display:block;width:104px;height:95px}
+.pixel-rider,.pixel-rider *{stroke:none}
+.pixel-person{transform-origin:55px 91px}
+.push-leg{transform-origin:51px 55px}
+.scooter-scene.is-riding .push-leg{animation:pixel-push 1.15s ease-in-out 5}
+.scooter-scene.is-riding .pixel-person{animation:pixel-bob 1.15s ease-in-out 5}
+@keyframes pixel-push{0%,100%{transform:rotate(-7deg)}35%{transform:rotate(16deg)}70%{transform:rotate(-13deg)}}
+@keyframes pixel-bob{0%,100%{transform:translateY(0)}45%{transform:translateY(1px)}}
 .finish-sign{position:absolute;bottom:0;right:3px;width:31px;height:64px;stroke:#597c68;stroke-width:1.5}
 .finish-flag{fill:#d4ef77;stroke:#597c68}.finish-checks{fill:#597c68;stroke:none}
 .scooter-scene.is-riding .scooter-rider{animation:scooter-journey 6s cubic-bezier(.22,.45,.36,1) forwards}
