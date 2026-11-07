@@ -31,15 +31,19 @@ if (scooterScene) {
   reducedMotion.addEventListener('change', (event) => {
     if (event.matches) finishRide();
   });
-  if (reducedMotion.matches || !('IntersectionObserver' in window)) {
+  if (!('IntersectionObserver' in window)) {
     finishRide();
   } else {
     const observer = new IntersectionObserver((entries) => {
-      if (entries.some((entry) => entry.isIntersecting)) {
-        startRide();
-        observer.disconnect();
-      }
-    }, { threshold: 0.6 });
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.6) {
+          startRide();
+        } else if (!entry.isIntersecting) {
+          // Reset off screen so every return to the road starts a fresh ride.
+          scooterScene.classList.remove('is-riding', 'is-finished');
+        }
+      });
+    }, { threshold: [0, 0.6] });
     observer.observe(scooterScene);
   }
 }
