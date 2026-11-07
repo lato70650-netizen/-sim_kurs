@@ -47,3 +47,13 @@ if (scooterScene) {
     observer.observe(scooterScene);
   }
 }
+
+const lessonAnswerToggle = document.getElementById('lesson-answer-toggle');
+if (lessonAnswerToggle) {
+  lessonAnswerToggle.addEventListener('click', () => {
+    const expanded = lessonAnswerToggle.getAttribute('aria-expanded') === 'true';
+    lessonAnswerToggle.setAttribute('aria-expanded', String(!expanded));
+    document.getElementById(lessonAnswerToggle.getAttribute('aria-controls')).hidden = expanded;
+    lessonAnswerToggle.textContent = expanded ? 'Показать ответ' : 'Скрыть ответ';
+  });
+}

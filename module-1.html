@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#d4e9d9"><meta name="description" content="Курс о средствах индивидуальной мобильности для подростков 12–13 лет. Знакомимся с устройствами, разбираем правила и учимся принимать безопасные решения.">
+<title>1.1. Что такое СИМ? — СИМ</title><link rel="preload" href="assets/onest.ttf" as="font" type="font/ttf" crossorigin><link rel="icon" href="assets/mark.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css?v=lesson-1-1">
+</head>
+<body>
+<a class="skip" href="index.html#course">Перейти к программе</a>
+<header class="header wrap"><a class="brand" href="./" aria-label="СИМ — на главную"><img src="assets/mark.svg" width="38" height="38" alt=""><span>СИМ<span class="brand-sub">двигайся с умом</span></span></a><nav aria-label="Главная навигация"><a href="index.html#course">О курсе</a><a href="index.html#how">Как учиться</a><a class="nav-start" href="index.html#course">К программе <svg class="arrow-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M5 19 19 5M5 5h14v14"/></svg></a><div class="account-controls"><span id="account-email" class="account-email" hidden></span><button class="auth-nav" id="auth-open" type="button">Войти</button><button class="auth-nav" id="auth-signout" type="button" hidden>Выйти</button></div></nav></header>
+<p id="account-status" class="account-status wrap" role="status"></p>
+<main class="lesson wrap" id="lesson-one-one">
+<nav class="lesson-breadcrumb" aria-label="Путь по курсу"><a href="index.html#course">К программе курса</a><span>Блок 1 · Знакомство</span></nav>
+<h1>1.1. Что такое СИМ?</h1>
+<div class="lesson-intro">
+<p>У одного есть руль. У другого — всего одно колесо. А третье похоже на обычный скейт.</p>
+<p><strong>Как думаешь, что у них общего?</strong> Присмотрись к деталям, подсвеченным на картинке.</p>
+</div>
+<img class="lesson-image" src="assets/sim-motors.png" alt="Электросамокат, моноколесо и электроскейтборд. Янтарной подсветкой отмечено расположение моторов" width="1672" height="941">
+<button class="button lesson-reveal" type="button" id="lesson-answer-toggle" aria-expanded="false" aria-controls="lesson-answer">Показать ответ</button>
+<div class="lesson-answer" id="lesson-answer" hidden>
+<p>У всех трёх есть мотор. На каждом из этих устройств один человек может доехать, например, от дома до остановки или до тренировки.</p>
+<p>В правилах дорожного движения электросамокат, моноколесо и электроскейтборд называют <strong>средствами индивидуальной мобильности</strong>, сокращённо <strong>СИМ</strong>. Проще говоря, это транспорт на колёсах, который помогает одному человеку передвигаться с помощью мотора.</p>
+<span class="lesson-next" aria-disabled="true">Узнать, какие бывают СИМ</span>
+<p class="lesson-next-note">Раздел 1.2 пока не опубликован</p>
+</div>
+</main>
+<footer class="footer wrap"><a class="brand" href="./"><img src="assets/mark.svg" width="32" height="32" alt=""><span>СИМ<span class="brand-sub">двигайся с умом</span></span></a><p>Сначала подумай. Потом двигайся.</p><span class="version">Курс в разработке</span><p class="image-credit">Фотоизображения созданы с помощью ИИ.</p></footer>
+<dialog class="auth-dialog" id="auth-dialog" aria-labelledby="auth-title" aria-describedby="auth-description">
+  <button class="auth-close" id="auth-close" type="button" aria-label="Закрыть окно входа"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+  <h2 id="auth-title">Войти в аккаунт</h2>
+  <p id="auth-description">Введи email и пароль, которые указал при регистрации.</p>
+  <form id="auth-form">
+    <label for="auth-email">Email</label>
+    <input id="auth-email" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="254" autofocus>
+    <label for="auth-password">Пароль</label>
+    <div class="password-field"><input id="auth-password" name="password" type="password" autocomplete="current-password" required maxlength="128" aria-describedby="password-hint"><button id="password-visibility" type="button" aria-pressed="false" aria-label="Показать пароль">Показать</button></div>
+    <p id="password-hint" class="auth-hint" hidden>Не меньше 6 символов</p>
+    <p id="auth-error" class="auth-error" role="alert" hidden></p>
+    <p id="auth-message" class="auth-message" role="status" hidden></p>
+    <button class="auth-submit" id="auth-submit" type="submit">Войти</button>
+  </form>
+  <p class="auth-switch"><span id="auth-switch-label">Ещё нет аккаунта?</span> <button id="auth-switch" type="button">Зарегистрироваться</button></p>
+</dialog>
+<script src="script.js?v=lesson-1-1"></script>
+<script src="vendor/supabase-2.119.0.js" defer></script>
+<script src="auth.js?v=email-auth-2" defer></script>
+</body></html>
