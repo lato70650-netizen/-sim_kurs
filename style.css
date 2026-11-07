@@ -91,8 +91,8 @@ button:disabled{opacity:.6;cursor:wait}
 /* First lesson: shared course typography, palette and controls. */
 .lesson{max-width:1000px;padding-block:36px 76px}
 .lesson-breadcrumb{display:flex;flex-wrap:wrap;gap:12px 28px;font-size:13px;margin-bottom:34px;color:var(--muted)}
-.lesson-breadcrumb a,.lesson-start{text-decoration:underline;text-underline-offset:4px}
-.lesson-breadcrumb a:hover,.lesson-start:hover{color:var(--green)}
+.lesson-breadcrumb a{text-decoration:underline;text-underline-offset:4px}
+.lesson-breadcrumb a:hover{color:var(--green)}
 .lesson h1{font-size:clamp(32px,4.5vw,49px);line-height:1.15;letter-spacing:-.03em}
 .lesson-intro{max-width:70ch;margin-top:26px;font-size:18px}
 .lesson p+p{margin-top:18px}
@@ -101,7 +101,8 @@ button:disabled{opacity:.6;cursor:wait}
 .lesson-answer{max-width:70ch;margin-top:26px;font-size:18px}
 .lesson-next{display:block;margin-top:34px;font-size:16px;font-weight:650;color:var(--muted)}
 .lesson-next-note{font-size:13px;color:var(--muted);margin-top:6px}
-.lesson-start{display:inline-block;margin-top:16px;font-weight:650}
+.lesson-start{display:flex;justify-content:center;gap:12px;margin-block:4px 18px;padding:14px 16px;background:var(--ink);color:var(--paper);font-weight:700;text-decoration:none;min-height:48px}
+.lesson-start:hover{background:var(--green)}
 @media(max-width:700px){.lesson{padding-block:26px 48px}.lesson-breadcrumb{margin-bottom:26px}.lesson-intro,.lesson-answer{font-size:16px}.lesson-image{margin-block:24px 20px}}
 
 .sim-intro-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-block:28px 24px}
