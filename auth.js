@@ -48,7 +48,7 @@
       : 'Введи email и пароль, которые указал при регистрации.';
     byId('password-hint').hidden = !value;
     password.autocomplete = value ? 'new-password' : 'current-password';
-    password.minLength = value ? 8 : 1;
+    password.minLength = value ? 6 : 1;
     password.value = '';
     password.type = 'password';
     byId('password-visibility').textContent = 'Показать';
