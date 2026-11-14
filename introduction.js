@@ -56,8 +56,8 @@
     const done = state.completed + (state.quizComplete ? 1 : 0);
     document.getElementById('intro-progress').textContent = `Завершено ${done} из 6 шагов`;
     const resume = document.getElementById('continue-intro');
-    resume.href = url(state.completed);
-    resume.firstChild.textContent = state.quizComplete ? 'Повторить задание ' : state.completed ? 'Продолжить знакомство ' : 'Начать знакомство ';
+    resume.href = url(0);
+    resume.firstChild.textContent = 'Перейти к первому уроку ';
     document.querySelectorAll('[data-step]').forEach((item) => {
       const i = Number(item.dataset.step);
       const available = isAvailable(i);
