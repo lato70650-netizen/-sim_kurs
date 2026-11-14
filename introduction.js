@@ -4,7 +4,7 @@
   const data = window.SIM_INTRO;
   if (!page || !data) return;
   const chapterNavigation = document.querySelector('.lesson-navigation');
-  if (chapterNavigation && window.matchMedia('(max-width: 700px)').matches) chapterNavigation.open = false;
+  if (chapterNavigation) chapterNavigation.open = false;
   const key = 'sim-introduction-progress-v1';
   window.addEventListener('pageshow', (event) => { if (event.persisted) window.location.reload(); });
   window.addEventListener('storage', (event) => { if (page === 'overview' && event.key === key) window.location.reload(); });
