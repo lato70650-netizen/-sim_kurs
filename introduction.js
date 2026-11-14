@@ -87,23 +87,35 @@
     return;
   }
   let current = 0;
+  const reviewLessons = new Set();
   const answers = [...document.querySelectorAll('[data-answer]')];
   const feedback = document.getElementById('quiz-feedback');
   const next = document.getElementById('next-question');
   function renderQuestion(focus = false) {
     const q = data.quiz[current];
     document.getElementById('question-position').textContent = `Пример ${current + 1} из ${data.quiz.length}`;
-    const heading = document.getElementById('question-text'); heading.textContent = q.text;
+    const heading = document.getElementById('question-text'); heading.textContent = q.text.replace(/\.$/, '');
+    const picture = document.getElementById('question-image');
+    picture.className = `quiz-image ${q.imageSet === 'regular' ? 'quiz-regular' : 'quiz-sim'} quiz-photo-${q.imageIndex}`;
+    picture.setAttribute('aria-label', q.text);
+    const progress = document.getElementById('quiz-progress');
+    progress.setAttribute('aria-valuenow', String(current));
+    progress.setAttribute('aria-valuetext', `Разобрано ${current} из ${data.quiz.length}`);
+    [...progress.children].forEach((segment, index) => { segment.className = index < current ? 'is-done' : index === current ? 'is-current' : ''; });
     feedback.hidden = true; feedback.textContent = ''; next.hidden = true;
     next.textContent = current === data.quiz.length - 1 ? 'Завершить знакомство' : 'Следующий пример';
-    answers.forEach(b => { b.disabled = false; });
-    if (focus) heading.focus({ preventScroll: true });
+    answers.forEach(b => { b.disabled = false; b.classList.remove('answer-correct', 'answer-wrong'); b.setAttribute('aria-pressed', 'false'); });
+    if (focus) { document.getElementById('quiz-panel').scrollIntoView({ block: 'start', behavior: 'auto' }); heading.focus({ preventScroll: true }); }
   }
   answers.forEach(button => button.addEventListener('click', () => {
     const q = data.quiz[current];
     const correct = (button.dataset.answer === 'true') === q.correct;
     feedback.hidden = false; feedback.dataset.correct = String(correct);
+    answers.forEach(b => { b.classList.remove('answer-correct', 'answer-wrong'); b.setAttribute('aria-pressed', String(b === button)); });
+    button.classList.add(correct ? 'answer-correct' : 'answer-wrong');
+    if (!correct) reviewLessons.add(q.reviewLesson);
     feedback.textContent = correct ? `Верно. ${q.explanation}` : `Попробуйте ещё раз. ${q.explanation}`;
+    if (correct) { const progress = document.getElementById('quiz-progress'); progress.setAttribute('aria-valuenow', String(current + 1)); progress.setAttribute('aria-valuetext', `Разобрано ${current + 1} из ${data.quiz.length}`); progress.children[current].className = 'is-done'; }
     if (correct) { answers.forEach(b => { b.disabled = true; }); next.hidden = false; }
   }));
   next.addEventListener('click', () => {
@@ -112,11 +124,19 @@
     state.completed = 5; state.quizComplete = true; save();
     document.getElementById('quiz-panel').hidden = true;
     document.getElementById('quiz-summary').textContent = data.summary;
+    const review = document.getElementById('quiz-review'); review.replaceChildren(); review.hidden = reviewLessons.size === 0;
+    if (reviewLessons.size) {
+      const title = document.createElement('h3'); title.textContent = 'Можно повторить'; review.append(title);
+      const list = document.createElement('ul');
+      [...reviewLessons].sort().forEach((lesson) => { const item = document.createElement('li'); const link = document.createElement('a'); link.href = `lesson-${lesson}.html`; link.textContent = data.lessons[lesson - 1]; item.append(link); list.append(item); });
+      review.append(list);
+    }
     const result = document.getElementById('quiz-result'); result.hidden = false;
+    result.scrollIntoView({ block: 'start', behavior: 'auto' });
     result.querySelector('h2').focus({ preventScroll: true });
   });
   document.getElementById('retry-quiz').addEventListener('click', () => {
-    current = 0; document.getElementById('quiz-result').hidden = true;
+    current = 0; reviewLessons.clear(); document.getElementById('quiz-result').hidden = true;
     document.getElementById('quiz-panel').hidden = false; renderQuestion(true);
   });
   renderQuestion();
