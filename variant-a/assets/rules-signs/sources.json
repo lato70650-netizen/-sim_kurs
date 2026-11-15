@@ -1,0 +1,74 @@
+[
+  {
+    "number": "3.1",
+    "file": "https://upload.wikimedia.org/wikipedia/commons/6/63/RU_road_sign_3.1.svg",
+    "source": "https://commons.wikimedia.org/wiki/File:RU_road_sign_3.1.svg",
+    "bytes": 548,
+    "sha256": "484e748c4104b9cbc1219b26cfff44084a81316be142c061fff407cbdb562c8b",
+    "deployed_sha256": "18118a8b1c2beca152fdfbebab6e16a28b26b0b938cfffa92e183bc936c9149e"
+  },
+  {
+    "number": "3.35",
+    "file": "https://upload.wikimedia.org/wikipedia/commons/e/eb/RU_road_sign_3.35.svg",
+    "source": "https://commons.wikimedia.org/wiki/File:RU_road_sign_3.35.svg",
+    "bytes": 2672,
+    "sha256": "006a8e2bfd28e22c88d68f00d7163a24083ab0c5951e6cc34ad6a4628354da0e",
+    "deployed_sha256": "bf11c04a1974ebd07d09244743ff5a4442f33f6ba8c38fe48e8047e9742df4cc"
+  },
+  {
+    "number": "4.4.1",
+    "file": "https://upload.wikimedia.org/wikipedia/commons/7/74/RU_road_sign_4.4.1.svg",
+    "source": "https://commons.wikimedia.org/wiki/File:RU_road_sign_4.4.1.svg",
+    "bytes": 2640,
+    "sha256": "66dfce5c77d635f8f9a06a87d128deb892ad332f35d516c78d5335b70b290741",
+    "deployed_sha256": "ab5348189c8321d12d5402a003164ecfda3fa1f892c1a6728b0e33789985e729"
+  },
+  {
+    "number": "4.5.1",
+    "file": "https://upload.wikimedia.org/wikipedia/commons/3/37/RU_road_sign_4.5.1.svg",
+    "source": "https://commons.wikimedia.org/wiki/File:RU_road_sign_4.5.1.svg",
+    "bytes": 1709,
+    "sha256": "6b075662a359dd04fad2a9f9e41571123fad77169a06d1334168514dd8ad16f0",
+    "deployed_sha256": "223b90cabf10806d5a76d7bdcf11397001d993f4fc54a534b814369c525c2e5c"
+  },
+  {
+    "number": "4.5.2",
+    "file": "https://upload.wikimedia.org/wikipedia/commons/5/51/RU_road_sign_4.5.2.svg",
+    "source": "https://commons.wikimedia.org/wiki/File:RU_road_sign_4.5.2.svg",
+    "bytes": 9546,
+    "sha256": "d1f6e5d3fb9ffd2581b11813306c6490d7e6adab1aee04dc2cbea76e50042a0e",
+    "deployed_sha256": "d1f6e5d3fb9ffd2581b11813306c6490d7e6adab1aee04dc2cbea76e50042a0e"
+  },
+  {
+    "number": "4.5.4",
+    "file": "https://upload.wikimedia.org/wikipedia/commons/9/94/RU_road_sign_4.5.4.svg",
+    "source": "https://commons.wikimedia.org/wiki/File:RU_road_sign_4.5.4.svg",
+    "bytes": 9471,
+    "sha256": "25c919b3454faa279362f9a04e79ef14806c73f4eeeab6b3961935f6be18bb83",
+    "deployed_sha256": "25c919b3454faa279362f9a04e79ef14806c73f4eeeab6b3961935f6be18bb83"
+  },
+  {
+    "number": "4.5.5",
+    "file": "https://upload.wikimedia.org/wikipedia/commons/6/61/RU_road_sign_4.5.5.svg",
+    "source": "https://commons.wikimedia.org/wiki/File:RU_road_sign_4.5.5.svg",
+    "bytes": 9456,
+    "sha256": "883c5b21812769e5dce15870bfc8e958c062719094d9689dd65a8077026dc1ea",
+    "deployed_sha256": "883c5b21812769e5dce15870bfc8e958c062719094d9689dd65a8077026dc1ea"
+  },
+  {
+    "number": "5.19.1",
+    "file": "https://upload.wikimedia.org/wikipedia/commons/4/48/RU_road_sign_5.19.1.svg",
+    "source": "https://commons.wikimedia.org/wiki/File:RU_road_sign_5.19.1.svg",
+    "bytes": 2424,
+    "sha256": "4fc52f6409a30dfac60e817c5126f3f690abdc2438db965f07f789720c055ffe",
+    "deployed_sha256": "cf8872b9b93e37a96f23842d642adfe09bd67180b11aa92af130524fefe35bc4"
+  },
+  {
+    "number": "5.19.2",
+    "file": "https://upload.wikimedia.org/wikipedia/commons/4/44/RU_road_sign_5.19.2.svg",
+    "source": "https://commons.wikimedia.org/wiki/File:RU_road_sign_5.19.2.svg",
+    "bytes": 2426,
+    "sha256": "ae5ee7da1093c7f97cf68c74bb5bc31ab4e23e7e9cc84811beb93f329132d47f",
+    "deployed_sha256": "8fd7f18feba3b9132d637586c80893daa56b78e02d40a919b76b635551415d38"
+  }
+]
