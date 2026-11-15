@@ -1,34 +1,267 @@
 {
-  "name": "СИМ — городской журнал",
-  "colors": {
-    "paper": "#d4e9d9",
-    "ink": "#183b35",
-    "primary": "#087467",
-    "accent": "#ff713d",
-    "muted": "#4a6058",
-    "line": "#bdc8ba",
-    "lime": "#d4ef77",
-    "yellow": "#f7dd72",
-    "strip": "#b9dd9d",
-    "moduleOne": "#c2e964",
-    "moduleTwo": "#86d8c8",
-    "moduleThree": "#ffbf8d",
-    "photoCaption": "#086b5d"
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-15T15:14:47.349948Z",
+  "title": "Design System: СИМ — области визуальной системы",
+  "extensions": {
+    "scope": {
+      "sourceDocument": "design-v2/DESIGN.md",
+      "status": "Local first-module draft; not published; no global migration",
+      "pages": [
+        "introduction.html",
+        "lesson-1.html",
+        "lesson-2.html",
+        "lesson-3.html",
+        "lesson-4.html",
+        "lesson-5.html",
+        "introduction-quiz.html"
+      ],
+      "inventory": "components-module-one.html",
+      "runtimeSources": [
+        "module-one-v2.css",
+        "course-depth.css",
+        "module-one-v2.js"
+      ],
+      "legacyDesign": "design-v2/audit/LEGACY_DESIGN.md",
+      "legacySidecar": "design-v2/audit/legacy-design.json",
+      "excluded": [
+        "main variant B",
+        "archived variant A",
+        "rules pages",
+        "authentication",
+        "Supabase"
+      ],
+      "refersToResolution": "components.refersTo resolves against frontmatter in sourceDocument, not a global root palette."
+    },
+    "colorMeta": {
+      "bg": {
+        "role": "neutral",
+        "displayName": "Глубокий тёмный фон"
+      },
+      "raised": {
+        "role": "neutral",
+        "displayName": "Поднятая тёмная поверхность"
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Карточная поверхность"
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Светлый учебный текст"
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Приглушённые пояснения"
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Граница поверхности"
+      },
+      "primary": {
+        "role": "primary",
+        "displayName": "Лаймовое действие"
+      },
+      "primary-hover": {
+        "role": "primary",
+        "displayName": "Наведение действия"
+      },
+      "info": {
+        "role": "secondary",
+        "displayName": "Голубая информация"
+      },
+      "warning": {
+        "role": "tertiary",
+        "displayName": "Янтарный фокус"
+      },
+      "error": {
+        "role": "tertiary",
+        "displayName": "Коралловая ошибка"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "purpose": "Обложка первого блока."
+      },
+      "headline": {
+        "purpose": "Тема урока."
+      },
+      "body": {
+        "purpose": "Учебный абзац; мобильный размер 17px."
+      }
+    },
+    "shadows": [
+      {
+        "name": "course-shadow-low",
+        "value": "0 8px 20px -9px rgb(0 0 0 / 45%)",
+        "purpose": "Смысловые секции и компактная навигация."
+      },
+      {
+        "name": "course-shadow-card",
+        "value": "0 20px 42px -16px rgb(0 0 0 / 72%)",
+        "purpose": "Карточки уроков, иллюстрации, задание и результат."
+      },
+      {
+        "name": "course-shadow-feature",
+        "value": "0 28px 60px -20px rgb(0 0 0 / 78%)",
+        "purpose": "Фокусная композиция устройств и каталог."
+      },
+      {
+        "name": "course-light-edge",
+        "value": "inset 0 1px 0 rgb(255 255 255 / 9%)",
+        "purpose": "Слабый внутренний свет по верхнему краю."
+      },
+      {
+        "name": "course-light-cyan",
+        "value": "0 10px 38px -20px rgb(86 217 242 / 24%)",
+        "purpose": "Небольшое голубое отражение."
+      },
+      {
+        "name": "course-light-lime",
+        "value": "0 12px 38px -18px rgb(162 255 81 / 32%)",
+        "purpose": "Небольшое лаймовое отражение действия и раскрытого устройства."
+      }
+    ],
+    "shadowOverrides": [
+      {
+        "media": "(max-width:767px)",
+        "name": "course-shadow-card",
+        "value": "0 14px 28px -14px rgb(0 0 0 / 66%)"
+      },
+      {
+        "media": "(max-width:767px)",
+        "name": "course-shadow-feature",
+        "value": "0 20px 38px -20px rgb(0 0 0 / 74%)"
+      }
+    ],
+    "motion": [
+      {
+        "name": "m1-fast",
+        "value": "220ms",
+        "purpose": "Короткие переходы состояний; если easing не указан, используется CSS ease."
+      },
+      {
+        "name": "m1-ease",
+        "value": "cubic-bezier(.16,1,.3,1)",
+        "purpose": "Анимация раскрытия описания устройства."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "transition:none!important; animation:none!important; scroll-behavior:auto",
+        "purpose": "Отключение движения при prefers-reduced-motion:reduce."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "tablet-max",
+        "value": "1023px"
+      },
+      {
+        "name": "phone-max",
+        "value": "767px"
+      }
+    ],
+    "focus": {
+      "outline": "3px solid var(--m1-warning)",
+      "outlineOffset": "5px"
+    },
+    "objectShadows": [
+      {
+        "selector": ".m1-device-card .scene-photo",
+        "value": "drop-shadow(0 18px 14px rgb(0 0 0 / 58%))"
+      },
+      {
+        "selector": ".m1-device-group img",
+        "value": "drop-shadow(0 18px 12px rgb(0 0 0 / 62%))"
+      }
+    ]
   },
-  "typography": {
-    "family": "Onest, Arial, sans-serif",
-    "body": "16px",
-    "display": "clamp(48px, 4.8vw, 72px)"
-  },
-  "radii": {
-    "surface": "14px",
-    "control": "5px"
-  },
-  "breakpoints": {
-    "compact": "1050px",
-    "mobile": "760px"
-  },
-  "motion": {
-    "reducedMotion": "all transitions and smooth scrolling disabled"
+  "components": [
+    {
+      "name": "Основное действие",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Первый блок: явное продолжение; не меняет порядок курса.",
+      "html": "<button class=\"ds-primary\" type=\"button\">Урок прочитан — дальше</button>",
+      "css": ".ds-primary{background:var(--m1-primary,#a2ff51);color:var(--m1-bg,#101b2c);border:0;border-radius:14px;font:700 15px/1.5 Manrope,Arial,sans-serif;min-height:50px;padding:14px 20px;display:inline-flex;align-items:center;justify-content:space-between;gap:20px;cursor:pointer;box-shadow:inset 0 1px 0 rgb(255 255 255 / 38%),0 8px 18px -9px rgb(0 0 0 / 65%),0 12px 38px -18px rgb(162 255 81 / 32%);transition:background 220ms,transform 220ms}.ds-primary:hover{background:#b9ff7f;box-shadow:inset 0 1px 0 rgb(255 255 255 / 9%),0 20px 42px -16px rgb(0 0 0 / 72%),0 12px 38px -18px rgb(162 255 81 / 32%)}.ds-primary:active{transform:translateY(1px)}.ds-primary:focus-visible{outline:3px solid var(--m1-warning,#ffca65);outline-offset:5px}@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;transform:none!important}}"
+    },
+    {
+      "name": "Вторичное действие",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Первый блок: вспомогательный переход на поднятой поверхности.",
+      "html": "<button class=\"ds-secondary\" type=\"button\">К программе блока</button>",
+      "css": ".ds-secondary{color:var(--m1-info,#56d9f2);background:var(--m1-raised,#14243a);border:1px solid #477487;border-radius:14px;padding:12px 18px;min-height:48px;display:inline-flex;align-items:center;justify-content:center;font:650 14px/1.6 Manrope,Arial,sans-serif;cursor:pointer;box-shadow:inset 0 1px 0 rgb(255 255 255 / 9%),0 8px 20px -9px rgb(0 0 0 / 45%);transition:background 220ms}.ds-secondary:hover{background:#203f56}.ds-secondary:active{transform:translateY(1px)}.ds-secondary:disabled{opacity:.65;cursor:default;box-shadow:none}.ds-secondary:focus-visible{outline:3px solid var(--m1-warning,#ffca65);outline-offset:5px}@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;transform:none!important}}"
+    },
+    {
+      "name": "Описание устройства",
+      "kind": "custom",
+      "description": "Native details/summary: явная кнопка раскрывает текст под изображением. Текст примера не заменяет учебный материал.",
+      "html": "<details class=\"ds-disclosure\"><summary class=\"ds-disclosure-control\">Описание устройства <span aria-hidden=\"true\">+</span></summary><div class=\"ds-device-text\">Учебное описание из соответствующей карточки</div></details>",
+      "css": ".ds-disclosure{font-family:Manrope,Arial,sans-serif;color:var(--m1-ink,#f6f8fc)}.ds-disclosure-control{display:flex;align-items:center;justify-content:space-between;gap:20px;background:#203b50;color:var(--m1-info,#56d9f2);border:1px solid #437587;border-radius:14px;font-size:15px;font-weight:700;padding:13px 18px;min-height:50px;cursor:pointer;list-style:none;box-shadow:inset 0 1px 0 rgb(255 255 255 / 9%),0 8px 20px -9px rgb(0 0 0 / 45%);transition:background 220ms}.ds-disclosure-control::-webkit-details-marker{display:none}.ds-disclosure-control:hover{background:#2a4b60}.ds-device-text{padding-top:28px;max-width:74ch;font-size:18px;line-height:1.9}.ds-disclosure[open] .ds-device-text{animation:ds-reveal 220ms cubic-bezier(.16,1,.3,1)}@keyframes ds-reveal{from{opacity:.55;transform:translateY(5px)}to{opacity:1;transform:none}}.ds-disclosure-control:focus-visible{outline:3px solid var(--m1-warning,#ffca65);outline-offset:5px}@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;transform:none!important}}"
+    },
+    {
+      "name": "Компактное оглавление",
+      "kind": "nav",
+      "description": "Первый блок: оглавление закрыто по умолчанию, текущая страница явно отмечена.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Уроки блока\"><details><summary class=\"ds-nav-control\">Уроки блока</summary><ol><li><a class=\"ds-nav-link\" href=\"#lesson\" aria-current=\"page\">01 · Что такое СИМ</a></li></ol></details></nav>",
+      "css": ".ds-nav{font-family:Manrope,Arial,sans-serif;background:linear-gradient(155deg,#1b2e45,#14243a);color:var(--m1-ink,#f6f8fc);border:1px solid var(--m1-line,#3a526b);border-radius:16px;padding:15px 20px;box-shadow:inset 0 1px 0 rgb(255 255 255 / 9%),0 8px 20px -9px rgb(0 0 0 / 45%)}.ds-nav-control{font-size:15px;line-height:1.8;font-weight:700;cursor:pointer}.ds-nav details[open]>summary{margin-bottom:20px}.ds-nav ol{list-style:none;padding:0;margin:0}.ds-nav li{border-top:1px solid var(--m1-line,#3a526b)}.ds-nav-link{display:block;font-size:13px;line-height:1.7;padding:13px 9px;border-radius:10px;color:var(--m1-muted,#bfccda);text-decoration:none}.ds-nav-link:hover{color:var(--m1-info,#56d9f2);background:#20394f}.ds-nav-link[aria-current=page]{background:#233e53;color:var(--m1-info,#56d9f2);font-weight:750}.ds-nav-link:focus-visible{outline:3px solid var(--m1-warning,#ffca65);outline-offset:5px}.ds-nav-control:focus-visible{outline:3px solid var(--m1-warning,#ffca65);outline-offset:5px}@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;transform:none!important}}"
+    },
+    {
+      "name": "Приблизительное время чтения",
+      "kind": "chip",
+      "description": "Значение из READING_TIMES.json; не таймер и не обещание скорости ученика.",
+      "html": "<span class=\"ds-meta\"><svg aria-hidden=\"true\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><circle cx=\"12\" cy=\"12\" r=\"8.5\"/><path d=\"M12 7v5l3 2\"/></svg>≈ 2–3 мин чтения</span>",
+      "css": ".ds-meta{display:inline-flex;align-items:center;gap:9px;background:linear-gradient(150deg,#24384e,#182a3e);border:1px solid #40576d;border-radius:999px;padding:8px 13px;min-height:38px;font:550 13px/1.65 Manrope,Arial,sans-serif;color:#d6e2ef;box-shadow:inset 0 1px 0 rgb(255 255 255 / 9%),0 8px 20px -9px rgb(0 0 0 / 45%)}.ds-meta svg{width:19px;height:19px;flex-shrink:0;color:var(--m1-info,#56d9f2)}@media(max-width:767px){.ds-meta{font-size:12px;padding:7px 11px;min-height:36px}}"
+    },
+    {
+      "name": "Карточка устройства — поверхность",
+      "kind": "card",
+      "refersTo": "device-card",
+      "description": "Образец оболочки без подмены учебного изображения или описания. Открытое устройство занимает строку в реальном каталоге.",
+      "html": "<section class=\"ds-device\"><h2>Гироскутер</h2><p>Название и изображение видны до раскрытия описания.</p></section>",
+      "css": ".ds-device{font-family:Manrope,Arial,sans-serif;color:var(--m1-ink,#f6f8fc);border:1px solid rgb(86 217 242 / 32%);border-radius:24px;padding:27px;background:radial-gradient(ellipse at 65% 35%,#284854,transparent 65%),linear-gradient(145deg,#243b52,#17283c);box-shadow:inset 0 1px 0 rgb(255 255 255 / 9%),0 28px 60px -20px rgb(0 0 0 / 78%),0 10px 38px -20px rgb(86 217 242 / 24%);transition:border-color 220ms,box-shadow 220ms}.ds-device h2{font-size:27px;margin:0 0 22px}.ds-device p{font-size:17px;line-height:1.9;color:var(--m1-muted,#bfccda)}@media(hover:hover){.ds-device:hover{border-color:#688a9e}}@media(max-width:767px){.ds-device{padding:23px 19px;border-radius:20px;box-shadow:inset 0 1px 0 rgb(255 255 255 / 9%),0 20px 38px -20px rgb(0 0 0 / 74%),0 10px 38px -20px rgb(86 217 242 / 24%)}}@media(prefers-reduced-motion:reduce){.ds-device{transition:none}}"
+    },
+    {
+      "name": "Вариант ответа",
+      "kind": "button",
+      "refersTo": "answer",
+      "description": "Нейтральный вариант; состояния correct/wrong берутся из существующего обработчика задания.",
+      "html": "<button class=\"ds-answer\" type=\"button\" aria-pressed=\"false\">Относится к СИМ</button>",
+      "css": ".ds-answer{background:#172b3f;color:var(--m1-ink,#f6f8fc);border:1px solid #5a7389;border-radius:14px;padding:17px 18px;font:650 16px/1.6 Manrope,Arial,sans-serif;min-height:58px;display:flex;align-items:center;justify-content:space-between;gap:15px;cursor:pointer;text-align:left;transition:background 220ms,border-color 220ms}.ds-answer:hover{background:#29465e;border-color:var(--m1-info,#56d9f2)}.ds-answer[aria-pressed=true]{border-width:2px;padding:16px 17px}.ds-answer.answer-correct{background:#203c2a;border-color:var(--m1-primary,#a2ff51);color:#e8ffda}.ds-answer.answer-wrong{background:#492a36;border-color:var(--m1-error,#ff6b75);color:#ffe3e7}.ds-answer:disabled{opacity:1;color:var(--m1-muted,#bfccda);cursor:default;background:#203044;border-color:#4b6177}.ds-answer:focus-visible{outline:3px solid var(--m1-warning,#ffca65);outline-offset:5px}@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;transform:none!important}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Узнать устройство — понять — проверить",
+    "overview": "Тёмная EdTech-система следует утверждённой палитре и характеру ТЗ 2.0. Реалистичные графитовые устройства, мягкая глубина и небольшие лаймовые/голубые акценты помогают распознать предмет и найти следующее действие. Учебный текст остаётся главным; полезные метаданные объясняют длительность и свойства курса.\n\nОбласть — `introduction.html`, `lesson-1.html`–`lesson-5.html`, `introduction-quiz.html`; `components-module-one.html` — отдельный образец компонентов. Это локальный прототип первого блока, не завершённая миграция всего курса и не опубликованная версия. [Контракт](CONTRACT.md) задаёт текущий объём; [полное ТЗ](BRIEF.md) содержит также будущие этапы. Главная В, архив А, правила, авторизация и Supabase сохраняют прежнее поведение и оформление.",
+    "keyCharacteristics": [
+      "Тёмные поверхности, светлый читаемый текст и локальные цветные акценты.",
+      "Объёмные предметы с падающей тенью и мягким светом по краю карточек.",
+      "Явное последовательное действие, компактная свёрнутая навигация.",
+      "Реальные локальные отметки и приблизительное время чтения."
+    ],
+    "rules": [
+      {
+        "name": "Accent",
+        "body": "Цвет помогает найти действие или понять состояние; он не заливает учебный текст ярким свечением.",
+        "section": "colors"
+      },
+      {
+        "name": "Depth",
+        "body": "Сначала читаемая поверхность и граница, затем мягкая тень; свечение остаётся небольшим и не снижает контраст текста.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** брать палитру, локальный Manrope, формы и текущие состояния из этой области и её CSS.",
+      "**Do** сохранять исходные 42 учебных абзаца, их порядок, все заголовки, действия, десять примеров, ответы и объяснения.",
+      "**Do** дублировать цвет ответа текстом и иконкой, поддерживать клавиатуру и reduced-motion.",
+      "**Do** переносить общий слой глубины на другие страницы только вместе с их согласованной миграцией."
+    ],
+    "donts": [
+      "**Don't** считать этот документ глобальной заменой мятного курса или архива А.",
+      "**Don't** скрывать текст только на обратной стороне, доступной наведением.",
+      "**Don't** превращать приблизительное время чтения в дедлайн, баллы или обещание результата.",
+      "**Don't** менять учебные данные, авторизацию, Supabase, маршруты или публикацию ради визуального переноса."
+    ]
   }
 }

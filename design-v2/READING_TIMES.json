@@ -1,0 +1,45 @@
+{
+  "method": "Approximate Russian reading range at 140–200 words/min; hidden device descriptions included. Rounded up; no timer or deadline. Block estimate includes 5–7 minutes for ten examples, rounded to 20–25 min. Not measured student performance.",
+  "lessons": {
+    "1": {
+      "words": 259,
+      "minutes": [
+        2,
+        3
+      ],
+      "label": "≈ 2–3 мин чтения"
+    },
+    "2": {
+      "words": 603,
+      "minutes": [
+        4,
+        5
+      ],
+      "label": "≈ 4–5 мин чтения"
+    },
+    "3": {
+      "words": 331,
+      "minutes": [
+        2,
+        3
+      ],
+      "label": "≈ 2–3 мин чтения"
+    },
+    "4": {
+      "words": 290,
+      "minutes": [
+        2,
+        3
+      ],
+      "label": "≈ 2–3 мин чтения"
+    },
+    "5": {
+      "words": 403,
+      "minutes": [
+        3,
+        4
+      ],
+      "label": "≈ 3–4 мин чтения"
+    }
+  }
+}
