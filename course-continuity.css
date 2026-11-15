@@ -1,0 +1,82 @@
+/* New cards, original teaching structure. Never loaded by the frozen variant A. */
+@font-face{font-family:Manrope;src:url('assets/module-one-v2/manrope.ttf') format('truetype');font-weight:200 800;font-display:swap}
+.course-home-v2 { font-family:Manrope,Arial,sans-serif; }
+.course-home-v2 .module-card { border-radius:24px; }
+.course-home-v2 .module-main { min-height:495px; padding:27px 24px 24px; }
+.course-home-v2 .module-badge { font-size:13px; }
+.course-home-v2 .module-text { max-width:61%; }
+.course-home-v2 .module-text h3 { font-size:26px; }
+.course-home-v2 .module-text>p { font-size:15px; line-height:1.8; max-width:27ch; }
+.course-home-v2 .module-task { margin-top:19px; color:#d0deed; font-size:14px; line-height:1.8; }
+.course-home-v2 .task-label { display:block; color:var(--accent); font-size:13px; font-weight:700; margin-bottom:6px; }
+.course-home-v2 .module-art-1 { inset:72px -42px 115px 48%; }
+.course-home-v2 .module-art-2 { inset:90px -15px 110px 62%; }
+.course-home-v2 .module-art-3 { inset:90px -12px 110px 59%; }
+.course-home-v2 .module-entry {
+  position:relative; z-index:3; display:flex; align-items:center; justify-content:space-between;
+  width:100%; gap:15px; min-height:50px; margin-top:25px; padding:13px 16px;
+  border-radius:14px; background:var(--accent); color:#101b2c;
+  font-size:15px; font-weight:750; line-height:1.6;
+  box-shadow:0 8px 22px -12px rgb(0 0 0 / 65%);
+}
+.course-home-v2 .module-entry svg { width:23px; height:23px; flex-shrink:0; }
+.course-home-v2 .module-main>.coming { position:relative; left:auto; bottom:auto; max-width:68%; margin-top:25px; font-size:13px; line-height:1.8; }
+.course-home-v2 .module-main>.unavailable { bottom:24px; }
+.course-home-v2 .module-program summary { font-size:14px; }
+.course-home-v2 .module-program { font-size:15px; line-height:1.8; }
+.course-home-v2 .module-program>.development { font-size:13px; }
+.course-home-v2 .current-site { display:inline-flex; }
+.course-home-v2 .skip {
+  top:10px; transform:translateY(calc(-100% - 30px));
+  background:#14243a; color:#f6f8fc; border:1px solid #56d9f2; border-radius:14px;
+}
+.course-home-v2 .skip:focus { top:10px; transform:none; outline:3px solid #ffca65; }
+
+/* The topic list stays optional and sequential, rather than becoming a new dashboard. */
+.module-one-v2 .intro-steps { grid-template-columns:1fr; }
+.module-one-v2 .intro-topics .intro-item { padding:19px 20px; }
+.module-one-v2 .intro-topics .intro-item h2 { min-height:0; font-size:19px; }
+.module-one-v2 .intro-item>div>p { font-size:15px; color:var(--m1-muted); margin-top:9px; }
+.module-one-v2 .intro-topics .step-link { display:inline-flex; width:auto; min-width:115px; max-width:260px; margin-top:14px; }
+.module-one-v2 .intro-topics .step-state { margin-top:9px; }
+
+/* The five rule lessons keep their original diagrams, words, question flow and locations. */
+.rules-night .rules-story,.rules-night .lesson-copy p { font-size:18px; line-height:1.9; max-width:72ch; }
+.rules-night .rules-story,.rules-night .rules-practice>p { color:var(--m1-muted); }
+.rules-night .rules-text-block,.rules-night .age-rule,.rules-night .age-rule:nth-child(n),
+.rules-night .sign-card,.rules-night .crossing-steps li,.rules-night .rules-practice {
+  color:var(--m1-ink); background:var(--m1-surface); border:1px solid var(--m1-line);
+  box-shadow:var(--course-light-edge),var(--course-shadow-low); border-radius:20px;
+}
+.rules-night .sign-card strong,.rules-night .crossing-steps li::before { color:var(--m1-info); }
+.rules-night .sign-images { flex-wrap:wrap; }
+.rules-night .sign-images img,.rules-night .crossing-signs img { background:#f6f8fc; border-radius:9px; padding:5px; }
+.rules-night .first-aid-urgent { background:#3a3022; border:1px solid #8e7246; color:#ffebc9; border-radius:20px; }
+.rules-night .rules-practice #question-text { color:var(--m1-ink); }
+.rules-night .lesson-actions button:disabled { background:#26384b; color:#b0bece; border:1px solid var(--m1-line); box-shadow:none; }
+.rules-night .rules-practice button:focus-visible { outline:3px solid var(--m1-warning); outline-offset:4px; }
+.rules-night .rules-practice #next-question { width:auto; }
+.rules-night .rules-practice .quiz-choices button.answer-correct:disabled { color:#e8ffda; background:#203c2a; border-color:var(--m1-primary); }
+@media(max-width:1050px) and (min-width:701px) {
+  .course-home-v2 .module-main { padding-inline:19px; min-height:560px; }
+  .course-home-v2 .module-text { max-width:67%; }
+  .course-home-v2 .module-text h3 { font-size:24px; }
+}
+@media(min-width:701px) and (max-width:1023px) {
+  .course-home-v2 .module-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media(max-width:767px) {
+  .rules-night .rules-story,.rules-night .lesson-copy p { font-size:17px; }
+  .module-one-v2 .intro-topics .intro-item { padding:18px 15px; }
+  .module-one-v2 .intro-topics .intro-item h2 { font-size:18px; }
+}
+@media(max-width:700px) {
+  .course-home-v2 .header { flex-wrap:wrap; padding-block:20px; }
+  .course-home-v2 .header nav { flex:1 1 100%; justify-content:space-between; gap:14px; font-size:13px; }
+  .course-home-v2 .module-main { min-height:480px; }
+  .course-home-v2 .module-text { max-width:65%; }
+  .course-home-v2 .module-text h3 { font-size:26px; }
+  .course-home-v2 .module-art-1 { inset:85px -35px 120px 49%; }
+  .course-home-v2 .module-art-2 { inset:105px -12px 110px 63%; }
+  .course-home-v2 .module-art-3 { inset:105px -12px 110px 61%; }
+}

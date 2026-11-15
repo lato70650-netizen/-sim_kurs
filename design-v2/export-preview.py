@@ -9,11 +9,20 @@ import base64
 import json
 import mimetypes
 import re
+import sys
 
 root = Path(__file__).resolve().parents[1]
+archive_a = '--variant-a' in sys.argv
+if archive_a:
+    root = root / 'variant-a'
 assets = {}
 pages = {}
 names = ['introduction.html'] + [f'lesson-{i}.html' for i in range(1, 6)] + ['introduction-quiz.html', 'components-module-one.html']
+full_course = '--full-course' in sys.argv or archive_a
+if archive_a:
+    names.remove('components-module-one.html')
+if full_course:
+    names = ['index.html'] + names + ['rules.html'] + [f'rules-lesson-{i}.html' for i in range(1, 6)]
 
 def asset(path):
     path = path.split('?')[0]
@@ -32,15 +41,29 @@ for name in names:
         link.replace_with(style)
     for image in soup.select('img[src]'):
         image['src'] = asset(image['src'])
+    for link in soup.select('link[href]'):
+        if not link['href'].startswith(('http:', 'https:', 'data:', 'blob:')):
+            link['href'] = asset(link['href'])
     scripts = []
     for script in soup.select('script[src]'):
-        code = (root / script['src'].split('?')[0]).read_text()
+        script_file = script['src'].split('?')[0]
+        if full_course and script_file in ['auth.js', 'vendor/supabase-2.119.0.js']:
+            script.decompose()
+            continue
+        code = (root / script_file).read_text()
         if script['src'].split('?')[0] == 'introduction.js':
             code = code.replace("'sim-introduction-progress-v1'", "'sim-introduction-offline-preview-v2'")
+            code = code.replace("'sim-introduction-progress-variant-a-v1'", "'sim-introduction-offline-preview-A-v2'")
             code = code.replace('window.location.href = url(number + 1)', 'window.parent.simPreviewGo(url(number + 1))')
+        if script_file == 'rules.js':
+            code = code.replace("'sim-rules-progress-v1'", "'sim-rules-offline-preview-v2'")
+            code = code.replace("'sim-rules-progress-variant-a-v1'", "'sim-rules-offline-preview-A-v2'")
+            code = code.replace("location.href=n===4?'./#practice':url(n+1)", "window.parent.simPreviewGo(n===4?'index.html#practice':url(n+1))")
         scripts.append(code)
         script.decompose()
     scripts.append("document.addEventListener('click',e=>{const a=e.target.closest('a[href]');if(!a)return;const h=a.getAttribute('href');if(h.startsWith('#'))return;e.preventDefault();window.parent.simPreviewGo(h)});")
+    if full_course:
+        scripts.append("document.getElementById('auth-open')?.addEventListener('click',()=>window.parent.simPreviewNotice('Авторизация в этом файле не подключена; проверяем оформление курса.'));")
     for code in scripts:
         script = soup.new_tag('script')
         script.string = code
@@ -51,9 +74,14 @@ template = '''<!doctype html><html lang="ru"><meta charset="utf-8"><meta name="v
 const bundle=__BUNDLE__;
 const urls={};for(const[k,a]of Object.entries(bundle.assets)){const bytes=Uint8Array.from(atob(a.base64),c=>c.charCodeAt(0));urls[k]=URL.createObjectURL(new Blob([bytes],{type:a.type}))}
 const pages={};for(const[k,v]of Object.entries(bundle.pages)){let html=v;for(const[path,url]of Object.entries(urls))html=html.split('@@ASSET:'+path+'@@').join(url);pages[k]=html}
-window.simPreviewGo=function(href){const path=href.split(/[?#]/)[0];if(!pages[path]){document.getElementById('note').textContent='Эта ссылка ведёт за пределы первого блока. В автономном просмотре доступно только знакомство.';return}document.getElementById('course').srcdoc=pages[path];document.title='Знакомство — '+path;};document.getElementById('start').onclick=()=>simPreviewGo('introduction.html');simPreviewGo('introduction.html');
+const home=__HOME__;window.simPreviewNotice=t=>document.getElementById('note').textContent=t;
+window.simPreviewGo=function(href){let path=href.split(/[?#]/)[0];if(home&&(!path||path==='./'))path=home;if(!pages[path]){simPreviewNotice('Эта ссылка ведёт за пределы включённых в просмотр страниц. Для сравнения откройте второй HTML-файл.');return}const frame=document.getElementById('course'),fragment=href.split('#')[1];frame.onload=()=>{if(fragment)frame.contentDocument.getElementById(fragment)?.scrollIntoView()};frame.srcdoc=pages[path];document.title='Просмотр курса — '+path;};document.getElementById('start').onclick=()=>simPreviewGo(home||'introduction.html');simPreviewGo(home||'introduction.html');
 </script></html>'''
 data = json.dumps({'assets': assets, 'pages': pages}, ensure_ascii=False).replace('</', '<\\/')
-output = Path('/workspace/shared/SIM_Знакомство_дизайн_2.html')
-output.write_text(template.replace('__BUNDLE__', data))
+if full_course:
+    label = 'Сохранённый вариант А для сравнения.' if archive_a else 'Черновик варианта В: новая графика и прежняя структура.'
+    template = template.replace('Автономный просмотр первого блока. Отметки отдельные от сайта. Главная и остальные блоки не включены.', label + ' Главная и две готовые части курса; отметки отдельные; авторизация не подключена.')
+filename = 'SIM_variant_A_review.html' if archive_a else 'SIM_variant_B_review.html' if full_course else 'SIM_Знакомство_дизайн_2.html'
+output = Path('/workspace/shared') / filename
+output.write_text(template.replace('__BUNDLE__', data).replace('__HOME__', json.dumps('index.html' if full_course else None)))
 print(f'{output}: {output.stat().st_size} bytes, {len(pages)} pages, {len(assets)} local embedded assets')

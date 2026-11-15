@@ -1,34 +1,49 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-15T15:26:50.268944+00:00",
+  "generatedAt": "2026-11-15T16:20:38.712240+00:00",
   "title": "Design System: СИМ — области визуальной системы",
   "extensions": {
     "scope": {
       "sourceDocument": "design-v2/DESIGN.md",
-      "status": "Local first-module draft; not published; no global migration",
+      "status": "First-module release published previously (remote/main 0efaf33); current main-B/rules/structure comparison draft local only; visual approval pending",
+      "branch": "fix/variant-comparison-and-structure",
+      "localComparisonCommit": "de9917f (not pushed)",
       "pages": [
+        "index.html",
+        "variant-b.html",
         "introduction.html",
         "lesson-1.html",
         "lesson-2.html",
         "lesson-3.html",
         "lesson-4.html",
         "lesson-5.html",
-        "introduction-quiz.html"
+        "introduction-quiz.html",
+        "rules.html",
+        "rules-lesson-1.html",
+        "rules-lesson-2.html",
+        "rules-lesson-3.html",
+        "rules-lesson-4.html",
+        "rules-lesson-5.html"
       ],
       "inventory": "components-module-one.html",
+      "componentSamplesScope": "First-module component samples; not a complete inventory of main B or rules",
       "runtimeSources": [
         "module-one-v2.css",
         "course-depth.css",
-        "module-one-v2.js"
+        "module-one-v2.js",
+        "variant-b.css",
+        "course-continuity.css"
       ],
       "legacyDesign": "design-v2/audit/LEGACY_DESIGN.md",
       "legacySidecar": "design-v2/audit/legacy-design.json",
+      "comparisonDocument": "design-v2/VARIANTS.md",
+      "structureGuard": "Old structure means full course content, order, task lines, named actions and closed disclosures. Keep new photorealistic 3D cards in B; never restore legacy photo cards.",
       "excluded": [
-        "main variant B",
-        "archived variant A",
-        "rules pages",
+        "frozen variant-a/ and SNAPSHOT.json",
         "authentication",
-        "Supabase"
+        "Supabase",
+        "teaching data and progression logic",
+        "new final game"
       ],
       "refersToResolution": "components.refersTo resolves against frontmatter in sourceDocument, not a global root palette."
     },
