@@ -78,3 +78,33 @@
     --course-shadow-feature: 0 20px 38px -20px rgb(0 0 0 / 74%);
   }
 }
+
+/* Holo reference: one quiet, pointer-driven reflection on the device artwork.
+   No idle loop. The heading, disclosure button and reading area never tilt. */
+.module-one-v2 .m1-holo-media { position:relative; }
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
+  .module-one-v2 .m1-holo-media .scene-photo {
+    transform:perspective(850px) rotateX(0deg) rotateY(0deg);
+    transition:transform 280ms var(--m1-ease);
+  }
+  .module-one-v2 .m1-holo-media::after {
+    content:''; position:absolute; inset:0 0 36px; border-radius:16px;
+    pointer-events:none; opacity:0;
+    background:
+      radial-gradient(ellipse at var(--holo-x,50%) var(--holo-y,50%),
+        rgb(255 255 255 / 26%),rgb(144 235 255 / 10%) 25%,transparent 62%),
+      linear-gradient(115deg,transparent 28%,rgb(255 255 255 / 8%) 47%,transparent 65%);
+    mask-image:radial-gradient(ellipse closest-side,#000 20%,transparent 100%);
+    -webkit-mask-image:radial-gradient(ellipse closest-side,#000 20%,transparent 100%);
+    transition:opacity 220ms var(--m1-ease);
+  }
+  .module-one-v2 .m1-holo-media.is-holo-active .scene-photo {
+    transform:perspective(850px) rotateX(var(--holo-rx,0deg)) rotateY(var(--holo-ry,0deg));
+    transition:transform 140ms ease-out; will-change:transform;
+  }
+  .module-one-v2 .m1-holo-media.is-holo-active::after { opacity:.72; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .module-one-v2 .m1-holo-media .scene-photo { transform:none; }
+  .module-one-v2 .m1-holo-media::after { content:none; }
+}

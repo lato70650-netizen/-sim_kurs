@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-15T15:14:47.349948Z",
+  "generatedAt": "2026-11-15T15:26:50.268944+00:00",
   "title": "Design System: СИМ — области визуальной системы",
   "extensions": {
     "scope": {
@@ -148,6 +148,21 @@
         "name": "reduced-motion",
         "value": "transition:none!important; animation:none!important; scroll-behavior:auto",
         "purpose": "Отключение движения при prefers-reduced-motion:reduce."
+      },
+      {
+        "name": "holo-follow",
+        "value": "140ms ease-out",
+        "purpose": "Mouse-only artwork tilt; max rotateX ±2.5deg / rotateY ±3.5deg, perspective850px. Text and controls remain still."
+      },
+      {
+        "name": "holo-return",
+        "value": "280ms cubic-bezier(.16,1,.3,1)",
+        "purpose": "Return to rest on pointerleave/cancel, blur/hidden or preference change; no idle loop."
+      },
+      {
+        "name": "holo-light",
+        "value": "220ms cubic-bezier(.16,1,.3,1)",
+        "purpose": "Feathered pointer-driven glare; disabled for touch/coarse/no-hover/reduced-motion."
       }
     ],
     "breakpoints": [
