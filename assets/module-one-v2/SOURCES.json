@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-15",
+  "producer": "OpenAI image generation",
+  "reference": "prototype/assets/card-scooter.webp (existing approved variant B asset, unchanged)",
+  "images": [
+    {
+      "name": "hoverboard",
+      "p": "Generate a technically plausible isolated premium photorealistic 3D mobility device on transparent background, for an educational Russian teenage SIM course. Match attached graphite electric scooter reference: deep charcoal materials, restrained lime #A2FF51 and cyan highlights, realistic rubber tires, polished studio lighting, credible mechanisms, whole object visible with ample margin, three-quarter front view. NOT toy-like, not cartoon. No people, text, logo, numbers, interface, road signs or scenery. Transparent background. A standard self-balancing hoverboard (gyroscooter): two wheels on the LEFT and RIGHT SIDES of one short horizontal axle, two adjacent foot platforms between the wheels, NO handlebar, NO steering stick, NO front-and-back scooter arrangement. Both wheel faces and both foot pads visible. Black practical commuter design."
+    },
+    {
+      "name": "segway",
+      "p": "Generate a technically plausible isolated premium photorealistic 3D mobility device on transparent background, for an educational Russian teenage SIM course. Match attached graphite electric scooter reference: deep charcoal materials, restrained lime #A2FF51 and cyan highlights, realistic rubber tires, polished studio lighting, credible mechanisms, whole object visible with ample margin, three-quarter front view. NOT toy-like, not cartoon. No people, text, logo, numbers, interface, road signs or scenery. Transparent background. A standard full-size self-balancing Segway: TWO LARGE WHEELS SIDE BY SIDE on the same horizontal axle, ONE standing platform centered between them, upright central steering column and two-handed handlebar. Wheels are left and right, NOT in tandem, NOT an electric kick scooter. Proportions technically credible. Entire handlebar and both wheels visible."
+    },
+    {
+      "name": "unicycle",
+      "p": "Generate a technically plausible isolated premium photorealistic 3D mobility device on transparent background, for an educational Russian teenage SIM course. Match attached graphite electric scooter reference: deep charcoal materials, restrained lime #A2FF51 and cyan highlights, realistic rubber tires, polished studio lighting, credible mechanisms, whole object visible with ample margin, three-quarter front view. NOT toy-like, not cartoon. No people, text, logo, numbers, interface, road signs or scenery. Transparent background. An electric unicycle: exactly ONE large central wheel inside dark rounded vertical housing, one fold-out footplate on EACH SIDE of that wheel, both plates visible. A small carry handle integrated into top housing, NO riding handlebar or tall steering post. Realistic tire, practical body."
+    },
+    {
+      "name": "e-skateboard",
+      "p": "Generate a technically plausible isolated premium photorealistic 3D mobility device on transparent background, for an educational Russian teenage SIM course. Match attached graphite electric scooter reference: deep charcoal materials, restrained lime #A2FF51 and cyan highlights, realistic rubber tires, polished studio lighting, credible mechanisms, whole object visible with ample margin, three-quarter front view. NOT toy-like, not cartoon. No people, text, logo, numbers, interface, road signs or scenery. Transparent background. An electric skateboard: a realistically proportioned long black deck with dark grip tape, four clearly distinct rubber wheels on two trucks below, compact battery casing underneath the deck and small believable electric motor drive near rear truck. NO handlebar, NO person. Three-quarter view shows top and underside enough to see power components, tasteful tiny lime accents."
+    }
+  ],
+  "conversion": "PNG with native transparency converted to WebP quality 90 via ffmpeg; no stretching or compositing.",
+  "font": {
+    "source": "https://github.com/google/fonts/tree/main/ofl/manrope",
+    "file": "manrope.ttf",
+    "license": "Manrope-OFL.txt"
+  },
+  "limitations": "Illustrative device types. Exact model construction and legal category cannot be inferred from generated images."
+}
