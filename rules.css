@@ -10,3 +10,5 @@
 @media(max-width:700px){.age-grid,.sign-grid,.crossing-steps{grid-template-columns:1fr}.sign-card,.rules-text-block,.rules-practice{padding:22px}.sign-images img{width:90px;height:90px}.rules-story{font-size:16px}.rules-practice #question-text{font-size:23px}.rules-practice>h2{font-size:27px}.crossing-steps li{display:flex;align-items:center;gap:18px}.crossing-steps li:before{margin:0;min-width:22px}.rules-practice #next-question{width:100%}.rules-practice .quiz-choices button{font-size:15px}.intro-cover{gap:28px}}
 
 .rules-photo-0{background-position:0 0}.rules-photo-1{background-position:50% 0}.rules-photo-2{background-position:100% 0}.rules-photo-3{background-position:0 100%}.rules-photo-4{background-position:50% 100%}
+
+.first-aid-urgent{background:#ffdfbf;border-radius:14px;padding:26px;margin-top:24px;max-width:76ch}.first-aid-urgent h3{font-size:25px;line-height:1.25;margin-bottom:18px}.first-aid-urgent p:last-child{margin-bottom:0}@media(max-width:700px){.first-aid-urgent{padding:22px}}
