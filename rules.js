@@ -33,6 +33,6 @@ function render(focus=false){
 }
 next.addEventListener('click',()=>{if(++current<lesson.quiz.length){render(true);return;}document.getElementById('rules-quiz').hidden=true;document.getElementById('practice-result').hidden=false;document.getElementById('practice-result').querySelector('h3').focus();done.disabled=false;document.getElementById('completion-hint').textContent='Ситуации разобраны. Завершите урок кнопкой ниже; отметка сохранится в этом браузере.';});
 document.getElementById('retry-practice').addEventListener('click',()=>{current=0;document.getElementById('rules-quiz').hidden=false;document.getElementById('practice-result').hidden=true;render(true);});
-done.addEventListener('click',()=>{state.completed=Math.max(state.completed,n+1);try{storage?.setItem(key,JSON.stringify(state));}catch{storage=null;warning();}location.href=n===4?'rules.html':url(n+1);});
+done.addEventListener('click',()=>{state.completed=Math.max(state.completed,n+1);try{storage?.setItem(key,JSON.stringify(state));}catch{storage=null;warning();}location.href=n===4?'./#practice':url(n+1);});
 render();
 })();
