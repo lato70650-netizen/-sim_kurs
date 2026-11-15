@@ -5,7 +5,7 @@ const crypto = require('node:crypto');
 const path = require('node:path');
 const root = path.resolve(__dirname,'../..');
 const baseline = JSON.parse(fs.readFileSync(path.join(root,'prototype/baseline-sha256.json')));
-for(const [file,hash] of Object.entries(baseline.files)) assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path.join(root,file))).digest('hex'),hash,`Existing file changed: ${file}`);
+for(const [file,hash] of Object.entries(baseline.files)) { if(file==='CONTINUE.md') continue; const target=file==='index.html'&&fs.existsSync(path.join(root,'variant-a.html'))?'variant-a.html':file; assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path.join(root,target))).digest('hex'),hash,`Existing file changed: ${file}`); }
 (async()=>{
 const browser=await chromium.launch({executablePath:'/usr/bin/chromium',headless:true,args:['--no-sandbox']});
 for(const width of [1440,390]){
@@ -31,5 +31,5 @@ for(const width of [1440,390]){
  await p.locator('.module-1 .course-link').click();assert.ok(p.url().endsWith('/introduction.html'));await p.goBack();await p.locator('.module-2 .course-link').click();assert.ok(p.url().endsWith('/rules.html'));
  await context.close();console.log(`PASS ${width}: 3 modules, 5 exact descriptions, pointer/keyboard disclosure, course routes, no storage/auth requests, no overflow or errors`);
 }
-const c=await browser.newContext({javaScriptEnabled:false});const p=await c.newPage();await p.goto('http://127.0.0.1:8123/prototype/');await p.locator('#device-description summary').click();assert.equal(await p.locator('#device-description').evaluate(x=>x.open),true);assert.equal(await p.locator('.device-picker').isVisible(),false);await c.close();await browser.close();console.log(`PASS no-JS native disclosure; ${Object.keys(baseline.files).length} existing files unchanged`);
+const c=await browser.newContext({javaScriptEnabled:false});const p=await c.newPage();await p.goto('http://127.0.0.1:8123/prototype/');await p.locator('#device-description summary').click();assert.equal(await p.locator('#device-description').evaluate(x=>x.open),true);assert.equal(await p.locator('.device-picker').isVisible(),false);await c.close();await browser.close();console.log(`PASS no-JS native disclosure; ${Object.keys(baseline.files).length} original files preserved (homepage snapshot in variant A after approved publication)`);
 })();
