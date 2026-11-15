@@ -127,5 +127,23 @@
       "Не придумывать знаки ПДД, длительность, баллы или синхронизацию",
       "Не переносить раскрытие прототипа на существующие уроки автоматически"
     ]
+  },
+  "publishedVariantBRevision": {
+    "artifact": "../index.html",
+    "stylesheet": "../variant-b.css",
+    "scope": "Published homepage only; original prototype remains unchanged",
+    "cardRadius": "30px / 26px mobile",
+    "panelBorder": "1px per-module accent",
+    "panelShadow": "0 13px 35px rgba(0,0,0,.34), 0 0 16px rgba(accent,.16)",
+    "roundAction": "56px circle, centered arrow",
+    "heroAction": "999px pill with play",
+    "modules": [
+      "lime scooter",
+      "cyan unchanged normative SVG + cone",
+      "amber trophy (game pending)"
+    ],
+    "homepageDeviceDemo": false,
+    "scooterAnimation": "Existing script.js with reduced-motion",
+    "variantA": "unchanged"
   }
 }
