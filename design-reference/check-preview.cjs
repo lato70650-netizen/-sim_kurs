@@ -75,6 +75,35 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
       await page.locator(selector).click();
       assert.ok(page.url().endsWith('/'+destination),'real lesson routing '+preview);
     }
+
+    // Isolated lesson and assessment previews must preserve the real learning flow.
+    for(const preview of ['preview-lesson-1.html','preview-rules-lesson-1.html']){
+      await page.goto(root+preview,{waitUntil:'load'});
+      await page.evaluate(()=>document.fonts.ready);
+      assert.equal(await page.locator('link[href^="preview-lesson.css"]').count(),1,'preview lesson style loaded '+preview);
+      assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'lesson overflow '+preview+' '+width);
+      assert.ok(await page.locator('#lesson-article h1').isVisible(),'lesson title '+preview);
+      if(width===390||width===1440){
+        await page.evaluate(()=>scrollTo(0,0));
+        await page.screenshot({path:out+'/'+preview.replace('.html','')+'-'+width+'.png',fullPage:true});
+      }
+    }
+    await page.goto(root+'preview-introduction-quiz.html',{waitUntil:'load'});
+    await page.evaluate(()=>localStorage.setItem('sim-introduction-progress-v1',JSON.stringify({completed:5,quizComplete:false})));
+    await page.reload();
+    assert.equal(await page.locator('link[href^="preview-lesson.css"]').count(),1,'quiz style applied');
+    assert.ok(await page.locator('#quiz-panel').isVisible(),'unlocked quiz visible');
+    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'quiz overflow '+width);
+    if(width===390||width===1440){
+      await page.evaluate(()=>scrollTo(0,0));
+      await page.screenshot({path:out+'/preview-introduction-quiz-'+width+'.png',fullPage:true});
+    }
+    await page.locator('.quiz-choices button[data-answer=true]').click();
+    assert.ok(await page.locator('#quiz-feedback').isVisible(),'feedback visible after answer');
+    if(width===390||width===1440){
+      await page.evaluate(()=>scrollTo(0,0));
+      await page.screenshot({path:out+'/preview-quiz-feedback-'+width+'.png',fullPage:true});
+    }
     assert.deepEqual(errors,[],'JS and asset errors');
     console.log('PASS preview '+width+'px: image, cards, no overflow, disclosure, real links, no JS/404');
     await ctx.close();
