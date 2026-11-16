@@ -1,0 +1,87 @@
+/* Preview only: cohesive shadows, readable teaching content and safe interaction states.
+   Applied only to copied pages, never to live lessons or archived variant A. */
+body.approved-lesson-preview {
+ --m1-bg:#101b2c; --m1-raised:#14243a; --m1-surface:#1d3046;
+ --m1-line:#3b566f; --m1-primary:#a2ff51; --m1-info:#56d9f2;
+ background:radial-gradient(ellipse 64% 450px at 90% 0%,rgba(67,125,158,.14),transparent 90%),#101b2c;
+}
+.approved-lesson-preview .header {
+ border-bottom:1px solid rgba(136,177,206,.2);
+ box-shadow:0 8px 25px rgba(1,9,24,.16);
+}
+.approved-lesson-preview .intro-home,
+.approved-lesson-preview .compact-course-nav {
+ background:linear-gradient(150deg,#20394e,#15263b);
+ border:1px solid rgba(124,171,200,.35);
+ border-radius:18px;
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 12px 27px rgba(0,6,23,.28);
+}
+.approved-lesson-preview .breadcrumbs {color:#c9d9e6}
+.approved-lesson-preview #lesson-article {min-width:0}
+.approved-lesson-preview #lesson-article h1 {text-shadow:0 5px 20px rgba(0,7,25,.27)}
+.approved-lesson-preview .lesson-copy .reading-section,
+.approved-lesson-preview .reading-takeaway,
+.approved-lesson-preview .followup-copy,
+.approved-lesson-preview .lesson-fact,
+.approved-lesson-preview .reading-comparison>div,
+.approved-lesson-preview .rules-text-block,
+.approved-lesson-preview .age-rule,
+.approved-lesson-preview .sign-card,
+.approved-lesson-preview .crossing-steps li,
+.approved-lesson-preview .rules-practice {
+ border-radius:20px;
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 12px 28px rgba(0,9,24,.22);
+}
+.approved-lesson-preview .lesson-scene {
+ border-radius:22px;
+ border:1px solid rgba(106,177,210,.3);
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 22px 44px rgba(0,8,24,.42),0 0 22px rgba(86,217,242,.09);
+}
+.approved-lesson-preview .m1-device-group img,
+.approved-lesson-preview .scene-photo img {filter:drop-shadow(0 19px 17px rgba(0,5,18,.48))}
+.approved-lesson-preview .button,
+.approved-lesson-preview .step-link:not(.is-locked),
+.approved-lesson-preview .quiz-choices button:not(:disabled),
+.approved-lesson-preview #next-question,
+.approved-lesson-preview #retry-quiz,
+.approved-lesson-preview #retry-practice {
+ border-radius:14px;
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 9px 21px rgba(0,7,22,.29);
+ transition:box-shadow .2s ease,transform .2s ease,background .2s ease;
+}
+.approved-lesson-preview .button,
+.approved-lesson-preview .step-link:not(.is-locked) {
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.38),0 10px 23px rgba(0,5,18,.35),0 7px 24px rgba(162,255,81,.16);
+}
+.approved-lesson-preview #quiz-panel,
+.approved-lesson-preview #quiz-result {
+ border:1px solid rgba(86,217,242,.3);
+ border-radius:24px;
+ background:linear-gradient(145deg,#213b51,#15283b);
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 25px 52px rgba(0,8,24,.37),0 0 24px rgba(86,217,242,.08);
+}
+.approved-lesson-preview .quiz-choices button:focus-visible,
+.approved-lesson-preview .button:focus-visible,
+.approved-lesson-preview a:focus-visible,
+.approved-lesson-preview summary:focus-visible {outline:3px solid #ffca65;outline-offset:4px}
+.approved-lesson-preview .quiz-choices button.answer-correct,
+.approved-lesson-preview .quiz-choices button.answer-correct:disabled {
+ border-color:var(--m1-primary);background:#203d2b;color:#eaffdc;
+}
+.approved-lesson-preview .quiz-choices button.answer-wrong,
+.approved-lesson-preview .quiz-choices button.answer-incorrect {
+ border-color:#ff6b75;
+}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){
+ .approved-lesson-preview .button:hover {transform:translateY(-2px);box-shadow:0 15px 30px rgba(0,7,22,.4),0 8px 27px rgba(162,255,81,.2)}
+}
+@media(max-width:700px){
+ .approved-lesson-preview .lesson-scene {border-radius:18px}
+ .approved-lesson-preview #quiz-panel,
+ .approved-lesson-preview #quiz-result {border-radius:20px}
+ .approved-lesson-preview .lesson-copy p {max-width:100%}
+}
+@media(prefers-reduced-motion:reduce){
+ .approved-lesson-preview .button,
+ .approved-lesson-preview .quiz-choices button {transition:none}
+}
