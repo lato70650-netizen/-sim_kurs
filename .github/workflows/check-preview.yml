@@ -1,0 +1,39 @@
+name: Check approved homepage preview
+on:
+  push:
+    branches:
+      - design/approved-homepage-reference-2026-11-15
+    paths:
+      - 'preview-homepage.html'
+      - 'preview-homepage.css'
+      - 'design-reference/check-preview.cjs'
+      - '.github/workflows/check-preview.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  preview-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser and test runner
+        run: |
+          npm install --no-save --no-package-lock playwright
+          npx playwright install --with-deps chromium
+      - name: Launch static preview server
+        run: |
+          python3 -m http.server 8125 --bind 127.0.0.1 >/tmp/sim-preview-server.log 2>&1 &
+          echo $! >/tmp/sim-preview-server.pid
+      - name: Test homepage in Chromium
+        run: node design-reference/check-preview.cjs
+      - name: Save desktop/mobile screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: approved-homepage-preview-screenshots
+          path: design-reference/screenshots/
+          if-no-files-found: ignore
