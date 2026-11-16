@@ -5,6 +5,12 @@ on:
       - design/approved-homepage-reference-2026-11-15
     paths:
       - 'preview-homepage.html'
+      - 'index.html'
+      - 'introduction.html'
+      - 'rules.html'
+      - 'lesson-*.html'
+      - 'rules-lesson-*.html'
+      - 'introduction-quiz.html'
       - 'preview-homepage.css'
       - 'preview-introduction.html'
       - 'preview-rules.html'
