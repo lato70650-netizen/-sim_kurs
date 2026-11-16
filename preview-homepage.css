@@ -82,3 +82,9 @@
   .approved-preview .module-3 .module-main>.coming {left:15px;right:70px;bottom:20px;font-size:11px}
   .approved-preview .module-3 .module-main {min-height:355px}
 }
+
+/* Final desktop spacing after visual review: keep navigation line clear of CTA and section title. */
+@media(min-width:701px){
+  .approved-preview .hero-foot {bottom:105px}
+  .approved-preview .course {margin-top:-35px}
+}
