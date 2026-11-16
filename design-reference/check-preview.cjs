@@ -57,6 +57,24 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
     await page.goto(root+'preview-homepage.html');
     await page.locator('.module-two .module-entry').click();
     assert.ok(page.url().endsWith('/rules.html'),'module 2 link reaches real page');
+
+    // Separate, non-published module overview previews retain real lesson destinations.
+    for(const [preview,selector,destination] of [
+      ['preview-introduction.html','#continue-intro','lesson-1.html'],
+      ['preview-rules.html','.intro-cover .button','rules-lesson-1.html']
+    ]) {
+      await page.goto(root+preview,{waitUntil:'load'});
+      await page.evaluate(()=>document.fonts.ready);
+      assert.equal(await page.locator('link[href^="preview-learning.css"]').count(),1,'shared preview style loaded');
+      assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'no overview overflow '+preview+' '+width);
+      assert.ok(await page.locator('.intro-cover h1').isVisible(),'title exists '+preview);
+      if(width===390||width===1440) {
+        await page.evaluate(()=>scrollTo(0,0));
+        await page.screenshot({path:out+'/'+preview.replace('.html','')+'-'+width+'.png',fullPage:true});
+      }
+      await page.locator(selector).click();
+      assert.ok(page.url().endsWith('/'+destination),'real lesson routing '+preview);
+    }
     assert.deepEqual(errors,[],'JS and asset errors');
     console.log('PASS preview '+width+'px: image, cards, no overflow, disclosure, real links, no JS/404');
     await ctx.close();
