@@ -9,6 +9,10 @@ on:
       - 'preview-introduction.html'
       - 'preview-rules.html'
       - 'preview-learning.css'
+      - 'preview-lesson-1.html'
+      - 'preview-rules-lesson-1.html'
+      - 'preview-introduction-quiz.html'
+      - 'preview-lesson.css'
       - 'design-reference/check-preview.cjs'
       - '.github/workflows/check-preview.yml'
   pull_request:
