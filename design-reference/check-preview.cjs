@@ -104,6 +104,36 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
       await page.evaluate(()=>scrollTo(0,0));
       await page.screenshot({path:out+'/preview-quiz-feedback-'+width+'.png',fullPage:true});
     }
+
+    // Every real course page in the working branch now uses the approved design.
+    // Traverse actual routes rather than just isolated visual copies.
+    for(const name of [
+      'introduction.html','lesson-1.html','lesson-2.html','lesson-3.html','lesson-4.html','lesson-5.html','introduction-quiz.html',
+      'rules.html','rules-lesson-1.html','rules-lesson-2.html','rules-lesson-3.html','rules-lesson-4.html','rules-lesson-5.html'
+    ]) {
+      await page.goto(root+name,{waitUntil:'load'});
+      const isOverview=name==='introduction.html'||name==='rules.html';
+      const expected=isOverview?'preview-learning.css':'preview-lesson.css';
+      assert.equal(await page.locator('link[href^="'+expected+'"]').count(),1,'theme applied '+name);
+      assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'real course overflow '+name+' '+width);
+      assert.ok(await page.locator('main').count(),'main element '+name);
+    }
+    // Re-test real module-1 progression, including every answer and completion state.
+    await page.goto(root+'introduction.html');
+    await page.evaluate(()=>{localStorage.removeItem('sim-introduction-progress-v1')});
+    for(let i=1;i<=5;i++){
+      await page.goto(root+'lesson-'+i+'.html');
+      assert.ok(await page.locator('#lesson-article').isVisible(),'lesson visible '+i);
+      await page.locator('#complete-lesson').click();
+    }
+    await page.goto(root+'introduction-quiz.html');
+    assert.ok(await page.locator('#quiz-panel').isVisible(),'quiz unlocked after real five lessons');
+    for(const correct of [false,true,false,true,true,false,true,false,true,false]){
+      await page.locator('[data-answer='+correct+']').click();
+      await page.locator('#next-question').click();
+    }
+    assert.ok(await page.locator('#quiz-result').isVisible(),'real quiz completed');
+
     assert.deepEqual(errors,[],'JS and asset errors');
     console.log('PASS preview '+width+'px: image, cards, no overflow, disclosure, real links, no JS/404');
     await ctx.close();
