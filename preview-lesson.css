@@ -85,3 +85,74 @@ body.approved-lesson-preview {
  .approved-lesson-preview .button,
  .approved-lesson-preview .quiz-choices button {transition:none}
 }
+
+/* Lesson 2: visible device details, not a collapsed accordion.
+   Keep the modern dark appearance and preserve all original explanation copy. */
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog {
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:24px;
+}
+.approved-lesson-preview[data-intro-page="1"] .lesson-copy .m1-device-card {
+  display:grid;
+  grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);
+  gap:14px 30px;
+  align-items:start;
+  padding:clamp(20px,2.8vw,34px);
+  border:1px solid rgba(96,167,195,.4);
+  background:linear-gradient(145deg,#213b51,#172b41);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.11),0 22px 42px rgba(0,8,23,.3);
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-card > h2 {
+  grid-column:1/-1;
+  margin:0 0 6px;
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-card > .lesson-scene {
+  grid-column:1;
+  margin:0;
+  min-width:0;
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-card > .m1-device-disclosure {
+  grid-column:2;
+  min-width:0;
+  align-self:center;
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-card .m1-device-text,
+.approved-lesson-preview[data-intro-page="1"] .m1-device-card .reading-split,
+.approved-lesson-preview[data-intro-page="1"] .m1-device-card .reading-text {
+  display:block;
+  width:auto;
+  max-width:none;
+  min-width:0;
+  margin:0;
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-card .visible-copy p {
+  font-size:clamp(15px,1.3vw,17px);
+  line-height:1.78;
+  color:#e1e9f2;
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-card .visible-copy p + p {margin-top:14px}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-card .reading-followup {
+  margin-top:22px;
+  display:grid;
+  gap:14px;
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-card .followup-copy {
+  padding:18px 20px;
+  border-radius:16px;
+  background:rgba(7,24,39,.34);
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-card .followup-copy h3 {font-size:18px;margin-bottom:6px}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-card .followup-copy p {font-size:15px;line-height:1.75}
+@media(max-width:760px) {
+  .approved-lesson-preview[data-intro-page="1"] .lesson-copy .m1-device-card {
+    grid-template-columns:minmax(0,1fr);
+    gap:14px;
+  }
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-card > h2,
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-card > .lesson-scene,
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-card > .m1-device-disclosure {
+    grid-column:1;
+  }
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-card > .m1-device-disclosure {align-self:start}
+}
