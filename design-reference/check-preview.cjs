@@ -5,7 +5,7 @@ const root = process.env.SIM_TEST_ORIGIN || 'http://127.0.0.1:8125/';
 const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
 (async () => {
   fs.mkdirSync(out, {recursive:true});
-  const browser=await chromium.launch({channel:'chrome',headless:true,args:['--no-sandbox']});
+  const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
   for (const width of [360,390,768,1024,1440]) {
     const ctx=await browser.newContext({viewport:{width,height:950},reducedMotion:'reduce'});
     const page=await ctx.newPage();
