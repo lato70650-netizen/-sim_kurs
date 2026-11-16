@@ -23,6 +23,27 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
     assert.equal(await page.locator('.module-one .module-entry').getAttribute('href'),'introduction.html');
     assert.equal(await page.locator('.module-two .module-entry').getAttribute('href'),'rules.html');
     assert.equal(await page.locator('.module-three button[disabled]').count(),1,'game remains unavailable');
+
+    const visibleControl=await page.locator('.hero .primary').evaluate(button=>{
+      const r=button.getBoundingClientRect(), hit=document.elementFromPoint(r.left+r.width/2,r.top+r.height/2);
+      return hit===button||button.contains(hit);
+    });
+    assert.ok(visibleControl,'hero start button must not be covered by overlay at '+width);
+    const noCollision=await page.locator('.module-three').evaluate(card=>{
+      const a=card.querySelector('.module-task').getBoundingClientRect();
+      const b=card.querySelector('.coming').getBoundingClientRect();
+      return a.bottom <= b.top+1;
+    });
+    assert.ok(noCollision,'module 3 task and coming notice must not overlap at '+width);
+    if(width>700){
+      const gap=await page.evaluate(()=>{
+        const foot=document.querySelector('.hero-foot').getBoundingClientRect();
+        const heading=document.querySelector('.section-heading').getBoundingClientRect();
+        return heading.top-foot.bottom;
+      });
+      assert.ok(gap>=2,'hero status and section title overlap at '+width+': '+gap);
+    }
+
     await page.locator('.module-one .module-program summary').click();
     assert.ok(await page.locator('.module-one .module-program').evaluate(x=>x.open),'details opens');
     await page.locator('.module-one .module-program summary').click();
