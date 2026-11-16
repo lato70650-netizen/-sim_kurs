@@ -65,3 +65,20 @@
  .approved-preview .learning ol {grid-template-columns:1fr}
 }
 @media(prefers-reduced-motion:reduce){.approved-preview .module-card,.approved-preview .primary{transition:none}}
+
+/* Browser review corrections, 2026-11-16: avoid overlapping hero/card copy. */
+@media(min-width:701px){
+  .approved-preview .hero-foot {bottom:165px}
+}
+.approved-preview .hero-content {position:relative;z-index:2}
+.approved-preview .module-3 .module-main>.coming {
+  position:absolute;left:22px;right:92px;bottom:24px;z-index:3;
+  width:auto;max-width:none;margin:0;padding:0;
+  color:#dbe5ef;font-size:12px;line-height:1.45;
+}
+@media(max-width:700px){
+  .approved-preview .hero-shade {z-index:0}
+  .approved-preview .hero-content {position:relative;z-index:2}
+  .approved-preview .module-3 .module-main>.coming {left:15px;right:70px;bottom:20px;font-size:11px}
+  .approved-preview .module-3 .module-main {min-height:355px}
+}
