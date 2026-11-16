@@ -6,6 +6,9 @@ on:
     paths:
       - 'preview-homepage.html'
       - 'preview-homepage.css'
+      - 'preview-introduction.html'
+      - 'preview-rules.html'
+      - 'preview-learning.css'
       - 'design-reference/check-preview.cjs'
       - '.github/workflows/check-preview.yml'
   pull_request:
