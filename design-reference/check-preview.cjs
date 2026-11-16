@@ -134,6 +134,28 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
     }
     assert.ok(await page.locator('#quiz-result').isVisible(),'real quiz completed');
 
+
+    // Lesson 2: all five device explanations are visible without expanding anything.
+    await page.goto(root+'lesson-2.html',{waitUntil:'load'});
+    await page.evaluate(()=>document.fonts.ready);
+    assert.equal(await page.locator('.m1-device-card').count(),5,'five devices present');
+    assert.equal(await page.locator('.m1-device-card details').count(),0,'no hidden device accordions');
+    assert.equal(await page.locator('.m1-device-card > .m1-device-disclosure').count(),5,'five visible descriptions');
+    for(const card of await page.locator('.m1-device-card').all()){
+      assert.ok(await card.locator('.visible-copy p').first().isVisible(),'device description is visible');
+      const layout=await card.evaluate(el=>{
+        const img=el.querySelector('.lesson-scene').getBoundingClientRect();
+        const copy=el.querySelector('.m1-device-disclosure').getBoundingClientRect();
+        return {imgX:img.x,imgRight:img.right,imgBottom:img.bottom,copyX:copy.x,copyY:copy.y};
+      });
+      if(width>760)assert.ok(layout.copyX>=layout.imgRight-2,'text beside image at '+width);
+      else assert.ok(layout.copyY>=layout.imgBottom-2,'text below image at '+width);
+    }
+    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth <= innerWidth+1),'lesson 2 fits screen '+width);
+    if(width===390||width===1440){
+      await page.evaluate(()=>scrollTo(0,0));
+      await page.screenshot({path:out+'/lesson-2-visible-descriptions-'+width+'.png',fullPage:true});
+    }
     assert.deepEqual(errors,[],'JS and asset errors');
     console.log('PASS preview '+width+'px: image, cards, no overflow, disclosure, real links, no JS/404');
     await ctx.close();
