@@ -8,6 +8,9 @@ on:
       - 'preview-homepage.css'
       - 'design-reference/check-preview.cjs'
       - '.github/workflows/check-preview.yml'
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
 permissions:
   contents: read
