@@ -198,6 +198,42 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
       await page.evaluate(()=>scrollTo(0,0));
       await page.screenshot({path:out+'/lesson-1-tech-hud-'+width+'.png',fullPage:true});
     }
+    // Lesson 3: approved three-device style, no edits to the actual learning text.
+    await page.goto(root+'lesson-3.html',{waitUntil:'load'});
+    const lesson3Frame=page.locator('.lesson-copy > .reading-section:first-child .lesson-scene');
+    const lesson3Image=lesson3Frame.locator('> .m1-device-group');
+    assert.equal(await lesson3Image.locator('img').count(),3,'lesson three retains three source device images');
+    assert.equal(await lesson3Image.locator('svg.overview-hud').count(),1,'lesson three HUD present');
+    assert.equal(await lesson3Image.locator('.overview-hud-corners path').count(),4,'lesson three has 4 HUD corners');
+    assert.equal(await lesson3Image.locator('.overview-hud-status rect').count(),3,'lesson three HUD indicators');
+    assert.equal((await lesson3Image.locator('svg.overview-hud text').textContent()).trim(),'SIM / 03');
+    assert.equal(await page.locator('.lesson-copy > .reading-section:first-child .visible-copy p').count(),2,'lesson three text paragraphs intact');
+    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'lesson three no overflow '+width);
+    if(width===1440){
+      await page.emulateMedia({reducedMotion:'no-preference'});
+      await page.waitForTimeout(120);
+      await page.mouse.move(0,0);
+      const area=await lesson3Image.boundingBox();
+      await page.mouse.move(area.x+area.width*.24,area.y+area.height*.31);
+      await page.waitForTimeout(285);
+      const oldX=await lesson3Image.evaluate(el=>el.style.getPropertyValue('--holo-x'));
+      await page.mouse.move(area.x+area.width*.72,area.y+area.height*.59);
+      await page.waitForTimeout(285);
+      const moving=await lesson3Image.evaluate(el=>({x:el.style.getPropertyValue('--holo-x'),opacity:getComputedStyle(el,'::after').opacity}));
+      assert.ok(oldX && moving.x && oldX!==moving.x,'lesson three spotlight follows the mouse');
+      assert.ok(parseFloat(moving.opacity)>.55,'lesson three light reflection appears only over image');
+      const frameGlow=await lesson3Frame.evaluate(el=>getComputedStyle(el).boxShadow);
+      assert.ok(frameGlow.includes('135, 255, 96'),'lesson three image frame glows on hover');
+      await page.locator('.lesson-copy > .reading-section:first-child .visible-copy p').first().hover();
+      await page.waitForTimeout(330);
+      const reset=await lesson3Image.evaluate(el=>({active:el.classList.contains('is-holo-active'),opacity:getComputedStyle(el,'::after').opacity}));
+      assert.ok(!reset.active && parseFloat(reset.opacity)<.05,'lesson three image light disappears when reading text');
+      await page.emulateMedia({reducedMotion:'reduce'});
+    }
+    if(width===390||width===1440){
+      await page.evaluate(()=>scrollTo(0,0));
+      await page.screenshot({path:out+'/lesson-3-tech-hud-'+width+'.png',fullPage:true});
+    }
     // Isolated lesson and assessment previews must preserve the real learning flow.
     for(const preview of ['preview-lesson-1.html','preview-rules-lesson-1.html']){
       await page.goto(root+preview,{waitUntil:'load'});
