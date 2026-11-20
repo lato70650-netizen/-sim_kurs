@@ -302,3 +302,103 @@ body.approved-lesson-preview {
 .approved-lesson-preview #lesson-article .lesson-copy .lesson-fact strong {
   color:#d8f4ee;
 }
+
+/* Site-wide readable instructional typography: both learning modules, all lessons,
+   exercises and lesson overview pages. Device-card geometry/text remain unchanged. */
+.approved-lesson-preview #lesson-article > h1 {
+  line-height:1.16;
+  letter-spacing:-.023em;
+  text-wrap:balance;
+  margin-bottom:clamp(14px,2vw,23px);
+}
+.approved-lesson-preview #lesson-article .lesson-copy > .reading-section:not(.m1-device-card) {
+  margin-block:0 clamp(35px,4.8vw,55px);
+}
+.approved-lesson-preview #lesson-article .lesson-copy .reading-section:not(.m1-device-card) > h2,
+.approved-lesson-preview #lesson-article .lesson-copy .rules-text-block > h2 {
+  display:block;
+  padding-left:16px;
+  border-left:3px solid #77d7db;
+  font-size:clamp(23px,2.1vw,29px);
+  line-height:1.35;
+  letter-spacing:-.016em;
+  color:#f7fbff;
+  text-wrap:balance;
+  margin-bottom:22px;
+}
+.approved-lesson-preview #lesson-article .lesson-copy .reading-section:not(.m1-device-card) p {
+  color:#e6edf5;
+  font-size:clamp(17px,1.25vw,18px);
+  line-height:1.9;
+}
+.approved-lesson-preview #lesson-article .lesson-copy .reading-section:not(.m1-device-card) p + p {
+  margin-top:1.15em;
+}
+.approved-lesson-preview #lesson-article .lesson-copy .reading-section:not(.m1-device-card) > p,
+.approved-lesson-preview #lesson-article .lesson-copy .reading-section:not(.m1-device-card) .reading-text > p,
+.approved-lesson-preview #lesson-article .lesson-copy .reading-section:not(.m1-device-card) .visible-copy > p,
+.approved-lesson-preview #lesson-article .lesson-copy .reading-section:not(.m1-device-card) .rules-text-block > p {
+  max-width:67ch;
+}
+.approved-lesson-preview #lesson-article .lesson-copy strong {
+  font-weight:750;
+  color:#fcfff2;
+}
+.approved-lesson-preview #lesson-article .lesson-copy .reading-takeaway {
+  border-left:4px solid #a2ff51;
+  background:linear-gradient(100deg,rgba(78,129,64,.23),rgba(23,43,60,.96));
+  padding:19px 22px;
+  line-height:1.7;
+  color:#f2f9ed;
+}
+.approved-lesson-preview #lesson-article .lesson-copy .lesson-fact,
+.approved-lesson-preview #lesson-article .lesson-copy .followup-copy,
+.approved-lesson-preview #lesson-article .lesson-copy .rules-text-block {
+  padding-block:clamp(20px,2vw,28px);
+}
+.approved-lesson-preview #lesson-article .lesson-copy .lesson-fact h3,
+.approved-lesson-preview #lesson-article .lesson-copy .followup-copy h3,
+.approved-lesson-preview #lesson-article .lesson-copy .sign-card h3 {
+  line-height:1.35;
+  color:#e2f4ff;
+  text-wrap:balance;
+  margin-bottom:13px;
+}
+.approved-lesson-preview #lesson-article .lesson-copy .reading-section:not(.m1-device-card) :is(ul,ol) {
+  line-height:1.85;
+  padding-left:1.6rem;
+}
+.approved-lesson-preview #lesson-article .lesson-copy .reading-section:not(.m1-device-card) li + li {
+  margin-top:11px;
+}
+.approved-lesson-preview #lesson-article :is(.rules-practice,.quiz-panel,.lesson-actions) > p {
+  line-height:1.85;
+  max-width:67ch;
+}
+.approved-lesson-preview .intro-cover p:not(.intro-meta),
+.approved-lesson-preview .rules-story,
+.approved-lesson-preview .intro-topics .intro-item p {
+  line-height:1.85;
+  color:#e0ebf3;
+}
+.approved-lesson-preview .intro-topics .intro-item h2 {
+  line-height:1.35;
+}
+@media(max-width:700px){
+  .approved-lesson-preview #lesson-article .lesson-copy .reading-section:not(.m1-device-card) > h2,
+  .approved-lesson-preview #lesson-article .lesson-copy .rules-text-block > h2 {
+    padding-left:12px;
+    border-left-width:3px;
+    font-size:clamp(21px,5.6vw,25px);
+    margin-bottom:18px;
+  }
+  .approved-lesson-preview #lesson-article .lesson-copy .reading-section:not(.m1-device-card) p {
+    font-size:17px;
+    line-height:1.8;
+  }
+  .approved-lesson-preview #lesson-article .lesson-copy > .reading-section:not(.m1-device-card) {
+    margin-block-end:34px;
+  }
+}
+/* The approved 5 device cards: image left / exactly the original short copy right.
+   Deliberately do not apply the whole-lesson 67ch cap to these cards. */
