@@ -233,10 +233,30 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
         await page.waitForTimeout(330);
         const active=await frame.evaluate(el=>getComputedStyle(el).boxShadow);
         assert.ok(active.includes('135, 255, 96'),'border glows when pointing directly at image frame');
+        if(deviceIndex===0){
+          const rect=await frame.boundingBox();
+          await page.mouse.move(rect.x+rect.width*.23,rect.y+rect.height*.34);
+          await page.waitForTimeout(265);
+          const first=await frame.evaluate(el=>({
+            x:el.style.getPropertyValue('--holo-x'),opacity:getComputedStyle(el,'::after').opacity,
+            content:getComputedStyle(el,'::after').content
+          }));
+          await page.mouse.move(rect.x+rect.width*.72,rect.y+rect.height*.47);
+          await page.waitForTimeout(265);
+          const second=await frame.evaluate(el=>({
+            x:el.style.getPropertyValue('--holo-x'),opacity:getComputedStyle(el,'::after').opacity
+          }));
+          assert.ok(first.x && second.x && first.x!==second.x,'scooter reflection follows cursor position');
+          assert.ok(parseFloat(second.opacity)>.55 && first.content!=='none','scooter shows original cursor reflection');
+        }
         await card.locator('.visible-copy p').first().hover();
         await page.waitForTimeout(330);
         const reading=await frame.evaluate(el=>getComputedStyle(el).boxShadow);
         assert.ok(!reading.includes('135, 255, 96'),'border turns off when reading text in same card');
+        if(deviceIndex===0){
+          const inactive=await frame.evaluate(el=>getComputedStyle(el,'::after').opacity);
+          assert.ok(parseFloat(inactive)<.05,'scooter cursor reflection disappears when reading text');
+        }
       }
     }
     // Five distinct devices share the approved luminous panel treatment; no text hidden.
