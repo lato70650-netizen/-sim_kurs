@@ -175,7 +175,7 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
       assert.ok(geom.headingBottom<=geom.figTop+2,'device title above picture');
       if(width>760)assert.ok(geom.figRight<=geom.textLeft+2,'long card image left, text right');
       else assert.ok(geom.textTop>=geom.figBottom-2,'mobile description below image');
-      assert.ok(/rgb\(1(?:0[0-9]|[1-9][0-9]), 255, (?:9[0-9]|1[0-9][0-9])/.test(geom.shadow),'visible green glow at rest');
+      assert.ok(geom.shadow.includes('106, 255, 117'),'visible green glow at rest');
     }
     // Five distinct devices share the approved luminous panel treatment; no text hidden.
     const frames=await page.locator('.m1-device-card > .lesson-scene').evaluateAll(elements=>elements.map(el=>{
