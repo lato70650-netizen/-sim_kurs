@@ -596,3 +596,32 @@ body.approved-lesson-preview {
 @media(prefers-reduced-motion:reduce){
   .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child > .lesson-scene .scooter-hud {transition:none}
 }
+
+/* Restore the existing pointer-following holographic reflection on the scooter.
+   SVG corner accents previously suppressed this shared ::after reflection.
+   Only an image hover moves the subtle white/cyan highlight; no lime fog. */
+@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child > .lesson-scene.m1-holo-media::after{
+    content:"";
+    position:absolute;
+    inset:0 0 36px;
+    z-index:5;
+    pointer-events:none;
+    border:0;
+    border-radius:16px;
+    opacity:0;
+    background:
+      radial-gradient(ellipse at var(--holo-x,50%) var(--holo-y,50%),
+        rgb(255 255 255 / 26%),rgb(144 235 255 / 10%) 25%,transparent 62%),
+      linear-gradient(115deg,transparent 28%,rgb(255 255 255 / 8%) 47%,transparent 65%);
+    mask-image:radial-gradient(ellipse closest-side,#000 20%,transparent 100%);
+    -webkit-mask-image:radial-gradient(ellipse closest-side,#000 20%,transparent 100%);
+    transition:opacity 220ms var(--m1-ease);
+  }
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child > .lesson-scene.m1-holo-media.is-holo-active::after{
+    opacity:.72;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child > .lesson-scene::after{content:none}
+}
