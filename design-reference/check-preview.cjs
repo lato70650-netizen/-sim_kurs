@@ -141,6 +141,12 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
     assert.equal(await page.locator('.m1-device-card').count(),5,'five devices present');
     assert.equal(await page.locator('.m1-device-card details').count(),0,'no hidden device accordions');
     assert.equal(await page.locator('.m1-device-card > .m1-device-disclosure').count(),5,'five visible descriptions');
+    const scooterCard=page.locator('.m1-device-card').first();
+    assert.equal(await scooterCard.locator('.visible-copy p').count(),2,'scooter has the same two-paragraph presentation as peers');
+    assert.equal(await scooterCard.locator('.reading-followup').count(),0,'long scooter supplement no longer stretches the first card');
+    assert.equal(await page.locator('.m1-scooter-extra .followup-copy').count(),3,'all three scooter supplementary explanations remain in lesson');
+    assert.ok(await page.locator('.m1-scooter-extra').isVisible(),'supplement stays visible without extra clicks');
+
     for(const card of await page.locator('.m1-device-card').all()){
       assert.ok(await card.locator('.visible-copy p').first().isVisible(),'device description is visible');
       const layout=await card.evaluate(el=>{
