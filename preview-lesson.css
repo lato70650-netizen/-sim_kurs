@@ -412,25 +412,10 @@ body.approved-lesson-preview {
   background-repeat:no-repeat;
   filter:drop-shadow(0 16px 14px rgba(0,6,24,.48));
 }
-/* The source device WEBPs have opaque backgrounds, so a light behind them is invisible.
-   Paint a soft, broad green LIGHT WASH on top of the bitmap near its lower edge.
-   This is deliberately diffuse: no platform, circle outline or extra object. */
+/* No blanket green wash: it covered the scooter and looked like fog.
+   Keep other four original pictures clear until the user approves a new light treatment. */
 .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card .scene-photo::after {
-  content:"";
-  position:absolute;
-  z-index:2;
-  inset:0;
-  pointer-events:none;
-  background:
-    radial-gradient(ellipse 62% 20% at 52% 84%,
-      rgba(158,255,93,.80) 0%,
-      rgba(94,252,114,.48) 37%,
-      rgba(35,207,171,.23) 63%,
-      transparent 100%),
-    linear-gradient(to top,rgba(80,229,117,.15),transparent 50%);
-  mix-blend-mode:screen;
-  filter:blur(17px);
-  opacity:.95;
+  content:none;
 }
 .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card .lesson-scene figcaption {
   position:relative;
@@ -464,7 +449,7 @@ body.approved-lesson-preview {
 .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card .visible-copy p + p {margin-top:16px}
 /* Strong frame lighting appears only while the user points at the card. */
 @media(hover:hover) {
-  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:hover > .lesson-scene {
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene:hover {
     border-color:#b4ff80;
     box-shadow:
       inset 0 1px 0 rgba(255,255,255,.22),
@@ -476,7 +461,7 @@ body.approved-lesson-preview {
   }
 }
 @media(hover:hover) and (prefers-reduced-motion:no-preference) {
-  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:hover > .lesson-scene {
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene:hover {
     transform:translateY(-2px);
   }
 }
@@ -551,9 +536,8 @@ body.approved-lesson-preview {
 }
 
 
-/* Visual comparison prototype: electric scooter ONLY.
-   The previous broad green wash stays on the other 4 devices until approved.
-   Localized cool left-wheel contact + lime rear-wheel contact, with understated UI marks. */
+/* Electroscooter test: tiny, sharply positioned wheel-contact highlights.
+   No full-height overlay, fog, gaussian blur or continuous green wash. */
 .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child .scene-photo::after {
   content:"";
   position:absolute;
@@ -561,13 +545,11 @@ body.approved-lesson-preview {
   inset:0;
   pointer-events:none;
   background:
-    radial-gradient(ellipse 16% 7% at 33% 85%,rgba(202,255,253,.92) 0%,rgba(44,228,240,.73) 24%,rgba(19,177,216,.30) 62%,transparent 100%),
-    radial-gradient(ellipse 18% 7% at 76% 77%,rgba(188,255,111,.91) 0%,rgba(130,255,92,.72) 27%,rgba(46,224,123,.28) 64%,transparent 100%),
-    radial-gradient(ellipse 20% 9% at 34% 86%,rgba(19,205,228,.21),transparent 100%),
-    radial-gradient(ellipse 23% 10% at 75% 78%,rgba(111,237,99,.19),transparent 100%);
+    radial-gradient(ellipse 10% 2.3% at 37% 92%,rgba(156,248,250,.66) 0%,rgba(60,209,224,.33) 42%,transparent 100%),
+    radial-gradient(ellipse 9% 2.1% at 76% 78%,rgba(177,254,101,.73) 0%,rgba(97,214,117,.28) 45%,transparent 100%);
   mix-blend-mode:screen;
-  filter:blur(5px);
-  opacity:.95;
+  filter:none;
+  opacity:.72;
 }
 .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child > .lesson-scene::after {
   content:"";
