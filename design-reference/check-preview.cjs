@@ -182,6 +182,32 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
     assert.ok(typography.paraGap>0,'visible paragraph separation');
     if(width===1440)assert.ok(typography.template.split(' ').length>=2,'desktop retains image and text columns');
     if(width===390)assert.equal(typography.template.split(' ').length,1,'mobile stacks image and text');
+
+    // Cross-course typography: not just lesson 1. Test both modules and the home page.
+    for (const entry of [
+      {path:'lesson-3.html',section:'.lesson-copy .reading-section:not(.m1-device-card) > h2'},
+      {path:'rules-lesson-2.html',section:'.lesson-copy .reading-section:not(.m1-device-card) > h2'}
+    ]) {
+      await page.goto(root+entry.path,{waitUntil:'load'});
+      const readable=await page.locator(entry.section).first().evaluate(el=>{
+        const style=getComputedStyle(el);
+        return {border:parseFloat(style.borderLeftWidth),color:style.borderLeftColor};
+      });
+      assert.ok(readable.border>=3,entry.path+' has visible section hierarchy');
+      const prose=await page.locator('.lesson-copy .reading-section:not(.m1-device-card) p').first().evaluate(el=>{
+        const st=getComputedStyle(el);
+        return {font:parseFloat(st.fontSize),leading:parseFloat(st.lineHeight)};
+      });
+      assert.ok(prose.font>=16 && prose.leading/prose.font>=1.7,entry.path+' has spacious teaching prose');
+      assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),entry.path+' does not overflow');
+    }
+    await page.goto(root+'lesson-2.html',{waitUntil:'load'});
+    assert.equal(await page.locator('.m1-device-card').count(),5,'five device cards remain unchanged');
+    await page.goto(root+'index.html',{waitUntil:'load'});
+    const heroLeading=await page.locator('.hero-content > p').evaluate(el=>{
+      const s=getComputedStyle(el);return parseFloat(s.lineHeight)/parseFloat(s.fontSize);
+    });
+    assert.ok(heroLeading>=1.7,'homepage introductory text is comfortably spaced');
     assert.deepEqual(errors,[],'JS and asset errors');
     console.log('PASS preview '+width+'px: image, cards, no overflow, disclosure, real links, no JS/404');
     await ctx.close();
