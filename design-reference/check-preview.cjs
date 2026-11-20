@@ -209,12 +209,22 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
         const x=getComputedStyle(el,'::after');
         return {background:x.backgroundImage,filter:x.filter,content:x.content};
       });
+      assert.equal(wash.content,'none','no CSS fog or wash on device photo');
       if(deviceIndex===0){
-        assert.ok(wash.background.includes('156, 248, 250'),'small cool wheel highlight');
-        assert.ok(wash.background.includes('177, 254, 101'),'small lime wheel highlight');
-        assert.equal(wash.filter,'none','no fog blur on scooter');
+        const hud=frame.locator('svg.scooter-hud');
+        assert.equal(await hud.count(),1,'real vector overlay on scooter');
+        assert.equal(await hud.locator('.scooter-wheel-light ellipse').count(),4,'two focused wheel contacts');
+        assert.equal(await hud.locator('.scooter-hud-corners path').count(),4,'four interface corner marks');
+        assert.equal(await hud.locator('.scooter-hud-top-status rect').count(),3,'top interface indicators');
+        const geometry=await hud.evaluate(el=>{
+          const hud=el.getBoundingClientRect();
+          const photo=el.previousElementSibling.getBoundingClientRect();
+          return {width:hud.width,height:hud.height,photoWidth:photo.width,photoHeight:photo.height};
+        });
+        assert.ok(Math.abs(geometry.width-geometry.photoWidth)<2,'HUD aligns to scooter image width');
+        assert.ok(Math.abs(geometry.height-geometry.photoHeight)<2,'HUD aligns to scooter image height');
       }else{
-        assert.equal(wash.content,'none','no broad green wash on other device images');
+        assert.equal(await frame.locator('.scooter-hud').count(),0,'other four cards unchanged');
       }
       if(width===1440){
         await frame.hover();
