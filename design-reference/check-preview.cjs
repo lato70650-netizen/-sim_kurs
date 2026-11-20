@@ -146,6 +146,29 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
     assert.equal(await scooterCard.locator('.reading-followup').count(),0,'long scooter supplement no longer stretches the first card');
     assert.equal(await page.locator('.m1-scooter-extra .followup-copy').count(),3,'all three scooter supplementary explanations remain in lesson');
     assert.ok(await page.locator('.m1-scooter-extra').isVisible(),'supplement stays visible without extra clicks');
+    // The "Главные части" supplementary panel uses the same quiet technical
+    // card and hover-only green frame, without modifying its content.
+    const partsCard=page.locator('.m1-scooter-extra > .reading-followup > .followup-copy').first();
+    assert.ok(await partsCard.isVisible(),'scooter parts card visible');
+    const partsStyle=await partsCard.evaluate(el=>({
+      border:getComputedStyle(el).borderTopColor,
+      background:getComputedStyle(el).backgroundImage,
+      shadow:getComputedStyle(el).boxShadow,
+      grid:getComputedStyle(el,'::before').backgroundImage
+    }));
+    assert.ok(partsStyle.grid.includes('linear-gradient'),'parts card technical grid');
+    assert.ok(partsStyle.shadow.includes('rgb'),'parts card depth');
+    if(width===1440){
+      await partsCard.hover();
+      await page.waitForTimeout(300);
+      const active=await partsCard.evaluate(el=>getComputedStyle(el).boxShadow);
+      assert.ok(active.includes('135, 255, 96'),'parts card green glow on hover');
+      await page.mouse.move(0,0);
+      await page.waitForTimeout(300);
+      const idle=await partsCard.evaluate(el=>getComputedStyle(el).boxShadow);
+      assert.ok(!idle.includes('135, 255, 96'),'parts card glow off after hover');
+    }
+
 
     for(const card of await page.locator('.m1-device-card').all()){
       assert.ok(await card.locator('.visible-copy p').first().isVisible(),'device description is visible');
