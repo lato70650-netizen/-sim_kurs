@@ -536,50 +536,29 @@ body.approved-lesson-preview {
 }
 
 
-/* Electroscooter test: tiny, sharply positioned wheel-contact highlights.
-   No full-height overlay, fog, gaussian blur or continuous green wash. */
-.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child .scene-photo::after {
-  content:"";
+/* Actual vector HUD over the SCOOTER image only.
+   Precise wheel contact lights and four corner details are separate scalable elements,
+   rather than radial CSS fog; headings and explanations remain real HTML. */
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child > .lesson-scene .scooter-hud {
   position:absolute;
-  z-index:2;
-  inset:0;
+  z-index:4;
+  display:block;
+  width:100%;
+  height:clamp(220px,23vw,300px);
+  top:0;
+  left:0;
+  overflow:hidden;
   pointer-events:none;
-  background:
-    radial-gradient(ellipse 10% 2.3% at 37% 92%,rgba(156,248,250,.66) 0%,rgba(60,209,224,.33) 42%,transparent 100%),
-    radial-gradient(ellipse 9% 2.1% at 76% 78%,rgba(177,254,101,.73) 0%,rgba(97,214,117,.28) 45%,transparent 100%);
-  mix-blend-mode:screen;
-  filter:none;
-  opacity:.72;
 }
 .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child > .lesson-scene::after {
-  content:"";
-  position:absolute;
-  z-index:2;
-  inset:13px;
-  pointer-events:none;
-  border:0;
-  border-radius:0;
-  background:
-    linear-gradient(90deg,#6feafa 0 100%) left top / 21px 1.5px no-repeat,
-    linear-gradient(#6feafa 0 100%) left top / 1.5px 21px no-repeat,
-    linear-gradient(90deg,#6feafa 0 100%) right top / 19px 1.5px no-repeat,
-    linear-gradient(#6feafa 0 100%) right top / 1.5px 19px no-repeat,
-    linear-gradient(90deg,rgba(125,246,169,.73) 0 100%) right bottom / 22px 1.5px no-repeat,
-    linear-gradient(rgba(125,246,169,.73) 0 100%) right bottom / 1.5px 19px no-repeat,
-    linear-gradient(90deg,rgba(99,229,246,.58) 0 100%) left bottom / 19px 1.5px no-repeat,
-    linear-gradient(rgba(99,229,246,.58) 0 100%) left bottom / 1.5px 19px no-repeat,
-    repeating-linear-gradient(113deg,rgba(79,223,248,.75) 0 3px,transparent 3px 8px) left 24px top 4px / 36px 8px no-repeat,
-    repeating-linear-gradient(90deg,rgba(138,244,183,.6) 0 7px,transparent 7px 11px) right 25px bottom 4px / 37px 3px no-repeat;
+  content:none;
 }
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child .scene-photo::after,
 .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child .scene-photo::before {
-  content:"SIM  /  01";
-  position:absolute;
-  z-index:3;
-  top:15px;
-  right:20px;
-  pointer-events:none;
-  color:#b8e9e8;
-  font:700 10px/1.35 Manrope,Arial,sans-serif;
-  letter-spacing:.11em;
-  opacity:.78;
+  content:none;
+}
+@media(max-width:760px){
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child > .lesson-scene .scooter-hud {
+    height:clamp(215px,55vw,300px);
+  }
 }
