@@ -200,6 +200,9 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
       else assert.ok(geom.textTop>=geom.figBottom-2,'mobile description below image');
       assert.ok(!geom.shadow.includes('106, 255, 117') && !geom.shadow.includes('135, 255, 96'),'neon border glow is off at rest');
     }
+    // All other checks use reduced motion. Enable normal motion explicitly for
+    // the fine-pointer tracking test, which is intentionally disabled otherwise.
+    if(width===1440)await page.emulateMedia({reducedMotion:'no-preference'});
     // Image frame ONLY triggers neon: reading the text in the larger card stays calm.
     for(const [deviceIndex,card] of (await page.locator('.m1-device-card').all()).entries()){
       const frame=card.locator(':scope > .lesson-scene');
@@ -259,6 +262,7 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
         }
       }
     }
+    if(width===1440)await page.emulateMedia({reducedMotion:'reduce'});
     // Five distinct devices share the approved luminous panel treatment; no text hidden.
     const frames=await page.locator('.m1-device-card > .lesson-scene').evaluateAll(elements=>elements.map(el=>{
       const style=getComputedStyle(el);
