@@ -67,3 +67,63 @@
  .approved-lesson-preview .intro-cover h1 {font-size:clamp(36px,9vw,51px)}
 }
 @media(prefers-reduced-motion:reduce) {.approved-lesson-preview .button,.approved-lesson-preview .intro-item {transition:none}}
+
+/* Approved device-card visual language on the INTRODUCTION hero (three devices).
+   Decorative SVG has four corners, small status bars and a technical grid.
+   The original images, text and hero layout remain untouched. */
+.approved-lesson-preview[data-intro-page="overview"] .intro-cover-photo{
+  border-color:rgba(103,172,193,.56);
+  background:linear-gradient(145deg,#102c40 0%,#0e253b 63%,#0b1b2e 100%);
+  transition:box-shadow .24s ease,border-color .24s ease,transform .24s ease;
+}
+.approved-lesson-preview[data-intro-page="overview"] .intro-cover-photo .m1-device-group{
+  isolation:isolate;
+}
+.approved-lesson-preview[data-intro-page="overview"] .intro-cover-photo .overview-hud{
+  position:absolute;
+  z-index:4;
+  inset:0;
+  width:100%;
+  height:100%;
+  display:block;
+  pointer-events:none;
+}
+@media(hover:hover){
+ .approved-lesson-preview[data-intro-page="overview"] .intro-cover-photo:has(> .m1-device-group:hover){
+   border-color:#b4ff80;
+   box-shadow:inset 0 1px 0 rgba(255,255,255,.22),
+      0 0 0 1px rgba(172,255,131,.4),
+      0 0 19px 4px rgba(135,255,96,.65),
+      0 0 33px 7px rgba(44,239,202,.31),
+      0 22px 38px rgba(0,8,26,.38);
+ }
+}
+@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+ .approved-lesson-preview[data-intro-page="overview"] .intro-cover-photo .m1-device-group.m1-holo-media::after{
+   content:"";
+   position:absolute;
+   inset:0;
+   z-index:5;
+   pointer-events:none;
+   opacity:0;
+   border:0;
+   background:
+     radial-gradient(ellipse at var(--holo-x,50%) var(--holo-y,50%),
+       rgb(255 255 255 / 26%),rgb(144 235 255 / 10%) 25%,transparent 62%),
+     linear-gradient(115deg,transparent 28%,rgb(255 255 255 / 8%) 47%,transparent 65%);
+   mask-image:radial-gradient(ellipse closest-side,#000 20%,transparent 100%);
+   -webkit-mask-image:radial-gradient(ellipse closest-side,#000 20%,transparent 100%);
+   transition:opacity 220ms var(--m1-ease);
+ }
+ .approved-lesson-preview[data-intro-page="overview"] .intro-cover-photo .m1-device-group.m1-holo-media.is-holo-active::after{
+    opacity:.72;
+ }
+}
+@media(prefers-reduced-motion:reduce){
+ .approved-lesson-preview[data-intro-page="overview"] .intro-cover-photo{
+    transition:none;
+ }
+ .approved-lesson-preview[data-intro-page="overview"] .intro-cover-photo .m1-device-group::after{
+    content:none;
+ }
+}
