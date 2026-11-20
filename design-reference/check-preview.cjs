@@ -305,8 +305,22 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
     }
     await page.goto(root+'introduction-quiz.html');
     assert.ok(await page.locator('#quiz-panel').isVisible(),'quiz unlocked after real five lessons');
-    for(const correct of [false,true,false,true,true,false,true,false,true,false]){
-      await page.locator('[data-answer='+correct+']').click();
+    const quizCards = [
+      ['kick-scooter', false], ['electric-scooter', true], ['skateboard', false],
+      ['electric-skateboard', true], ['hoverboard', true], ['bicycle', false],
+      ['unicycle', true], ['moped', false], ['segway', true], ['inline-skates', false]
+    ];
+    let cardWidth;
+    for (const [index, [asset, correct]] of quizCards.entries()) {
+      const image = page.locator('#question-image img');
+      assert.equal(await image.getAttribute('src'), 'assets/quiz-cards/' + asset + '.webp');
+      await image.evaluate(element => element.decode());
+      const size = await image.boundingBox();
+      assert.ok(size && Math.abs(size.width - size.height) < 1, 'square image ' + asset);
+      cardWidth ??= size.width;
+      assert.equal(size.width, cardWidth, 'same image width ' + asset);
+      assert.equal(await page.locator('#question-position').innerText(), 'Вопрос ' + (index + 1) + ' из 10');
+      await page.locator('[data-answer=' + correct + ']').click();
       await page.locator('#next-question').click();
     }
     assert.ok(await page.locator('#quiz-result').isVisible(),'real quiz completed');

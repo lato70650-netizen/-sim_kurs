@@ -1,0 +1,115 @@
+#quiz-panel {
+  --quiz-frame: #46647b;
+  --quiz-accent: #74d7ef;
+  padding: clamp(18px, 3vw, 38px);
+  border: 1px solid var(--quiz-frame);
+  background: linear-gradient(150deg, #1b3248, #132237 78%);
+  box-shadow: 0 14px 36px #07122355;
+}
+
+.quiz-question-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-block-end: 16px;
+  margin-block-end: clamp(18px, 3vw, 32px);
+  border-block-end: 1px solid #3b556d;
+}
+
+.quiz-question-status #question-position {
+  margin: 0;
+  color: #d9eef7;
+  font-size: .95rem;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.quiz-question-status .quiz-progress {
+  width: min(42%, 280px);
+  margin: 0;
+}
+
+.quiz-question-status .quiz-progress .is-current {
+  background: var(--quiz-accent);
+}
+
+#quiz-panel .quiz-question-layout {
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  align-items: start;
+  gap: clamp(22px, 4vw, 54px);
+}
+
+#quiz-panel .quiz-image {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  max-width: none;
+  overflow: hidden;
+  border: 1px solid var(--quiz-frame);
+  border-radius: 16px;
+  background: #102437;
+}
+
+.quiz-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.quiz-image::after {
+  position: absolute;
+  z-index: 1;
+  inset: 10px;
+  content: "";
+  pointer-events: none;
+  background:
+    linear-gradient(var(--quiz-accent), var(--quiz-accent)) left top / 14px 1px,
+    linear-gradient(var(--quiz-accent), var(--quiz-accent)) left top / 1px 14px,
+    linear-gradient(var(--quiz-accent), var(--quiz-accent)) right bottom / 14px 1px,
+    linear-gradient(var(--quiz-accent), var(--quiz-accent)) right bottom / 1px 14px;
+  background-repeat: no-repeat;
+}
+
+.quiz-question-content {
+  min-width: 0;
+  padding-block-start: 8px;
+}
+
+#quiz-panel #question-text {
+  margin-block: 0 12px;
+  font-size: clamp(1.3rem, 2.8vw, 2rem);
+  line-height: 1.28;
+  text-wrap: pretty;
+}
+
+#quiz-panel .quiz-task-title {
+  color: #bbd6e6;
+  line-height: 1.45;
+}
+
+#quiz-panel .quiz-choices {
+  margin-block: 18px;
+}
+
+#quiz-panel .quiz-choices button:focus-visible,
+#next-question:focus-visible {
+  outline: 2px solid var(--quiz-accent);
+  outline-offset: 3px;
+}
+
+@media (max-width: 700px) {
+  #quiz-panel .quiz-question-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  #quiz-panel .quiz-image {
+    max-width: min(100%, 248px);
+  }
+
+  .quiz-question-content {
+    padding-block-start: 0;
+  }
+}
