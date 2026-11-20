@@ -515,22 +515,7 @@ body.approved-lesson-preview {
   color:#a9f3ee;
   position:relative;
 }
-@media(hover:hover) {
- .approved-lesson-preview[data-intro-page="1"] .m1-scooter-extra > .reading-followup > .followup-copy:first-child:hover {
-  border-color:#b4ff80;
-  box-shadow:
-   inset 0 1px rgba(255,255,255,.16),
-   0 0 0 1px rgba(172,255,131,.4),
-   0 0 19px 4px rgba(135,255,96,.52),
-   0 0 32px 7px rgba(44,239,202,.28),
-   0 17px 30px rgba(0,8,26,.35);
- }
-}
-@media(hover:hover) and (prefers-reduced-motion:no-preference) {
- .approved-lesson-preview[data-intro-page="1"] .m1-scooter-extra > .reading-followup > .followup-copy:first-child:hover {
-  transform:translateY(-2px);
- }
-}
+/* Supplementary explanations are reading-only: no glow or lift on hover. */
 @media(prefers-reduced-motion:reduce) {
  .approved-lesson-preview[data-intro-page="1"] .m1-scooter-extra > .reading-followup > .followup-copy:first-child {transition:none}
 }
