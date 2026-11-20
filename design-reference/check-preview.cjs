@@ -238,6 +238,21 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
       await page.screenshot({path:out+'/lesson-3-tech-hud-'+width+'.png',fullPage:true});
     }
     await page.evaluate(()=>localStorage.removeItem('sim-introduction-progress-v1'));
+    // Lesson 4: bicycle and moped reading copy is in TWO text-only panels.
+    await page.goto(root+'lesson-1.html',{waitUntil:'load'});
+    await page.evaluate(()=>localStorage.setItem('sim-introduction-progress-v1',JSON.stringify({completed:3,quizComplete:false})));
+    await page.goto(root+'lesson-4.html',{waitUntil:'load'});
+    const transportSection=page.locator('.lesson-copy .reading-section').filter({has:page.locator('h2', {hasText:'Не всё электрическое — СИМ'})});
+    const transportCards=transportSection.locator('.visible-copy.lesson-facts > .lesson-fact');
+    assert.equal(await transportCards.count(),2,'bicycle and moped are separate cards');
+    assert.equal(await transportCards.locator('img').count(),0,'comparison has no images');
+    const transportText=await transportCards.locator('p').allTextContents();
+    assert.ok(transportText[0].startsWith('Велосипед — самостоятельная категория транспорта.'),'bicycle paragraph unchanged');
+    assert.ok(transportText[1].startsWith('Мопед — тоже отдельная категория.'),'moped paragraph unchanged');
+    const fills=await transportCards.evaluateAll(els=>els.map(el=>getComputedStyle(el).backgroundColor));
+    assert.ok(fills.every(v=>v!=='rgba(0, 0, 0, 0)'&&v!=='transparent'),'both cards have filled panels');
+    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'lesson 4 text panels fit viewport '+width);
+    await page.evaluate(()=>localStorage.removeItem('sim-introduction-progress-v1'));
     // Isolated lesson and assessment previews must preserve the real learning flow.
     for(const preview of ['preview-lesson-1.html','preview-rules-lesson-1.html']){
       await page.goto(root+preview,{waitUntil:'load'});
