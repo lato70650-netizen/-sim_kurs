@@ -158,6 +158,25 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
       else assert.ok(layout.copyY>=layout.imgBottom-2,'text below image at '+width);
     }
 
+    // Approved layout: title above image+description on the same long card,
+    // and green light visible at rest, without requiring mouse hover.
+    for(const card of await page.locator('.m1-device-card').all()){
+      const geom=await card.evaluate(el=>{
+        const heading=el.querySelector(':scope > h2').getBoundingClientRect();
+        const figure=el.querySelector(':scope > .lesson-scene').getBoundingClientRect();
+        const description=el.querySelector(':scope > .m1-device-disclosure').getBoundingClientRect();
+        const css=getComputedStyle(el.querySelector(':scope > .lesson-scene'));
+        return {
+          headingBottom:heading.bottom,figTop:figure.top,figRight:figure.right,
+          figBottom:figure.bottom,textLeft:description.left,textTop:description.top,
+          border:css.borderTopColor,shadow:css.boxShadow
+        };
+      });
+      assert.ok(geom.headingBottom<=geom.figTop+2,'device title above picture');
+      if(width>760)assert.ok(geom.figRight<=geom.textLeft+2,'long card image left, text right');
+      else assert.ok(geom.textTop>=geom.figBottom-2,'mobile description below image');
+      assert.ok(/rgb\(1(?:0[0-9]|[1-9][0-9]), 255, (?:9[0-9]|1[0-9][0-9])/.test(geom.shadow),'visible green glow at rest');
+    }
     // Five distinct devices share the approved luminous panel treatment; no text hidden.
     const frames=await page.locator('.m1-device-card > .lesson-scene').evaluateAll(elements=>elements.map(el=>{
       const style=getComputedStyle(el);
