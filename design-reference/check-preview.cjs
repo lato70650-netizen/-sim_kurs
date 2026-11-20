@@ -23,6 +23,21 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
     assert.equal(await page.locator('.module-one .module-entry').getAttribute('href'),'introduction.html');
     assert.equal(await page.locator('.module-two .module-entry').getAttribute('href'),'rules.html');
     assert.equal(await page.locator('.module-three button[disabled]').count(),1,'game remains unavailable');
+    // The published preview landing page must have equal-height launch CTA baselines.
+    await page.goto(root+'index.html',{waitUntil:'load'});
+    await page.evaluate(()=>document.fonts.ready);
+    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'live landing page has no horizontal overflow '+width);
+    const launch=await page.locator('.module-grid .module-entry').evaluateAll(elements=>elements.map(el=>{
+      const r=el.getBoundingClientRect();
+      return {top:r.top,bottom:r.bottom,height:r.height};
+    }));
+    assert.equal(launch.length,2,'two landing module launch CTAs');
+    if(width>=701){
+      assert.ok(Math.abs(launch[0].top-launch[1].top)<=2,'landing launch buttons share a top baseline at '+width+': '+JSON.stringify(launch));
+      assert.ok(Math.abs(launch[0].bottom-launch[1].bottom)<=2,'landing launch buttons share bottom baseline at '+width);
+    }
+    await page.goto(root+'preview-homepage.html',{waitUntil:'load'});
+
 
     const visibleControl=await page.locator('.hero .primary').evaluate(button=>{
       const r=button.getBoundingClientRect(), hit=document.elementFromPoint(r.left+r.width/2,r.top+r.height/2);
