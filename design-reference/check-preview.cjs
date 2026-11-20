@@ -76,6 +76,46 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
       assert.ok(page.url().endsWith('/'+destination),'real lesson routing '+preview);
     }
 
+    // Live introduction overview: three existing device images, vector HUD, no fog.
+    await page.goto(root+'introduction.html',{waitUntil:'load'});
+    const hero=page.locator('.intro-cover-photo');
+    const artwork=hero.locator('.m1-device-group');
+    assert.equal(await artwork.locator('img').count(),3,'introduction still has three device images');
+    assert.equal(await artwork.locator('svg.overview-hud').count(),1,'tech accents on introduction image panel');
+    assert.equal(await artwork.locator('.overview-hud-corners path').count(),4,'all four HUD corners');
+    assert.equal(await artwork.locator('.overview-hud-status rect').count(),3,'small HUD status indicators');
+    assert.ok(await artwork.evaluate(el=>el.getBoundingClientRect().width>100),'introduction artwork is visible');
+    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'introduction no horizontal overflow '+width);
+    if(width===1440){
+      await page.emulateMedia({reducedMotion:'no-preference'});
+      const rect=await artwork.boundingBox();
+      await page.mouse.move(rect.x+rect.width*.25,rect.y+rect.height*.32);
+      await page.waitForTimeout(280);
+      const first=await artwork.evaluate(el=>({
+        position:el.style.getPropertyValue('--holo-x'),
+        opacity:getComputedStyle(el,'::after').opacity,
+        active:el.classList.contains('is-holo-active')
+      }));
+      await page.mouse.move(rect.x+rect.width*.74,rect.y+rect.height*.60);
+      await page.waitForTimeout(280);
+      const second=await artwork.evaluate(el=>({
+        position:el.style.getPropertyValue('--holo-x'),
+        opacity:getComputedStyle(el,'::after').opacity
+      }));
+      assert.ok(first.active && first.position && first.position!==second.position,'introduction spotlight follows cursor');
+      assert.ok(parseFloat(second.opacity)>.55,'introduction pointer highlight visible');
+      const hoverShadow=await hero.evaluate(el=>getComputedStyle(el).boxShadow);
+      assert.ok(hoverShadow.includes('135, 255, 96'),'introduction border glowing over artwork');
+      await page.mouse.move(0,0);
+      await page.waitForTimeout(310);
+      const off=await artwork.evaluate(el=>({active:el.classList.contains('is-holo-active'),opacity:getComputedStyle(el,'::after').opacity}));
+      assert.ok(!off.active && parseFloat(off.opacity)<.05,'introduction effect fades off outside image');
+      await page.emulateMedia({reducedMotion:'reduce'});
+    }
+    if(width===390||width===1440){
+      await page.evaluate(()=>scrollTo(0,0));
+      await page.screenshot({path:out+'/introduction-tech-hud-'+width+'.png',fullPage:true});
+    }
     // Isolated lesson and assessment previews must preserve the real learning flow.
     for(const preview of ['preview-lesson-1.html','preview-rules-lesson-1.html']){
       await page.goto(root+preview,{waitUntil:'load'});
