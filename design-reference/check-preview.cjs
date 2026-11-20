@@ -102,6 +102,7 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
         position:el.style.getPropertyValue('--holo-x'),
         opacity:getComputedStyle(el,'::after').opacity
       }));
+      console.log('INTRO POINTER DIAGNOSTIC',JSON.stringify({first,second,rect,groups:await page.locator('.m1-holo-media').count(),enabled:await page.evaluate(()=>matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)').matches)}));
       assert.ok(first.active && first.position && first.position!==second.position,'introduction spotlight follows cursor');
       assert.ok(parseFloat(second.opacity)>.55,'introduction pointer highlight visible');
       const hoverShadow=await hero.evaluate(el=>getComputedStyle(el).boxShadow);
