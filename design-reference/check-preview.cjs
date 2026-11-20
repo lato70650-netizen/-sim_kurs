@@ -198,7 +198,10 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
       await page.evaluate(()=>scrollTo(0,0));
       await page.screenshot({path:out+'/lesson-1-tech-hud-'+width+'.png',fullPage:true});
     }
-    // Lesson 3: approved three-device style, no edits to the actual learning text.
+    // Lesson 3 unlocks after lessons 1–2; seed their completed state for visual QA.
+    // This is test-only localStorage, never a change to the live course progression.
+    await page.goto(root+'lesson-1.html',{waitUntil:'load'});
+    await page.evaluate(()=>localStorage.setItem('sim-introduction-progress-v1',JSON.stringify({completed:2,quizComplete:false})));
     await page.goto(root+'lesson-3.html',{waitUntil:'load'});
     const lesson3Frame=page.locator('.lesson-copy > .reading-section:first-child .lesson-scene');
     const lesson3Image=lesson3Frame.locator('> .m1-device-group');
@@ -234,6 +237,7 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
       await page.evaluate(()=>scrollTo(0,0));
       await page.screenshot({path:out+'/lesson-3-tech-hud-'+width+'.png',fullPage:true});
     }
+    await page.evaluate(()=>localStorage.removeItem('sim-introduction-progress-v1'));
     // Isolated lesson and assessment previews must preserve the real learning flow.
     for(const preview of ['preview-lesson-1.html','preview-rules-lesson-1.html']){
       await page.goto(root+preview,{waitUntil:'load'});
