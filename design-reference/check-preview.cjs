@@ -251,14 +251,13 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
     assert.ok(partsStyle.grid.includes('linear-gradient'),'parts card technical grid');
     assert.ok(partsStyle.shadow.includes('rgb'),'parts card depth');
     if(width===1440){
+      const before=await partsCard.evaluate(el=>({shadow:getComputedStyle(el).boxShadow,border:getComputedStyle(el).borderColor}));
       await partsCard.hover();
       await page.waitForTimeout(300);
-      const active=await partsCard.evaluate(el=>getComputedStyle(el).boxShadow);
-      assert.ok(active.includes('135, 255, 96'),'parts card green glow on hover');
+      const after=await partsCard.evaluate(el=>({shadow:getComputedStyle(el).boxShadow,border:getComputedStyle(el).borderColor}));
+      assert.equal(after.shadow,before.shadow,'supplementary card must not glow on hover');
+      assert.equal(after.border,before.border,'supplementary card border must remain calm on hover');
       await page.mouse.move(0,0);
-      await page.waitForTimeout(300);
-      const idle=await partsCard.evaluate(el=>getComputedStyle(el).boxShadow);
-      assert.ok(!idle.includes('135, 255, 96'),'parts card glow off after hover');
     }
 
 
