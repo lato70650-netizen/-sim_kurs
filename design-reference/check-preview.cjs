@@ -213,7 +213,9 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
       if(deviceIndex===0){
         const hud=frame.locator('svg.scooter-hud');
         assert.equal(await hud.count(),1,'real vector overlay on scooter');
-        assert.equal(await hud.locator('.scooter-wheel-light ellipse').count(),4,'two focused wheel contacts');
+        assert.equal(await hud.locator('.scooter-wheel-light').count(),0,'scooter wheel light fully removed');
+        const plainBackground=await frame.evaluate(el=>getComputedStyle(el).backgroundImage);
+        assert.ok(!plainBackground.includes('radial-gradient'),'no green background mist behind scooter');
         assert.ok(await hud.locator('.scooter-hud-corners path').count()>=3,'vector interface corner marks (one path draws two corners)');
         assert.equal(await hud.locator('.scooter-hud-top-status rect').count(),3,'top interface indicators');
         const geometry=await hud.evaluate(el=>{
