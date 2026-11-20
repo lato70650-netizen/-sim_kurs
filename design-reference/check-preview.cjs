@@ -175,7 +175,24 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
       assert.ok(geom.headingBottom<=geom.figTop+2,'device title above picture');
       if(width>760)assert.ok(geom.figRight<=geom.textLeft+2,'long card image left, text right');
       else assert.ok(geom.textTop>=geom.figBottom-2,'mobile description below image');
-      assert.ok(geom.shadow.includes('106, 255, 117'),'visible green glow at rest');
+      assert.ok(!geom.shadow.includes('106, 255, 117') && !geom.shadow.includes('135, 255, 96'),'neon border glow is off at rest');
+    }
+    // Green illumination lives beneath the object at rest; bright border glow appears only on hover.
+    for(const card of await page.locator('.m1-device-card').all()){
+      const frame=card.locator(':scope > .lesson-scene');
+      const rest=await frame.evaluate(el=>({shadow:getComputedStyle(el).boxShadow,background:getComputedStyle(el).backgroundImage}));
+      assert.ok(rest.background.includes('130, 255, 103'),'soft green under-device background light');
+      assert.ok(!rest.shadow.includes('135, 255, 96'),'inactive border does not glow');
+      if(width===1440){
+        await card.hover();
+        await page.waitForTimeout(380);
+        const active=await frame.evaluate(el=>getComputedStyle(el).boxShadow);
+        assert.ok(active.includes('135, 255, 96'),'green frame glow appears on card hover');
+        await page.mouse.move(0,0);
+        await page.waitForTimeout(380);
+        const idle=await frame.evaluate(el=>getComputedStyle(el).boxShadow);
+        assert.ok(!idle.includes('135, 255, 96'),'green frame glow disappears on mouse leave');
+      }
     }
     // Five distinct devices share the approved luminous panel treatment; no text hidden.
     const frames=await page.locator('.m1-device-card > .lesson-scene').evaluateAll(elements=>elements.map(el=>{
