@@ -650,3 +650,13 @@ body.approved-lesson-preview {
     content:none;
   }
 }
+
+/* Course-wide editorial hierarchy: semantic strong emphasis inside teaching prose.
+   Markdown is not used at runtime; HTML carries the content and CSS the appearance.
+   Gentle cyan keeps the key reading anchors obvious without highlighting whole blocks. */
+.approved-lesson-preview .lesson-copy .visible-copy strong,
+.approved-lesson-preview .lesson-copy .followup-copy strong,
+.approved-lesson-preview .lesson-copy .rules-text-block strong {
+  color:#bdeaf7;
+  font-weight:790;
+}
