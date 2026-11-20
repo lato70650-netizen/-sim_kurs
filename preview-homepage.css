@@ -136,3 +136,40 @@
 @media(prefers-reduced-motion:reduce) {
  .approved-preview .module-card,.approved-preview .primary,.approved-preview .module-entry {transition:none}
 }
+
+/* Course-wide reading hierarchy on the main landing page; preserve original copy/layout. */
+.approved-preview .hero-content > p {
+  font-size:clamp(17px,1.5vw,19px);
+  line-height:1.85;
+  max-width:49ch;
+  color:#eef4fb;
+}
+.approved-preview .section-heading > p {
+  max-width:49ch;
+  font-size:clamp(16px,1.3vw,18px);
+  line-height:1.8;
+  color:#dceaf4;
+}
+.approved-preview .section-heading > h2,
+.approved-preview .learning h2,
+.approved-preview .scooter-scene h2 {
+  line-height:1.17;
+  letter-spacing:-.02em;
+  text-wrap:balance;
+}
+.approved-preview .module-text h3 {
+  line-height:1.28;
+  text-wrap:balance;
+}
+.approved-preview .module-text > p,
+.approved-preview .module-task,
+.approved-preview .module-program {
+  line-height:1.85;
+}
+.approved-preview .learning li {
+  line-height:1.7;
+}
+@media(max-width:700px) {
+ .approved-preview .hero-content > p {font-size:17px;line-height:1.75}
+ .approved-preview .section-heading > p {font-size:16px;line-height:1.75}
+}
