@@ -157,6 +157,21 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
       if(width>760)assert.ok(layout.copyX>=layout.imgRight-2,'text beside image at '+width);
       else assert.ok(layout.copyY>=layout.imgBottom-2,'text below image at '+width);
     }
+
+    // Five distinct devices share the approved luminous panel treatment; no text hidden.
+    const frames=await page.locator('.m1-device-card > .lesson-scene').evaluateAll(elements=>elements.map(el=>{
+      const style=getComputedStyle(el);
+      const bg=getComputedStyle(el,'::before');
+      return {color:style.borderTopColor,width:parseFloat(style.borderTopWidth),
+        glow:style.boxShadow,grid:bg.backgroundImage,rect:el.getBoundingClientRect().width};
+    }));
+    assert.equal(frames.length,5,'five technical image frames');
+    for(const frame of frames){
+      assert.ok(frame.width>=1.3,'neon frame border is visible');
+      assert.ok(frame.glow.includes('rgb'),'image panel has luminous shadow');
+      assert.ok(frame.grid.includes('linear-gradient'),'technical grid rendered within panel');
+      assert.ok(frame.rect>100,'image panel visible on screen');
+    }
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth <= innerWidth+1),'lesson 2 fits screen '+width);
     if(width===390||width===1440){
       await page.evaluate(()=>scrollTo(0,0));
