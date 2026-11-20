@@ -84,6 +84,16 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
       assert.ok(await accent.count()>=2,'semantic emphasis available in '+chapter);
       assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'no overflow after editorial formatting '+chapter+' '+width);
     }
+    // Revisions must highlight whole actionable sentences, not arbitrary slices.
+    await page.goto(root+'lesson-2.html',{waitUntil:'load'});
+    assert.ok(await page.locator('.m1-device-card').nth(1).locator('.visible-copy strong').first()
+      .evaluate(el=>el.textContent.trim().endsWith('падениям.')),
+      'gyroboard warning is an entire thought, including its full stop');
+    await page.goto(root+'lesson-3.html',{waitUntil:'load'});
+    assert.equal(await page.locator('.lesson-copy strong').filter({hasText:'Различия становятся заметны'}).count(),0,
+      'generic introductory wording no longer highlighted');
+    assert.ok(await page.locator('.lesson-copy strong').filter({hasText:'Не переносите приёмы управления'}).count()===1,
+      'real safety takeaway is highlighted instead');
     if(width===1440){
       await page.goto(root+'lesson-3.html',{waitUntil:'load'});
       const emphasis=await page.locator('.lesson-copy .visible-copy strong').first().evaluate(el=>({
