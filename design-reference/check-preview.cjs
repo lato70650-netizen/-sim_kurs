@@ -201,7 +201,7 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
       assert.ok(!geom.shadow.includes('106, 255, 117') && !geom.shadow.includes('135, 255, 96'),'neon border glow is off at rest');
     }
     // Green illumination lives beneath the object at rest; bright border glow appears only on hover.
-    for(const card of await page.locator('.m1-device-card').all()){
+    for(const [deviceIndex,card] of (await page.locator('.m1-device-card').all()).entries()){
       const frame=card.locator(':scope > .lesson-scene');
       const rest=await frame.evaluate(el=>({shadow:getComputedStyle(el).boxShadow,background:getComputedStyle(el).backgroundImage}));
       assert.ok(rest.background.includes('130, 255, 103'),'background light present beneath image');
@@ -209,7 +209,15 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
         const style=getComputedStyle(el,'::after');
         return {background:style.backgroundImage,blend:style.mixBlendMode,content:style.content,blur:style.filter};
       });
-      assert.ok(visibleWash.background.includes('158, 255, 93'),'green image-level light is visible above opaque image');
+      if(deviceIndex===0){
+        assert.ok(visibleWash.background.includes('202, 255, 253'),'first device has local cyan front-wheel lighting');
+        assert.ok(visibleWash.background.includes('188, 255, 111'),'first device has local lime rear-wheel lighting');
+        assert.ok(visibleWash.blur.includes('5px'),'first device uses crisp, localized lighting');
+        const cornerDetails=await frame.evaluate(el=>getComputedStyle(el,'::after').backgroundImage);
+        assert.ok(cornerDetails.includes('repeating-linear-gradient'),'first device has corner marks and tech bars');
+      }else{
+        assert.ok(visibleWash.background.includes('158, 255, 93'),'other four images unchanged');
+      }
       assert.equal(visibleWash.blend,'screen','light blends with device image rather than replacing it');
       assert.ok(visibleWash.blur.includes('blur('),'light is diffused without a hard ring');
       assert.ok(!rest.shadow.includes('135, 255, 96'),'inactive border does not glow');
