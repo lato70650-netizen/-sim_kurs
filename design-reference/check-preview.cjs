@@ -181,7 +181,14 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
     for(const card of await page.locator('.m1-device-card').all()){
       const frame=card.locator(':scope > .lesson-scene');
       const rest=await frame.evaluate(el=>({shadow:getComputedStyle(el).boxShadow,background:getComputedStyle(el).backgroundImage}));
-      assert.ok(rest.background.includes('130, 255, 103'),'soft green under-device background light');
+      assert.ok(rest.background.includes('130, 255, 103'),'background light present beneath image');
+      const visibleWash=await card.locator('.scene-photo').evaluate(el=>{
+        const style=getComputedStyle(el,'::after');
+        return {background:style.backgroundImage,blend:style.mixBlendMode,content:style.content,blur:style.filter};
+      });
+      assert.ok(visibleWash.background.includes('158, 255, 93'),'green image-level light is visible above opaque image');
+      assert.equal(visibleWash.blend,'screen','light blends with device image rather than replacing it');
+      assert.ok(visibleWash.blur.includes('blur('),'light is diffused without a hard ring');
       assert.ok(!rest.shadow.includes('135, 255, 96'),'inactive border does not glow');
       if(width===1440){
         await card.hover();
