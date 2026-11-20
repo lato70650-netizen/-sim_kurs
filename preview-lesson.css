@@ -498,3 +498,54 @@ body.approved-lesson-preview {
 @media(prefers-reduced-motion:reduce) {
   .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene {transition:none}
 }
+
+
+/* Single supplementary card from the user's screenshot: "Главные части".
+   Match the device-gallery visual language without touching copy or layout. */
+.approved-lesson-preview[data-intro-page="1"] .m1-scooter-extra > .reading-followup > .followup-copy:first-child {
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  border:1px solid rgba(103,172,193,.56);
+  border-radius:20px;
+  background:linear-gradient(140deg,#15364c 0%,#112a40 62%,#0d2338 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.11),0 14px 28px rgba(0,7,24,.3);
+  transition:border-color .25s ease,box-shadow .25s ease,transform .25s ease;
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-scooter-extra > .reading-followup > .followup-copy:first-child::before {
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(rgba(82,197,218,.055) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(82,197,218,.055) 1px,transparent 1px),
+    linear-gradient(132deg,rgba(23,134,159,.18),transparent 66%);
+  background-size:26px 26px,26px 26px,100% 100%;
+  -webkit-mask-image:linear-gradient(130deg,rgba(0,0,0,.55),rgba(0,0,0,.18));
+  mask-image:linear-gradient(130deg,rgba(0,0,0,.55),rgba(0,0,0,.18));
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-scooter-extra > .reading-followup > .followup-copy:first-child > h3 {
+  color:#a9f3ee;
+  position:relative;
+}
+@media(hover:hover) {
+ .approved-lesson-preview[data-intro-page="1"] .m1-scooter-extra > .reading-followup > .followup-copy:first-child:hover {
+  border-color:#b4ff80;
+  box-shadow:
+   inset 0 1px rgba(255,255,255,.16),
+   0 0 0 1px rgba(172,255,131,.4),
+   0 0 19px 4px rgba(135,255,96,.52),
+   0 0 32px 7px rgba(44,239,202,.28),
+   0 17px 30px rgba(0,8,26,.35);
+ }
+}
+@media(hover:hover) and (prefers-reduced-motion:no-preference) {
+ .approved-lesson-preview[data-intro-page="1"] .m1-scooter-extra > .reading-followup > .followup-copy:first-child:hover {
+  transform:translateY(-2px);
+ }
+}
+@media(prefers-reduced-motion:reduce) {
+ .approved-lesson-preview[data-intro-page="1"] .m1-scooter-extra > .reading-followup > .followup-copy:first-child {transition:none}
+}
