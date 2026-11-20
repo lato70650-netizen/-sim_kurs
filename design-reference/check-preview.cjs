@@ -156,6 +156,26 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
       await page.evaluate(()=>scrollTo(0,0));
       await page.screenshot({path:out+'/lesson-2-visible-descriptions-'+width+'.png',fullPage:true});
     }
+
+    // Text improvements must be present without collapsing the device grid.
+    await page.goto(root+'lesson-2.html',{waitUntil:'load'});
+    const typography=await page.evaluate(()=>{
+      const p=document.querySelector('.m1-device-card .visible-copy p');
+      const grid=document.querySelector('.m1-device-card');
+      const next=p?.nextElementSibling;
+      return {
+        lineHeight:parseFloat(getComputedStyle(p).lineHeight),
+        fontSize:parseFloat(getComputedStyle(p).fontSize),
+        paraGap:next?parseFloat(getComputedStyle(next).marginTop):0,
+        template:getComputedStyle(grid).gridTemplateColumns,
+        count:document.querySelectorAll('.m1-device-card').length
+      };
+    });
+    assert.equal(typography.count,5,'device catalog still has five entries');
+    assert.ok(typography.lineHeight/typography.fontSize>=1.7,'comfortable reading line-height');
+    assert.ok(typography.paraGap>0,'visible paragraph separation');
+    if(width===1440)assert.ok(typography.template.split(' ').length>=2,'desktop retains image and text columns');
+    if(width===390)assert.equal(typography.template.split(' ').length,1,'mobile stacks image and text');
     assert.deepEqual(errors,[],'JS and asset errors');
     console.log('PASS preview '+width+'px: image, cards, no overflow, disclosure, real links, no JS/404');
     await ctx.close();
