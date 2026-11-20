@@ -73,6 +73,26 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
     await page.locator('.module-two .module-entry').click();
     assert.ok(page.url().endsWith('/rules.html'),'module 2 link reaches real page');
 
+    // Semantic editorial formatting across ALL ten lessons: real HTML, not Markdown runtime.
+    for(const chapter of [
+      'lesson-1.html','lesson-2.html','lesson-3.html','lesson-4.html','lesson-5.html',
+      'rules-lesson-1.html','rules-lesson-2.html','rules-lesson-3.html',
+      'rules-lesson-4.html','rules-lesson-5.html'
+    ]) {
+      await page.goto(root+chapter,{waitUntil:'load'});
+      const accent=page.locator('.lesson-copy strong');
+      assert.ok(await accent.count()>=2,'semantic emphasis available in '+chapter);
+      assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'no overflow after editorial formatting '+chapter+' '+width);
+    }
+    if(width===1440){
+      await page.goto(root+'lesson-3.html',{waitUntil:'load'});
+      const emphasis=await page.locator('.lesson-copy .visible-copy strong').first().evaluate(el=>({
+        color:getComputedStyle(el).color,weight:getComputedStyle(el).fontWeight
+      }));
+      assert.equal(emphasis.color,'rgb(189, 234, 247)','emphasis renders in accessible subtle cyan');
+      assert.ok(Number(emphasis.weight)>=700,'strong markup visually differentiates learning points');
+    }
+    await page.goto(root+'preview-homepage.html',{waitUntil:'load'});
     // Separate, non-published module overview previews retain real lesson destinations.
     for(const [preview,selector,destination] of [
       ['preview-introduction.html','#continue-intro','lesson-1.html'],
