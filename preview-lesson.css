@@ -573,30 +573,6 @@ body.approved-lesson-preview {
   content:none;
 }
 
-/* Scooter: strong visible hover response on the image panel only.
-   Technical corner markers brighten along with the neon frame. No steady glow. */
-.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child > .lesson-scene .scooter-hud {
-  transition:filter .22s ease;
-  filter:none;
-}
-@media(hover:hover) {
-  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child > .lesson-scene:hover {
-    border-color:#a6ff90;
-    box-shadow:
-      inset 0 1px 0 rgba(255,255,255,.2),
-      0 0 0 1px rgba(130,255,124,.49),
-      0 0 18px 4px rgba(119,255,108,.65),
-      0 0 35px 7px rgba(42,221,209,.3),
-      0 17px 30px rgba(0,8,26,.38);
-  }
-  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child > .lesson-scene:hover .scooter-hud {
-    filter:drop-shadow(0 0 3px rgba(104,251,192,.67));
-  }
-}
-@media(prefers-reduced-motion:reduce){
-  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child > .lesson-scene .scooter-hud {transition:none}
-}
-
 /* Restore the existing pointer-following holographic reflection on the scooter.
    SVG corner accents previously suppressed this shared ::after reflection.
    Only an image hover moves the subtle white/cyan highlight; no lime fog. */
