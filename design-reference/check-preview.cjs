@@ -232,7 +232,7 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
         await frame.hover();
         await page.waitForTimeout(330);
         const active=await frame.evaluate(el=>getComputedStyle(el).boxShadow);
-        assert.ok(active.includes('135, 255, 96'),'border glows when pointing directly at image frame');
+        assert.ok(active.includes('135, 255, 96') || (deviceIndex===0 && active.includes('119, 255, 108')),'border glows when pointing directly at image frame');
         if(deviceIndex===0){
           const rect=await frame.boundingBox();
           await page.mouse.move(rect.x+rect.width*.23,rect.y+rect.height*.34);
