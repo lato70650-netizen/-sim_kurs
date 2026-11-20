@@ -289,3 +289,16 @@ body.approved-lesson-preview {
 @media(prefers-reduced-motion:reduce){
   .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child > .lesson-scene {transition:none}
 }
+
+/* Readable lesson 1 pilot: visually distinct concepts, never a new treatment for device cards. */
+.approved-lesson-preview #lesson-article .lesson-copy > .reading-section .visible-copy p + p {
+  margin-top:1.05rem;
+}
+.approved-lesson-preview #lesson-article .lesson-copy .visible-copy strong {
+  font-weight:750;
+  color:#f5fbff;
+}
+.approved-lesson-preview #lesson-article .lesson-copy .lesson-fact .visible-copy strong,
+.approved-lesson-preview #lesson-article .lesson-copy .lesson-fact strong {
+  color:#d8f4ee;
+}
