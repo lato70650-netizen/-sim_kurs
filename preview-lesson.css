@@ -322,158 +322,145 @@ body.approved-lesson-preview {
    Deliberately do not apply the whole-lesson 67ch cap to these cards. */
 
 
-/* Approved November 2026 device gallery: coherent luminous technical instrument cards.
-   Uses existing five independent device illustrations; never substitutes a flattened mockup.
-   Original lesson explanations, task mechanics and lesson navigation remain unchanged. */
+
+/* Approved 20 Nov 2026: five LONG device cards.
+   Title spans the card; the illustration is left of the intact explanation.
+   Constant lime+cya glow, boosted on hover, never the rejected pedestal. */
 .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog {
   display:grid;
   grid-template-columns:minmax(0,1fr);
-  gap:18px;
+  gap:22px;
 }
 .approved-lesson-preview[data-intro-page="1"] .lesson-copy .m1-device-catalog > .m1-device-card {
   display:grid;
-  grid-template-columns:minmax(165px,.57fr) minmax(260px,1fr) minmax(0,1.68fr);
-  grid-template-rows:auto;
-  align-items:center;
-  column-gap:clamp(15px,1.8vw,26px);
-  row-gap:0;
-  border:1px solid rgba(90,175,204,.58);
+  grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);
+  grid-template-rows:auto auto;
+  column-gap:clamp(20px,2.2vw,32px);
+  row-gap:16px;
+  align-items:start;
+  padding:clamp(20px,2.5vw,32px);
+  border:1px solid rgba(105,175,203,.52);
   border-radius:22px;
-  padding:clamp(16px,2.1vw,26px);
-  background:linear-gradient(120deg,#213d54 0%,#1b324a 55%,#172c43 100%);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.11),0 16px 33px rgba(0,8,25,.24);
+  background:linear-gradient(145deg,#223d54 0%,#192d43 100%);
+  box-shadow:inset 0 1px rgba(255,255,255,.11),0 20px 39px rgba(0,8,25,.30);
+  min-width:0;
 }
 .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > h2 {
-  grid-column:1;
+  grid-column:1 / -1;
   grid-row:1;
-  align-self:center;
-  min-width:0;
-  font-size:clamp(21px,2.05vw,27px);
-  line-height:1.25;
-  letter-spacing:-.022em;
-  margin:0;
+  align-self:start;
+  margin:0 0 4px;
+  font-size:clamp(23px,2.2vw,29px);
+  line-height:1.3;
   overflow-wrap:break-word;
+  color:#f7fbff;
 }
 .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene {
   position:relative;
   isolation:isolate;
   display:block;
-  grid-column:2;
-  grid-row:1;
-  align-self:center;
-  min-width:0;
+  grid-column:1;
+  grid-row:2;
+  align-self:start;
   width:100%;
   max-width:none;
   margin:0;
+  min-width:0;
   overflow:hidden;
-  border:1.5px solid #5de1eb;
-  border-radius:19px;
-  background:linear-gradient(145deg,#0c2a3c 0%,#0b2839 52%,#091b2e 100%);
+  border:2px solid #75ebe7;
+  border-radius:20px;
+  background:linear-gradient(145deg,#102c40 0%,#0e253b 63%,#0b1b2e 100%);
   box-shadow:
-    0 0 0 1px rgba(117,247,193,.19),
-    0 0 15px rgba(35,209,238,.25),
-    0 9px 26px rgba(0,8,25,.34),
-    inset 0 0 21px rgba(41,174,185,.12);
-  transition:border-color .25s ease,box-shadow .25s ease,transform .25s ease;
+    inset 0 1px 0 rgba(255,255,255,.16),
+    inset 0 0 22px rgba(76,202,209,.17),
+    0 0 0 1px rgba(166,255,119,.35),
+    0 0 14px 2px rgba(106,255,117,.48),
+    0 0 27px 5px rgba(44,231,203,.26),
+    0 18px 32px rgba(0,7,24,.34);
+  transition:box-shadow .24s ease,border-color .24s ease,transform .24s ease;
 }
 .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene::before {
   content:"";
   position:absolute;
-  z-index:0;
   inset:0;
+  z-index:0;
   pointer-events:none;
   background:
-    linear-gradient(rgba(61,191,219,.085) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(61,191,219,.085) 1px,transparent 1px),
-    radial-gradient(ellipse 80% 57% at 55% 68%,rgba(18,176,203,.23),transparent 76%),
-    linear-gradient(135deg,rgba(16,100,129,.30),transparent 59%);
-  background-size:25px 25px,25px 25px,100% 100%,100% 100%;
-  -webkit-mask-image:linear-gradient(155deg,rgba(0,0,0,.55),rgba(0,0,0,.98) 65%);
-  mask-image:linear-gradient(155deg,rgba(0,0,0,.55),rgba(0,0,0,.98) 65%);
+    linear-gradient(rgba(82,197,218,.07) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(82,197,218,.07) 1px,transparent 1px),
+    linear-gradient(135deg,rgba(16,121,147,.18),transparent 50%);
+  background-size:26px 26px,26px 26px,100% 100%;
+  -webkit-mask-image:linear-gradient(150deg,rgba(0,0,0,.45),rgba(0,0,0,.88));
+  mask-image:linear-gradient(150deg,rgba(0,0,0,.45),rgba(0,0,0,.88));
 }
 .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene::after {
   content:"";
   position:absolute;
-  z-index:2;
   inset:12px;
+  z-index:2;
   pointer-events:none;
-  border:1px solid transparent;
-  border-image:linear-gradient(135deg,rgba(79,221,248,.65),transparent 20%,transparent 80%,rgba(80,241,185,.59)) 1;
-  clip-path:polygon(0 0,14% 0,14% 2px,2px 2px,2px 16%,0 16%,0 0,100% 0,100% 100%,86% 100%,86% calc(100% - 2px),calc(100% - 2px) calc(100% - 2px),calc(100% - 2px) 84%,100% 84%);
-  opacity:.85;
+  border:1px solid rgba(111,240,229,.19);
+  border-radius:9px;
 }
 .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card .scene-photo {
   position:relative;
   z-index:1;
-  height:clamp(188px,17vw,237px);
+  height:clamp(220px,23vw,300px);
   aspect-ratio:auto;
-  background-size:contain;
   background-position:center;
+  background-size:contain;
   background-repeat:no-repeat;
-  filter:drop-shadow(0 13px 11px rgba(0,9,27,.51));
-  transition:filter .28s ease,transform .28s ease;
+  filter:drop-shadow(0 16px 14px rgba(0,6,24,.48));
 }
 .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card .lesson-scene figcaption {
   position:relative;
   z-index:2;
-  background:rgba(8,31,45,.52);
-  color:#b9dce2;
+  padding:7px 10px 9px;
   font-size:11px;
-  padding:6px 10px 8px;
+  background:rgba(10,35,50,.56);
+  color:#b9dce2;
   text-align:center;
 }
 .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .m1-device-disclosure {
-  grid-column:3;
-  grid-row:1;
+  grid-column:2;
+  grid-row:2;
   align-self:center;
   min-width:0;
 }
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card .m1-device-text,
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card .reading-split,
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card .reading-text {
+  display:block;
+  width:auto;
+  min-width:0;
+  max-width:none;
+  margin:0;
+}
 .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card .visible-copy p {
-  font-size:clamp(15px,1.19vw,17px);
-  line-height:1.72;
-  color:#e6eff8;
+  font-size:clamp(15px,1.25vw,17px);
+  line-height:1.78;
+  color:#e7eff8;
 }
-.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card .visible-copy p + p {
-  margin-top:14px;
-}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card .visible-copy p + p {margin-top:16px}
 @media(hover:hover) and (prefers-reduced-motion:no-preference) {
   .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:hover > .lesson-scene,
   .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene:hover {
-    border-color:#b8ff9b;
-    box-shadow:
-      0 0 0 1px rgba(150,255,146,.33),
-      0 0 20px rgba(29,217,244,.64),
-      0 0 36px rgba(105,247,141,.31),
-      0 16px 34px rgba(0,7,25,.41),
-      inset 0 0 27px rgba(55,217,203,.16);
     transform:translateY(-2px);
-  }
-  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:hover .scene-photo {
-    filter:drop-shadow(0 16px 14px rgba(0,9,27,.6)) drop-shadow(0 0 10px rgba(133,235,163,.13));
-  }
-}
-@media(max-width:1099px) {
-  .approved-lesson-preview[data-intro-page="1"] .lesson-copy .m1-device-catalog > .m1-device-card {
-    grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);
-    row-gap:16px;
-  }
-  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > h2 {
-    grid-column:1/-1;
-    grid-row:1;
-  }
-  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene {
-    grid-column:1;
-    grid-row:2;
-  }
-  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .m1-device-disclosure {
-    grid-column:2;
-    grid-row:2;
+    border-color:#b4ff80;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.22),
+      inset 0 0 31px rgba(87,238,213,.21),
+      0 0 0 2px rgba(172,255,131,.5),
+      0 0 21px 5px rgba(135,255,96,.75),
+      0 0 42px 9px rgba(44,239,202,.4),
+      0 22px 38px rgba(0,8,26,.38);
   }
 }
 @media(max-width:760px) {
   .approved-lesson-preview[data-intro-page="1"] .lesson-copy .m1-device-catalog > .m1-device-card {
     grid-template-columns:minmax(0,1fr);
-    gap:14px;
+    grid-template-rows:auto auto auto;
+    gap:15px;
   }
   .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > h2,
   .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene,
@@ -482,11 +469,8 @@ body.approved-lesson-preview {
   }
   .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene {grid-row:2}
   .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .m1-device-disclosure {grid-row:3}
-  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card .scene-photo {height:clamp(210px,56vw,290px)}
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card .scene-photo {height:clamp(215px,55vw,300px)}
 }
 @media(prefers-reduced-motion:reduce) {
-  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene,
-  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card .scene-photo {
-    transition:none;
-  }
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene {transition:none}
 }
