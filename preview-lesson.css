@@ -536,10 +536,10 @@ body.approved-lesson-preview {
 }
 
 
-/* Actual vector HUD over the SCOOTER image only.
+/* Approved vector HUD on all five device images.
    Precise wheel contact lights and four corner details are separate scalable elements,
    rather than radial CSS fog; headings and explanations remain real HTML. */
-.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child > .lesson-scene .scooter-hud {
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene .scooter-hud {
   position:absolute;
   z-index:4;
   display:block;
@@ -550,34 +550,34 @@ body.approved-lesson-preview {
   overflow:hidden;
   pointer-events:none;
 }
-.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child > .lesson-scene::after {
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene::after {
   content:none;
 }
-.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child .scene-photo::after,
-.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child .scene-photo::before {
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card .scene-photo::after,
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card .scene-photo::before {
   content:none;
 }
 @media(max-width:760px){
-  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child > .lesson-scene .scooter-hud {
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene .scooter-hud {
     height:clamp(215px,55vw,300px);
   }
 }
 
-/* Approved scooter treatment: no persistent glow, mist or contact lights.
+/* Approved five-device treatment: no persistent glow, mist or contact lights.
    Keep vector corner markings; only the frame gets green glow on its own hover. */
-.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child > .lesson-scene {
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene {
   background:linear-gradient(145deg,#102c40 0%,#0e253b 63%,#0b1b2e 100%);
 }
-.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child .scene-photo::before,
-.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child .scene-photo::after {
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card .scene-photo::before,
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card .scene-photo::after {
   content:none;
 }
 
-/* Restore the existing pointer-following holographic reflection on the scooter.
+/* Restore the existing pointer-following holographic reflection on all device images.
    SVG corner accents previously suppressed this shared ::after reflection.
    Only an image hover moves the subtle white/cyan highlight; no lime fog. */
 @media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
-  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child > .lesson-scene.m1-holo-media::after{
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene.m1-holo-media::after{
     content:"";
     position:absolute;
     inset:0 0 36px;
@@ -594,10 +594,10 @@ body.approved-lesson-preview {
     -webkit-mask-image:radial-gradient(ellipse closest-side,#000 20%,transparent 100%);
     transition:opacity 220ms var(--m1-ease);
   }
-  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child > .lesson-scene.m1-holo-media.is-holo-active::after{
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene.m1-holo-media.is-holo-active::after{
     opacity:.72;
   }
 }
 @media(prefers-reduced-motion:reduce){
-  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child > .lesson-scene::after{content:none}
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene::after{content:none}
 }
