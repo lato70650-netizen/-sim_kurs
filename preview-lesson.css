@@ -651,6 +651,71 @@ body.approved-lesson-preview {
   }
 }
 
+/* Lesson 3: reuse approved panel styling exactly as in lesson one.
+   Scope to the first illustration only; preserve all lesson layout and prose. */
+.approved-lesson-preview[data-intro-page="2"] .lesson-copy > .reading-section:first-child .lesson-scene {
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  border:1px solid rgba(103,172,193,.56);
+  border-radius:22px;
+  background:linear-gradient(145deg,#102c40 0%,#0e253b 63%,#0b1b2e 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 13px 28px rgba(0,7,24,.32);
+  transition:box-shadow .24s ease,border-color .24s ease;
+}
+.approved-lesson-preview[data-intro-page="2"] .lesson-copy > .reading-section:first-child .lesson-scene > .m1-device-group {
+  isolation:isolate;
+}
+.approved-lesson-preview[data-intro-page="2"] .lesson-copy > .reading-section:first-child .lesson-scene .overview-hud {
+  position:absolute;
+  inset:0;
+  display:block;
+  width:100%;
+  height:100%;
+  z-index:4;
+  pointer-events:none;
+}
+@media(hover:hover) {
+  .approved-lesson-preview[data-intro-page="2"] .lesson-copy > .reading-section:first-child .lesson-scene:has(> .m1-device-group:hover) {
+    border-color:#b4ff80;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.22),
+       0 0 0 1px rgba(172,255,131,.4),
+       0 0 19px 4px rgba(135,255,96,.65),
+       0 0 33px 7px rgba(44,239,202,.31),
+       0 22px 38px rgba(0,8,26,.38);
+  }
+}
+@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
+  .approved-lesson-preview[data-intro-page="2"] .lesson-copy > .reading-section:first-child .lesson-scene > .m1-device-group.m1-holo-media::after {
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:5;
+    pointer-events:none;
+    opacity:0;
+    border:0;
+    background:
+      radial-gradient(ellipse at var(--holo-x,50%) var(--holo-y,50%),
+        rgb(255 255 255 / 26%),rgb(144 235 255 / 10%) 25%,transparent 62%),
+      linear-gradient(115deg,transparent 28%,rgb(255 255 255 / 8%) 47%,transparent 65%);
+    mask-image:radial-gradient(ellipse closest-side,#000 20%,transparent 100%);
+    -webkit-mask-image:radial-gradient(ellipse closest-side,#000 20%,transparent 100%);
+    transition:opacity 220ms var(--m1-ease);
+  }
+  .approved-lesson-preview[data-intro-page="2"] .lesson-copy > .reading-section:first-child .lesson-scene > .m1-device-group.m1-holo-media.is-holo-active::after {
+    opacity:.72;
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  .approved-lesson-preview[data-intro-page="2"] .lesson-copy > .reading-section:first-child .lesson-scene {
+    transition:none;
+  }
+  .approved-lesson-preview[data-intro-page="2"] .lesson-copy > .reading-section:first-child .lesson-scene > .m1-device-group::after {
+    content:none;
+  }
+}
+
+
 /* Course-wide editorial hierarchy: semantic strong emphasis inside teaching prose.
    Markdown is not used at runtime; HTML carries the content and CSS the appearance.
    Gentle cyan keeps the key reading anchors obvious without highlighting whole blocks. */
