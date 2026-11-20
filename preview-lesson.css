@@ -156,3 +156,53 @@ body.approved-lesson-preview {
   }
   .approved-lesson-preview[data-intro-page="1"] .m1-device-card > .m1-device-disclosure {align-self:start}
 }
+
+/* Readability improvements adapted from feature/readable-lesson-text-20261120.
+   Do not constrain the entire lesson width: lesson 2 intentionally shows image + prose side-by-side. */
+.approved-lesson-preview #lesson-article .lesson-copy {
+  overflow-wrap:break-word;
+}
+.approved-lesson-preview #lesson-article .lesson-copy .reading-section:not(.m1-device-card) {
+  margin-block:0 2.25rem;
+}
+.approved-lesson-preview #lesson-article .lesson-copy .reading-section h2 {
+  line-height:1.3;
+  text-wrap:balance;
+  margin-block:0 1.15rem;
+}
+.approved-lesson-preview #lesson-article .lesson-copy .reading-section h3 {
+  line-height:1.35;
+  text-wrap:balance;
+}
+.approved-lesson-preview #lesson-article .lesson-copy p {
+  line-height:1.85;
+}
+.approved-lesson-preview #lesson-article .lesson-copy p + p {
+  margin-top:1rem;
+}
+.approved-lesson-preview #lesson-article .lesson-copy ul,
+.approved-lesson-preview #lesson-article .lesson-copy ol {
+  padding-inline-start:1.5rem;
+  line-height:1.75;
+  margin-block:1rem 1.5rem;
+}
+.approved-lesson-preview #lesson-article .lesson-copy li + li {
+  margin-top:.6rem;
+}
+.approved-lesson-preview #lesson-article .lesson-copy .reading-takeaway,
+.approved-lesson-preview #lesson-article .lesson-copy .first-aid-urgent {
+  line-height:1.65;
+}
+/* Keep the five device descriptions full-width within their dedicated text columns. */
+.approved-lesson-preview[data-intro-page="1"] .m1-device-card .visible-copy p {
+  max-width:none;
+  line-height:1.78;
+}
+@media(max-width:700px) {
+  .approved-lesson-preview #lesson-article .lesson-copy .reading-section:not(.m1-device-card) {
+    margin-block-end:1.75rem;
+  }
+  .approved-lesson-preview #lesson-article .lesson-copy p {
+    line-height:1.75;
+  }
+}
