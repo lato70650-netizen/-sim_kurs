@@ -282,7 +282,9 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
       await quizArt.hover({ position: { x: 70, y: 90 } });
       await page.waitForFunction(() => {
         const art = document.querySelector('#question-image');
-        return Number(getComputedStyle(art, '::after').opacity) > .5;
+        const highlight = getComputedStyle(art, '::after');
+        return Number(highlight.opacity) > .95 && highlight.maskImage === 'none' &&
+          getComputedStyle(art).borderTopColor === 'rgb(116, 215, 239)';
       });
       const firstX = await quizArt.evaluate(art => art.style.getPropertyValue('--holo-x'));
       await quizArt.hover({ position: { x: 230, y: 160 } });
@@ -292,6 +294,7 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
         return x && x !== previousX;
       }, firstX);
       assert.notEqual(await quizArt.evaluate(art => getComputedStyle(art).boxShadow), 'none');
+      await page.screenshot({ path: out + '/quiz-card-hover-1440.png' });
       await page.locator('#question-text').hover();
       await page.waitForFunction(() => {
         const art = document.querySelector('#question-image');
@@ -302,6 +305,7 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
       await page.emulateMedia({ reducedMotion: 'reduce' });
       await quizArt.hover();
       assert.equal(await quizArt.evaluate(art => getComputedStyle(art, '::after').content), 'none');
+      assert.equal(await quizArt.evaluate(art => getComputedStyle(art).borderTopColor), 'rgb(116, 215, 239)');
       assert.notEqual(await quizArt.evaluate(art => getComputedStyle(art, '::before').content), 'none');
     }
     await page.locator('.quiz-choices button[data-answer=true]').click();
