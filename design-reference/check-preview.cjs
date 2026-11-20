@@ -118,6 +118,41 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
       await page.evaluate(()=>scrollTo(0,0));
       await page.screenshot({path:out+'/introduction-tech-hud-'+width+'.png',fullPage:true});
     }
+    // First lesson: the SAME three object images and tech HUD, no content edits.
+    await page.goto(root+'lesson-1.html',{waitUntil:'load'});
+    const firstLessonFrame=page.locator('.lesson-copy > .reading-section:first-child .lesson-scene');
+    const firstLessonArt=firstLessonFrame.locator('> .m1-device-group');
+    assert.equal(await firstLessonArt.locator('img').count(),3,'lesson one still has three devices');
+    assert.equal(await firstLessonArt.locator('svg.overview-hud').count(),1,'lesson one approved tech overlay');
+    assert.equal(await firstLessonArt.locator('.overview-hud-corners path').count(),4,'lesson one HUD has four corners');
+    assert.equal(await firstLessonArt.locator('.overview-hud-status rect').count(),3,'lesson one HUD has indicators');
+    assert.equal(await page.locator('.lesson-copy > .reading-section:first-child .visible-copy p').count(),4,'lesson one introduction paragraphs preserved');
+    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'lesson one no horizontal overflow '+width);
+    if(width===1440){
+      await page.emulateMedia({reducedMotion:'no-preference'});
+      await page.waitForTimeout(120);
+      await page.mouse.move(0,0);
+      const r=await firstLessonArt.boundingBox();
+      await page.mouse.move(r.x+r.width*.22,r.y+r.height*.31);
+      await page.waitForTimeout(285);
+      const posA=await firstLessonArt.evaluate(el=>el.style.getPropertyValue('--holo-x'));
+      await page.mouse.move(r.x+r.width*.72,r.y+r.height*.57);
+      await page.waitForTimeout(285);
+      const highlight=await firstLessonArt.evaluate(el=>({pos:el.style.getPropertyValue('--holo-x'),opacity:getComputedStyle(el,'::after').opacity}));
+      assert.ok(posA && highlight.pos && posA!==highlight.pos,'lesson one highlight follows the pointer');
+      assert.ok(parseFloat(highlight.opacity)>.55,'lesson one pointer reflection visible');
+      const neon=await firstLessonFrame.evaluate(el=>getComputedStyle(el).boxShadow);
+      assert.ok(neon.includes('135, 255, 96'),'lesson one image frame hover glows');
+      await page.mouse.move(0,0);
+      await page.waitForTimeout(330);
+      const idle=await firstLessonArt.evaluate(el=>({active:el.classList.contains('is-holo-active'),opacity:getComputedStyle(el,'::after').opacity}));
+      assert.ok(!idle.active && parseFloat(idle.opacity)<.05,'lesson one stops glowing off the picture');
+      await page.emulateMedia({reducedMotion:'reduce'});
+    }
+    if(width===390 || width===1440){
+      await page.evaluate(()=>scrollTo(0,0));
+      await page.screenshot({path:out+'/lesson-1-tech-hud-'+width+'.png',fullPage:true});
+    }
     // Isolated lesson and assessment previews must preserve the real learning flow.
     for(const preview of ['preview-lesson-1.html','preview-rules-lesson-1.html']){
       await page.goto(root+preview,{waitUntil:'load'});
