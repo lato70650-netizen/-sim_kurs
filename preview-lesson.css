@@ -208,88 +208,6 @@ body.approved-lesson-preview {
 }
 
 
-/* First device: restore original quiet image treatment; place longer supplementary
-   explanations below the paired image and short description, without hiding content. */
-.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child > .reading-followup {
-  grid-column:1 / -1;
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:14px;
-  margin-top:14px;
-}
-@media(max-width:1050px){
-  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child > .reading-followup {
-    grid-template-columns:1fr;
-  }
-}
-
-/* Electric scooter only — restrained technical media frame, no pedestal or glowing circle.
-   The HTML/text, position of descriptions, image itself and other 4 device cards remain untouched. */
-.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child > .lesson-scene {
-  position:relative;
-  isolation:isolate;
-  overflow:hidden;
-  border:1px solid rgba(112,183,204,.55);
-  border-radius:20px;
-  background:
-    linear-gradient(130deg,rgba(49,99,128,.20),transparent 52%),
-    linear-gradient(150deg,#213e54 0%,#162b41 58%,#12253a 100%);
-  box-shadow:inset 0 1px 0 rgba(235,250,255,.13),inset 0 -1px 0 rgba(0,5,17,.5),
-    0 15px 28px rgba(0,7,21,.26),0 0 0 4px rgba(80,159,194,.045);
-  transition:border-color .25s ease,box-shadow .25s ease;
-}
-.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child > .lesson-scene::before {
-  content:"";
-  position:absolute;
-  inset:0;
-  z-index:0;
-  pointer-events:none;
-  background:
-    linear-gradient(rgba(131,203,221,.055) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(131,203,221,.055) 1px,transparent 1px),
-    linear-gradient(120deg,transparent 25%,rgba(97,197,223,.085) 25.1%,transparent 25.5%,transparent 74.5%,rgba(97,197,223,.065) 74.6%,transparent 75%),
-    radial-gradient(ellipse at 100% 0,rgba(91,203,223,.10),transparent 63%);
-  background-size:27px 27px,27px 27px,100% 100%,100% 100%;
-  -webkit-mask-image:linear-gradient(135deg,rgba(0,0,0,.9),rgba(0,0,0,.18) 75%);
-  mask-image:linear-gradient(135deg,rgba(0,0,0,.9),rgba(0,0,0,.18) 75%);
-}
-.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child > .lesson-scene::after {
-  content:"СИМ  /  01";
-  position:absolute;
-  top:12px;
-  left:14px;
-  z-index:2;
-  pointer-events:none;
-  border-left:2px solid rgba(136,228,234,.9);
-  padding:3px 7px;
-  background:rgba(17,45,66,.58);
-  color:rgba(218,246,248,.90);
-  font:700 10px/1.5 Manrope,Arial,sans-serif;
-  letter-spacing:.11em;
-}
-.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child .scene-photo.scene-0 {
-  position:relative;
-  z-index:1;
-  background-size:contain;
-  background-position:center;
-  filter:drop-shadow(0 14px 14px rgba(1,10,24,.45));
-}
-.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child .lesson-scene figcaption {
-  position:relative;
-  z-index:2;
-  background:transparent;
-  color:#b3c6d6;
-}
-@media(hover:hover) and (prefers-reduced-motion:no-preference) {
-  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child > .lesson-scene:hover {
-    border-color:rgba(131,214,224,.85);
-    box-shadow:inset 0 1px 0 rgba(235,250,255,.17),0 18px 34px rgba(0,7,21,.33),0 0 0 4px rgba(81,180,198,.06);
-  }
-}
-@media(prefers-reduced-motion:reduce){
-  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child > .lesson-scene {transition:none}
-}
-
 /* Readable lesson 1 pilot: visually distinct concepts, never a new treatment for device cards. */
 .approved-lesson-preview #lesson-article .lesson-copy > .reading-section .visible-copy p + p {
   margin-top:1.05rem;
@@ -402,3 +320,173 @@ body.approved-lesson-preview {
 }
 /* The approved 5 device cards: image left / exactly the original short copy right.
    Deliberately do not apply the whole-lesson 67ch cap to these cards. */
+
+
+/* Approved November 2026 device gallery: coherent luminous technical instrument cards.
+   Uses existing five independent device illustrations; never substitutes a flattened mockup.
+   Original lesson explanations, task mechanics and lesson navigation remain unchanged. */
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog {
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:18px;
+}
+.approved-lesson-preview[data-intro-page="1"] .lesson-copy .m1-device-catalog > .m1-device-card {
+  display:grid;
+  grid-template-columns:minmax(165px,.57fr) minmax(260px,1fr) minmax(0,1.68fr);
+  grid-template-rows:auto;
+  align-items:center;
+  column-gap:clamp(15px,1.8vw,26px);
+  row-gap:0;
+  border:1px solid rgba(90,175,204,.58);
+  border-radius:22px;
+  padding:clamp(16px,2.1vw,26px);
+  background:linear-gradient(120deg,#213d54 0%,#1b324a 55%,#172c43 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.11),0 16px 33px rgba(0,8,25,.24);
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > h2 {
+  grid-column:1;
+  grid-row:1;
+  align-self:center;
+  min-width:0;
+  font-size:clamp(21px,2.05vw,27px);
+  line-height:1.25;
+  letter-spacing:-.022em;
+  margin:0;
+  overflow-wrap:break-word;
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene {
+  position:relative;
+  isolation:isolate;
+  display:block;
+  grid-column:2;
+  grid-row:1;
+  align-self:center;
+  min-width:0;
+  width:100%;
+  max-width:none;
+  margin:0;
+  overflow:hidden;
+  border:1.5px solid #5de1eb;
+  border-radius:19px;
+  background:linear-gradient(145deg,#0c2a3c 0%,#0b2839 52%,#091b2e 100%);
+  box-shadow:
+    0 0 0 1px rgba(117,247,193,.19),
+    0 0 15px rgba(35,209,238,.25),
+    0 9px 26px rgba(0,8,25,.34),
+    inset 0 0 21px rgba(41,174,185,.12);
+  transition:border-color .25s ease,box-shadow .25s ease,transform .25s ease;
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene::before {
+  content:"";
+  position:absolute;
+  z-index:0;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(rgba(61,191,219,.085) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(61,191,219,.085) 1px,transparent 1px),
+    radial-gradient(ellipse 80% 57% at 55% 68%,rgba(18,176,203,.23),transparent 76%),
+    linear-gradient(135deg,rgba(16,100,129,.30),transparent 59%);
+  background-size:25px 25px,25px 25px,100% 100%,100% 100%;
+  -webkit-mask-image:linear-gradient(155deg,rgba(0,0,0,.55),rgba(0,0,0,.98) 65%);
+  mask-image:linear-gradient(155deg,rgba(0,0,0,.55),rgba(0,0,0,.98) 65%);
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene::after {
+  content:"";
+  position:absolute;
+  z-index:2;
+  inset:12px;
+  pointer-events:none;
+  border:1px solid transparent;
+  border-image:linear-gradient(135deg,rgba(79,221,248,.65),transparent 20%,transparent 80%,rgba(80,241,185,.59)) 1;
+  clip-path:polygon(0 0,14% 0,14% 2px,2px 2px,2px 16%,0 16%,0 0,100% 0,100% 100%,86% 100%,86% calc(100% - 2px),calc(100% - 2px) calc(100% - 2px),calc(100% - 2px) 84%,100% 84%);
+  opacity:.85;
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card .scene-photo {
+  position:relative;
+  z-index:1;
+  height:clamp(188px,17vw,237px);
+  aspect-ratio:auto;
+  background-size:contain;
+  background-position:center;
+  background-repeat:no-repeat;
+  filter:drop-shadow(0 13px 11px rgba(0,9,27,.51));
+  transition:filter .28s ease,transform .28s ease;
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card .lesson-scene figcaption {
+  position:relative;
+  z-index:2;
+  background:rgba(8,31,45,.52);
+  color:#b9dce2;
+  font-size:11px;
+  padding:6px 10px 8px;
+  text-align:center;
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .m1-device-disclosure {
+  grid-column:3;
+  grid-row:1;
+  align-self:center;
+  min-width:0;
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card .visible-copy p {
+  font-size:clamp(15px,1.19vw,17px);
+  line-height:1.72;
+  color:#e6eff8;
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card .visible-copy p + p {
+  margin-top:14px;
+}
+@media(hover:hover) and (prefers-reduced-motion:no-preference) {
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:hover > .lesson-scene,
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene:hover {
+    border-color:#b8ff9b;
+    box-shadow:
+      0 0 0 1px rgba(150,255,146,.33),
+      0 0 20px rgba(29,217,244,.64),
+      0 0 36px rgba(105,247,141,.31),
+      0 16px 34px rgba(0,7,25,.41),
+      inset 0 0 27px rgba(55,217,203,.16);
+    transform:translateY(-2px);
+  }
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:hover .scene-photo {
+    filter:drop-shadow(0 16px 14px rgba(0,9,27,.6)) drop-shadow(0 0 10px rgba(133,235,163,.13));
+  }
+}
+@media(max-width:1099px) {
+  .approved-lesson-preview[data-intro-page="1"] .lesson-copy .m1-device-catalog > .m1-device-card {
+    grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);
+    row-gap:16px;
+  }
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > h2 {
+    grid-column:1/-1;
+    grid-row:1;
+  }
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene {
+    grid-column:1;
+    grid-row:2;
+  }
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .m1-device-disclosure {
+    grid-column:2;
+    grid-row:2;
+  }
+}
+@media(max-width:760px) {
+  .approved-lesson-preview[data-intro-page="1"] .lesson-copy .m1-device-catalog > .m1-device-card {
+    grid-template-columns:minmax(0,1fr);
+    gap:14px;
+  }
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > h2,
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene,
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .m1-device-disclosure {
+    grid-column:1;
+  }
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene {grid-row:2}
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .m1-device-disclosure {grid-row:3}
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card .scene-photo {height:clamp(210px,56vw,290px)}
+}
+@media(prefers-reduced-motion:reduce) {
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene,
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card .scene-photo {
+    transition:none;
+  }
+}
