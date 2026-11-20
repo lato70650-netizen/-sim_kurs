@@ -562,3 +562,13 @@ body.approved-lesson-preview {
     height:clamp(215px,55vw,300px);
   }
 }
+
+/* Approved scooter treatment: no persistent glow, mist or contact lights.
+   Keep vector corner markings; only the frame gets green glow on its own hover. */
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child > .lesson-scene {
+  background:linear-gradient(145deg,#102c40 0%,#0e253b 63%,#0b1b2e 100%);
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child .scene-photo::before,
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card:first-child .scene-photo::after {
+  content:none;
+}
