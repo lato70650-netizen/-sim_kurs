@@ -213,30 +213,29 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
         return {background:x.backgroundImage,filter:x.filter,content:x.content};
       });
       assert.equal(wash.content,'none','no CSS fog or wash on device photo');
-      if(deviceIndex===0){
+      {
         const hud=frame.locator('svg.scooter-hud');
-        assert.equal(await hud.count(),1,'real vector overlay on scooter');
-        assert.equal(await hud.locator('.scooter-wheel-light').count(),0,'scooter wheel light fully removed');
+        assert.equal(await hud.count(),1,'vector HUD present on device '+deviceIndex);
+        assert.equal(await hud.locator('.scooter-wheel-light').count(),0,'no wheel glow on device '+deviceIndex);
         const plainBackground=await frame.evaluate(el=>getComputedStyle(el).backgroundImage);
-        assert.ok(!plainBackground.includes('radial-gradient'),'no green background mist behind scooter');
-        assert.ok(await hud.locator('.scooter-hud-corners path').count()>=3,'vector interface corner marks (one path draws two corners)');
-        assert.equal(await hud.locator('.scooter-hud-top-status rect').count(),3,'top interface indicators');
+        assert.ok(!plainBackground.includes('radial-gradient'),'no green fog on device '+deviceIndex);
+        assert.ok(await hud.locator('.scooter-hud-corners path').count()>=3,'technical corner marks on device '+deviceIndex);
+        assert.equal(await hud.locator('.scooter-hud-top-status rect').count(),3,'top indicators on device '+deviceIndex);
+        assert.equal(await hud.locator('text').textContent(),`SIM / 0${deviceIndex+1}`,'individual device label');
         const geometry=await hud.evaluate(el=>{
-          const hud=el.getBoundingClientRect();
+          const rect=el.getBoundingClientRect();
           const photo=el.previousElementSibling.getBoundingClientRect();
-          return {width:hud.width,height:hud.height,photoWidth:photo.width,photoHeight:photo.height};
+          return {width:rect.width,height:rect.height,photoWidth:photo.width,photoHeight:photo.height};
         });
-        assert.ok(Math.abs(geometry.width-geometry.photoWidth)<2,'HUD aligns to scooter image width');
-        assert.ok(Math.abs(geometry.height-geometry.photoHeight)<2,'HUD aligns to scooter image height');
-      }else{
-        assert.equal(await frame.locator('.scooter-hud').count(),0,'other four cards unchanged');
+        assert.ok(Math.abs(geometry.width-geometry.photoWidth)<2,'HUD fits image width '+deviceIndex);
+        assert.ok(Math.abs(geometry.height-geometry.photoHeight)<2,'HUD fits image height '+deviceIndex);
       }
       if(width===1440){
         await frame.hover();
         await page.waitForTimeout(330);
         const active=await frame.evaluate(el=>getComputedStyle(el).boxShadow);
         assert.ok(active.includes('135, 255, 96') || (deviceIndex===0 && active.includes('119, 255, 108')),'border glows when pointing directly at image frame');
-        if(deviceIndex===0){
+        {
           const rect=await frame.boundingBox();
           await page.mouse.move(rect.x+rect.width*.23,rect.y+rect.height*.34);
           await page.waitForTimeout(265);
@@ -256,7 +255,7 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
         await page.waitForTimeout(330);
         const reading=await frame.evaluate(el=>getComputedStyle(el).boxShadow);
         assert.ok(!reading.includes('135, 255, 96'),'border turns off when reading text in same card');
-        if(deviceIndex===0){
+        {
           const inactive=await frame.evaluate(el=>getComputedStyle(el,'::after').opacity);
           assert.ok(parseFloat(inactive)<.05,'scooter cursor reflection disappears when reading text');
         }
