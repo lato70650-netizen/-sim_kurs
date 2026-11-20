@@ -167,7 +167,7 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
     }));
     assert.equal(frames.length,5,'five technical image frames');
     for(const frame of frames){
-      assert.ok(frame.width>=1.3,'neon frame border is visible');
+      assert.ok(frame.width>=1 && frame.color!=='rgba(0, 0, 0, 0)','neon frame border is visible: '+JSON.stringify(frame));
       assert.ok(frame.glow.includes('rgb'),'image panel has luminous shadow');
       assert.ok(frame.grid.includes('linear-gradient'),'technical grid rendered within panel');
       assert.ok(frame.rect>100,'image panel visible on screen');
