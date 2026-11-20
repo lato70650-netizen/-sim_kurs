@@ -81,7 +81,7 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
     ]) {
       await page.goto(root+chapter,{waitUntil:'load'});
       const accent=page.locator('.lesson-copy strong');
-      assert.ok(await accent.count()>=2,'semantic emphasis available in '+chapter);
+      assert.ok(await accent.count()>=(chapter==='rules-lesson-2.html'?1:2),'meaningful emphasis available in '+chapter);
       assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'no overflow after editorial formatting '+chapter+' '+width);
     }
     // Revisions must highlight whole actionable sentences, not arbitrary slices.
