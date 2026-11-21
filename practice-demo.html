@@ -11,17 +11,18 @@
  :is(#yard,#parking) figure{width:min(100%, max(260px, calc(149.9vh - 700px)))}
  main:has(:is(#yard,#parking):not([hidden])) .feedback:not(:empty){margin-top:10px}
 }
-#parking-map{position:relative}#parking-map img{width:100%;height:auto;display:block}#parking-map button{position:absolute;transform:translate(-50%,-50%);font-weight:650;border:2px solid #bde5e0;background:#10283c;color:white;min-height:44px;padding:6px 10px;white-space:nowrap}#parking-map button.chosen{background:#aaecca;color:#10283c}#parking-map button:disabled{opacity:.85}@media(max-width:480px){#parking-map button{font-size:14px;padding:4px 7px}}</style></head><body>
+#parking-map{position:relative}#parking-map img{width:100%;height:auto;display:block}#parking-map button{position:absolute;transform:translate(-50%,-50%);font-weight:650;border:2px solid #bde5e0;background:#10283c;color:white;min-height:44px;padding:6px 10px;white-space:nowrap}#parking-map button.chosen{background:#aaecca;color:#10283c}#parking-map button:disabled{opacity:.85}@media(max-width:480px){#parking-map button{font-size:14px;padding:4px 7px}}.cross-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);align-items:center;gap:24px}.cross-photo{width:100%;height:auto;display:block;border-radius:16px}.cross-sign{display:block}.cross-layout h2{margin:12px 0}.cross-layout p{margin:8px 0}@media(max-width:650px){.cross-layout{grid-template-columns:1fr;gap:12px}.cross-photo{max-height:29svh;object-fit:contain}.cross-sign{float:left;margin:0 12px 4px 0;width:48px;height:48px}.cross-layout h2{clear:both}}</style></head><body>
 <header><b>СИМ / Практика</b><a href="rules">К урокам ↗</a></header><main>
-<div class="steps" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
-<section id="yard"><small>До секции · Сцена 1 из 3</small><h1 tabindex="-1">По тротуару мимо двора</h1><p>Ты подъезжаешь к арке справа. Сейчас перед тобой свободно, но из-за фургона не видно, что во дворе. Как ты поступишь?</p>
+<div class="steps" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
+<section id="yard"><small>До секции · Сцена 1 из 4</small><h1 tabindex="-1">По тротуару мимо двора</h1><p>Ты подъезжаешь к арке справа. Сейчас перед тобой свободно, но из-за фургона не видно, что во дворе. Как ты поступишь?</p>
 <figure><svg id="street" class="canvas" viewBox="0 0 760 507" role="group" aria-label="Вид с самоката вдоль тротуара. Справа арка и фургон сбоку от неё. Полоса тёмной плитки ведёт от арки через тротуар к улице. Витрина дальше по пути.">
 <image href="assets/practice-yard-rider.webp" width="760" height="507" y="0" preserveAspectRatio="none"/>
 <defs><clipPath id="clear-driveway"><path d="M0 0H568V105L561 131 552 152 551 177 541 188 532 216 528 250 531 282 544 302H0Z"/></clipPath></defs>
 <g clip-path="url(#clear-driveway)" aria-hidden="true"><g id="exit-car"><ellipse cx="96" cy="91" rx="90" ry="5" fill="#172029" opacity=".32"/><image href="assets/practice-exit-car.webp" width="190" height="95"/></g></g>
 </svg></figure><div class="choices" id="places"></div></section>
-<section id="friend" hidden><small>До секции · Сцена 2 из 3</small><h1 tabindex="-1">«Подвези до входа»</h1><p>У спортцентра тебя догоняет приятель. До тренировки две минуты. Твой самокат рассчитан на одного.</p><figure class="dialog"><span class="speaker">Друг</span><blockquote>«Подвезёшь меня до входа? А то пешком я к началу не успею»</blockquote></figure><h2>Что ответишь?</h2><div id="replies" class="lines"></div></section>
-<section id="parking" hidden><small>До секции · Сцена 3 из 3</small><h1 tabindex="-1">Где оставить самокат?</h1><p>Ты у спортцентра. Перед тренировкой осталось припарковать самокат. Выбери место на картинке.</p>
+<section id="crossing" hidden><small>До секции · Сцена 2 из 4</small><h1 tabindex="-1">Друг уже на той стороне</h1><div class="cross-layout"><img class="cross-photo" src="assets/rules-crossing.webp" alt="Подросток с самокатом у края тротуара перед зеброй" width="500" height="500"><div><img class="cross-sign" src="assets/rules-signs/5.19.1.svg" alt="Знак пешеходного перехода" width="66" height="66"><p>Впереди зебра и вот такой знак. Светофора нет. Друг перешёл дорогу и машет тебе рукой.</p><h2>Как доберёшься до друга?</h2><div class="lines" id="cross-answers"></div></div></div></section>
+<section id="friend" hidden><small>До секции · Сцена 3 из 4</small><h1 tabindex="-1">«Подвези до входа»</h1><p>За переходом друг ждёт тебя. До тренировки две минуты. Твой самокат рассчитан на одного.</p><figure class="dialog"><span class="speaker">Друг</span><blockquote>«Подвезёшь меня до входа? А то пешком я к началу не успею»</blockquote></figure><h2>Что ответишь?</h2><div id="replies" class="lines"></div></section>
+<section id="parking" hidden><small>До секции · Сцена 4 из 4</small><h1 tabindex="-1">Где оставить самокат?</h1><p>Ты у спортцентра. Перед тренировкой осталось припарковать самокат. Выбери место на картинке.</p>
 <figure id="parking-map"><img src="assets/practice-parking.webp" alt="Вход в спортцентр. Слева стеклянные двери, посередине пандус, справа площадка со стойками и велосипедом." width="1100" height="733"/>
 <button type="button" style="left:18%;top:58%">У дверей</button>
 <button type="button" style="left:49%;top:69%">У перил</button>
@@ -31,16 +32,18 @@
 </main><script>
 const el = id => document.getElementById(id);
 const places = ['Пока свободно, проеду как еду.','Сбавлю скорость перед выездом и посмотрю вправо.'];
+const crossingAnswers = ['Проеду по зебре медленно, со скоростью шага.','Раз друг махнул, можно сразу идти за ним, ведя самокат.','Сойду с самоката, посмотрю по сторонам и, когда будет безопасно, перейду пешком.'];
 const replies = ['«Давай. Только до поворота, дальше пешком».','«Давай я тренера предупрежу, что ты уже рядом. Я бы тебя подвёз, но самокат рассчитан на одного».','«Ладно, вставай. Поедем медленно».'];
 const notes = [
  ['Перед тобой свободно, но видно ли, что происходит за фургоном? Попробуй ещё раз.','Из-за фургона показалась передняя часть машины. Ты заранее сбавил скорость и можешь остановиться до её пути.'],
+ ['Этот знак обозначает пешеходный переход. Даже на малой скорости пересекать его верхом на самокате нельзя. Как перейти пешком?','Друг мог перейти, пока дорога была свободна. Посмотри сам: успеешь ли ты безопасно перейти с учётом скорости и расстояния до машин?','Ты сам проверил дорогу и перешёл по зебре, ведя самокат рядом. Именно здесь знак обозначает место для перехода пешком.'],
  ['Даже на коротком отрезке вас на одноместном самокате окажется двое. Как ещё можно помочь другу, если он опаздывает?','Друг кивает: «Спасибо! Скажи, что я уже иду». Ты едешь к спортцентру.','Малая скорость не добавляет пассажирского места. Что можно предложить другу?'],
  ['У дверей самокат окажется прямо на пути у тех, кто входит и выходит. Где он сможет остаться на всю тренировку?','Если прислонить самокат к перилам, его руль выступит на пандус. Где можно припарковаться, чтобы проход остался свободным?','Ты оставляешь самокат у стойки. Двери и пандус свободны. Теперь можно зайти и предупредить тренера, что друг уже рядом.']
 ];
-let stage=0, solved=false, hinted=[false,false,false];
-const stages=['yard','friend','parking','finish'];
-const groups=['places','replies','parking-map'];
-const correct=[1,1,2];
+let stage=0, solved=false, hinted=[false,false,false,false];
+const stages=['yard','crossing','friend','parking','finish'];
+const groups=['places','cross-answers','replies','parking-map'];
+const correct=[1,2,1,2];
 function selectAnswer(i){
  if(solved || stage>=correct.length) return;
  el('feedback').textContent=notes[stage][i];
@@ -49,18 +52,18 @@ function selectAnswer(i){
  if(stage===0) el('street').classList.add('reveal');
  const group=el(groups[stage]);
  [...group.querySelectorAll('button')].forEach((b,n)=>{b.disabled=true;b.classList.toggle('chosen',n===i)});
- el('next').hidden=false;el('next').textContent=['Дальше — к спортцентру →','Дальше — ко входу →','Посмотреть результат →'][stage];
+ el('next').hidden=false;el('next').textContent=['Дальше — к переходу →','Дальше — к другу →','Дальше — ко входу →','Посмотреть результат →'][stage];
 }
 function show(n){
  stage=n;solved=false;
  stages.forEach((s,i)=>el(s).hidden=i!==n);
  el('feedback').textContent='';el('next').hidden=true;
  document.querySelectorAll('.steps i').forEach((s,i)=>s.classList.toggle('on',i<=n));
- if(n===correct.length){el('results').replaceChildren();['Выбрать скорость перед выездом','Ответить другу','Припарковать самокат'].forEach((t,i)=>{const li=document.createElement('li');li.textContent=t+' — '+(hinted[i]?'после подсказки':'с первой попытки');el('results').append(li)})}
+ if(n===correct.length){el('results').replaceChildren();['Выбрать скорость перед выездом','Перейти дорогу по зебре','Ответить другу','Припарковать самокат'].forEach((t,i)=>{const li=document.createElement('li');li.textContent=t+' — '+(hinted[i]?'после подсказки':'с первой попытки');el('results').append(li)})}
  window.scrollTo(0,0);el(stages[n]).querySelector('h1').focus({preventScroll:true});
 }
-[places,replies].forEach((list,s)=>list.forEach((t,i)=>{const b=document.createElement('button');b.textContent=t;b.onclick=()=>selectAnswer(i);el(s===0?'places':'replies').append(b)}));
+[places,crossingAnswers,replies].forEach((list,s)=>list.forEach((t,i)=>{const b=document.createElement('button');b.textContent=t;b.onclick=()=>selectAnswer(i);el(groups[s]).append(b)}));
 el('parking-map').querySelectorAll('button').forEach((button,i)=>button.onclick=()=>selectAnswer(i));
 el('next').onclick=()=>show(stage+1);
-el('restart').onclick=()=>{hinted=[false,false,false];el('street').classList.remove('reveal');document.querySelectorAll('#places button,#replies button,#parking-map button').forEach(b=>{b.disabled=false;b.classList.remove('chosen')});show(0)};
+el('restart').onclick=()=>{hinted=[false,false,false,false];el('street').classList.remove('reveal');document.querySelectorAll('#places button,#cross-answers button,#replies button,#parking-map button').forEach(b=>{b.disabled=false;b.classList.remove('chosen')});show(0)};
 </script></body></html>
