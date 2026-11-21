@@ -11,18 +11,14 @@
  :is(#yard,#parking) figure{width:min(100%, max(260px, calc(149.9vh - 700px)))}
  main:has(:is(#yard,#parking):not([hidden])) .feedback:not(:empty){margin-top:10px}
 }
-#parking-map{position:relative}#parking-map img{width:100%;height:auto;display:block}#parking-map button{position:absolute;transform:translate(-50%,-50%);font-weight:650;border:2px solid #bde5e0;background:#10283c;color:white;min-height:44px;padding:6px 10px;white-space:nowrap}#parking-map button.chosen{background:#aaecca;color:#10283c}#parking-map button:disabled{opacity:.85}@media(max-width:480px){#parking-map button{font-size:14px;padding:4px 7px}}body:has(#crossing:not([hidden])) main{max-width:none;padding-inline:0}
-body:has(#crossing:not([hidden])) main>:is(.steps,.feedback,.next),#crossing>:is(small,h1),.cross-layout>.cross-copy{max-width:852px;width:calc(100% - 32px);margin-inline:auto;display:block}
-body:has(#crossing:not([hidden])) main>.next[hidden]{display:none}
-.cross-frame{position:relative;margin:14px 0;border:0;border-radius:0;background:#102234;isolation:isolate;overflow:hidden}
-.cross-frame::before{content:"";position:absolute;inset:-16px;background:linear-gradient(#12223544,#12223544),url('assets/rules-crossing.webp') center/cover;filter:blur(14px);z-index:-1}
-.cross-photo{display:block;margin:auto;width:100%;height:clamp(330px,65svh,820px);object-fit:contain}
-.cross-zoom{position:absolute;right:12px;bottom:12px;background:#0a192de8}
-.cross-sign{float:left;margin:0 14px 4px 0}.cross-copy h2{clear:both}
-body:has(#crossing:not([hidden])) .next{margin-top:12px}
-#photo-view{padding:0;border:none;background:#081423;width:100vw;height:100dvh;max-width:none;max-height:none;color:white}#photo-view img{width:100%;height:100%;object-fit:contain}#photo-view button{position:absolute;right:16px;top:16px}
+#parking-map{position:relative}#parking-map img{width:100%;height:auto;display:block}#parking-map button{position:absolute;transform:translate(-50%,-50%);font-weight:650;border:2px solid #bde5e0;background:#10283c;color:white;min-height:44px;padding:6px 10px;white-space:nowrap}#parking-map button.chosen{background:#aaecca;color:#10283c}#parking-map button:disabled{opacity:.85}@media(max-width:480px){#parking-map button{font-size:14px;padding:4px 7px}}main:has(#crossing:not([hidden])){max-width:1080px}
+.cross-layout{display:grid;grid-template-columns:minmax(0, .96fr) minmax(0, 1fr);align-items:center;gap:24px;margin:14px 0}
+.cross-frame{margin:0;width:100%;max-width:min(482px,57svh);justify-self:center}
+.cross-photo{display:block;width:100%;height:auto}
+.cross-sign{display:block}.cross-copy h2{margin:12px 0}.cross-copy p{margin:8px 0}
+@media(max-width:700px){.cross-layout{grid-template-columns:1fr;gap:12px}.cross-frame{max-width:min(100%,34svh)}.cross-sign{float:left;margin:0 12px 4px 0;width:48px;height:48px}.cross-copy h2{clear:both}}
 .signals{display:flex;gap:32px;justify-content:center;padding:18px;background:#183044;border-radius:16px}.signals figure{margin:0;border:0;background:none;text-align:center}.signals svg{display:block;height:108px;margin:0 auto 6px}.signals figcaption{font-size:15px}
-@media(max-width:600px){.cross-photo{height:auto;max-height:75svh}}</style></head><body>
+</style></head><body>
 <header><b>СИМ / Практика</b><a href="rules">К урокам ↗</a></header><main>
 <div class="steps" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i></div>
 <section id="yard"><small>До секции · Сцена 1 из 5</small><h1 tabindex="-1">По тротуару мимо двора</h1><p>Ты подъезжаешь к арке справа. Сейчас перед тобой свободно, но из-за фургона не видно, что во дворе. Как ты поступишь?</p>
@@ -31,7 +27,7 @@ body:has(#crossing:not([hidden])) .next{margin-top:12px}
 <defs><clipPath id="clear-driveway"><path d="M0 0H568V105L561 131 552 152 551 177 541 188 532 216 528 250 531 282 544 302H0Z"/></clipPath></defs>
 <g clip-path="url(#clear-driveway)" aria-hidden="true"><g id="exit-car"><ellipse cx="96" cy="91" rx="90" ry="5" fill="#172029" opacity=".32"/><image href="assets/practice-exit-car.webp" width="190" height="95"/></g></g>
 </svg></figure><div class="choices" id="places"></div></section>
-<section id="crossing" hidden><small>До секции · Сцена 2 из 5</small><h1 tabindex="-1">Друг уже на той стороне</h1><div class="cross-layout"><figure class="cross-frame"><img class="cross-photo" src="assets/rules-crossing.webp" alt="Подросток с самокатом у края тротуара перед зеброй" width="500" height="500"><button class="cross-zoom" id="zoom-open">На весь экран</button></figure><div class="cross-copy"><img class="cross-sign" src="assets/rules-signs/5.19.1.svg" alt="Знак пешеходного перехода" width="66" height="66"><p>Впереди зебра и вот такой знак. Светофора нет. Друг перешёл дорогу и машет тебе рукой.</p><h2>Как доберёшься до друга?</h2><div class="lines" id="cross-answers"></div></div></div></section>
+<section id="crossing" hidden><small>До секции · Сцена 2 из 5</small><h1 tabindex="-1">Друг уже на той стороне</h1><div class="cross-layout"><figure class="cross-frame"><img class="cross-photo" src="assets/rules-crossing.webp" alt="Подросток с самокатом у края тротуара перед зеброй" width="500" height="500"></figure><div class="cross-copy"><img class="cross-sign" src="assets/rules-signs/5.19.1.svg" alt="Знак пешеходного перехода" width="66" height="66"><p>Впереди зебра и вот такой знак. Светофора нет. Друг перешёл дорогу и машет тебе рукой.</p><h2>Как доберёшься до друга?</h2><div class="lines" id="cross-answers"></div></div></div></section>
 <section id="signal" hidden><small>До секции · Сцена 3 из 5</small><h1 tabindex="-1">Кому горит зелёный?</h1><p>Вы дошли до следующего перекрёстка. Ты ведёшь самокат рядом. Машины слева тронулись. Друг спрашивает: «А нам уже можно?»</p>
 <div class="signals"><figure><svg viewBox="0 0 60 132" role="img" aria-label="Для машин горит зелёный"><rect width="60" height="132" rx="14" fill="#091522"/><g fill="#304354"><circle cx="30" cy="25" r="15"/><circle cx="30" cy="66" r="15"/></g><circle cx="30" cy="107" r="16" fill="#70f5a5"/></svg><figcaption>Для машин</figcaption></figure>
 <figure><svg viewBox="0 0 60 132" role="img" aria-label="Для пешеходов горит красная стоящая фигура"><rect y="29" width="60" height="103" rx="12" fill="#091522"/><circle cx="30" cy="47" r="6" fill="#ff665e"/><path d="M30 58v16m-7-11 2-7h10l3 8m-10 9-1 10m6-10 1 10" stroke="#ff665e" stroke-width="5" fill="none" stroke-linecap="round"/><circle cx="30" cy="108" r="15" fill="#304354"/></svg><figcaption>Для пешеходов</figcaption></figure></div>
@@ -44,10 +40,8 @@ body:has(#crossing:not([hidden])) .next{margin-top:12px}
 <button type="button" style="left:80%;top:59%">У стойки</button></figure></section>
 <section id="finish" hidden><small>До секции · Итог поездки</small><h1 tabindex="-1">Ты у спортцентра</h1><ul class="results" id="results"></ul><button id="restart">Пройти маршрут ещё раз</button></section>
 <div class="feedback" role="status" aria-live="polite" id="feedback"></div><button id="next" class="next" hidden></button>
-</main><dialog id="photo-view" aria-label="Фото перехода"><img src="assets/rules-crossing.webp" alt="Подросток с самокатом перед пешеходным переходом"><button id="zoom-close">Закрыть</button></dialog><script>
+</main><script>
 const el = id => document.getElementById(id);
-el('zoom-open').onclick=()=>el('photo-view').showModal();
-el('zoom-close').onclick=()=>el('photo-view').close();
 const signalAnswers=['«Подождём нашего зелёного. Потом посмотрим, безопасно ли идти».','«Машины поехали — значит, и нам зелёный».','«Вроде никого нет. Успеем перейти сейчас».'];
 const places = ['Пока свободно, проеду как еду.','Сбавлю скорость перед выездом и посмотрю вправо.'];
 const crossingAnswers = ['Проеду по зебре медленно, со скоростью шага.','Раз друг махнул, можно сразу идти за ним, ведя самокат.','Сойду с самоката, посмотрю по сторонам и, когда будет безопасно, перейду пешком.'];
