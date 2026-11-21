@@ -10,7 +10,7 @@
 .module-one-v2 .intro-explainer,
 .module-one-v2 #lesson-article :is(.lesson-copy p, .reading-comparison dd, .quiz-intro, #quiz-feedback, #quiz-result>p) {
   font-size: 1.0625rem;
-  line-height: 1.68;
+  line-height: 1.75;
   overflow-wrap: break-word;
   hyphens: auto;
 }
