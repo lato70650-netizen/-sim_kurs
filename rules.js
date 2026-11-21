@@ -25,7 +25,9 @@ let current=0;
 const done=document.getElementById('complete-lesson'),next=document.getElementById('next-question'),feedback=document.getElementById('quiz-feedback'),answers=document.getElementById('rules-answers');
 // A previously completed lesson remains traversable while its practice can be repeated.
 if(n<state.completed){done.disabled=false;document.getElementById('completion-hint').textContent='Этот урок уже завершён. Можно повторить задание или перейти дальше.';}
+const routeMap=document.getElementById('route-practice-map');
 function render(focus=false){
+ if(routeMap)routeMap.hidden=current!==0;
  const q=lesson.quiz[current];document.getElementById('question-position').textContent=`Ситуация ${current+1} из ${lesson.quiz.length}`;
  const h=document.getElementById('question-text');h.textContent=q.text;feedback.hidden=true;next.hidden=true;answers.replaceChildren();
  q.options.forEach((option,i)=>{const b=document.createElement('button');b.type='button';b.textContent=option;b.setAttribute('aria-pressed','false');b.addEventListener('click',()=>{const correct=i===q.correct;[...answers.children].forEach(x=>{x.classList.remove('answer-wrong','answer-correct');x.setAttribute('aria-pressed',String(x===b));});b.classList.add(correct?'answer-correct':'answer-wrong');feedback.hidden=false;feedback.dataset.correct=String(correct);feedback.textContent=(correct?'Верно. ':'Попробуйте ещё раз. ')+q.explanation;if(correct){[...answers.children].forEach(x=>x.disabled=true);next.hidden=false;next.textContent=current===lesson.quiz.length-1?'Завершить задание':'Следующая ситуация';}});answers.append(b);});

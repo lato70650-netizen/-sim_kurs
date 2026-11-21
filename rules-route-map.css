@@ -1,0 +1,23 @@
+.route-practice-map {
+  max-width: 28rem;
+  margin: 1rem 0 1.35rem;
+  color: #d7eaf3;
+  background: #102638;
+  border: 1px solid #46637c;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.route-practice-map svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  font-family: inherit;
+}
+
+.route-practice-map figcaption {
+  padding: .7rem 1rem;
+  border-top: 1px solid #39566d;
+  font-size: .875rem;
+  font-weight: 650;
+}
