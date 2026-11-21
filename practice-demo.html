@@ -5,20 +5,20 @@
 </style></head><body>
 <header><b>СИМ / Практика</b><a href="rules">К урокам ↗</a></header><main>
 <div class="steps" aria-hidden="true"><i class="on"></i><i></i></div>
-<section id="yard"><small>До секции · Сцена 1 из 2</small><h1 tabindex="-1">Закрытый выезд</h1><p>Ты едешь вдоль домов. В каком месте фургон мешает тебе вовремя увидеть машину, выезжающую со двора? Коснись метки или выбери место под картинкой.</p>
-<figure><svg id="street" class="canvas" viewBox="0 0 760 405" role="group" aria-label="Вид со стороны улицы. Между домами арка, перед ней припаркован фургон. Вдоль фасада идут тротуар, витрина и скамейка.">
-<image href="assets/practice-yard-evening.webp" width="760" height="507" y="-60" preserveAspectRatio="none"/>
-<g id="hazard" aria-hidden="true"><ellipse cx="522" cy="242" rx="25" ry="27" fill="none" stroke="#0a2236" stroke-width="7"/><ellipse cx="522" cy="242" rx="25" ry="27" fill="none" stroke="#a6f6d3" stroke-width="3"/></g>
+<section id="yard"><small>До секции · Сцена 1 из 2</small><h1 tabindex="-1">По тротуару мимо двора</h1><p>Ты едешь прямо, к витрине с огнями. Впереди выезд из двора. В каком месте стоит заранее сбавить скорость? Нажми на метку или выбери ответ под картинкой.</p>
+<figure><svg id="street" class="canvas" viewBox="0 0 760 507" role="group" aria-label="Вид с самоката вдоль тротуара. Справа арка и фургон сбоку от неё. Полоса тёмной плитки ведёт от арки через тротуар к улице. Витрина дальше по пути.">
+<image href="assets/practice-yard-rider.webp" width="760" height="507" y="0" preserveAspectRatio="none"/>
+<g id="hazard" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M476 231 Q383 245 151 246 m15 -8 -15 8 15 8" stroke="#142a30" stroke-width="7"/><path d="M476 231 Q383 245 151 246 m15 -8 -15 8 15 8" stroke="#a6f6d3" stroke-width="3"/></g>
 <g id="markers"></g></svg></figure><div class="choices" id="places"></div></section>
 <section id="friend" hidden><small>До секции · Сцена 2 из 2</small><h1 tabindex="-1">«Подвези до входа»</h1><p>У спортцентра тебя догоняет приятель. До тренировки две минуты. Твой самокат рассчитан на одного.</p><figure class="dialog"><small>Друг</small><blockquote>«Давай я сзади встану? Тут метров сто, успеем!»</blockquote></figure><h2>Что ответишь?</h2><div id="replies" class="lines"></div></section>
 <section id="finish" hidden><small>До секции · Итог поездки</small><h1 tabindex="-1">Ты у спортцентра</h1><ul class="results" id="results"></ul><button id="restart">Пройти обе сцены ещё раз</button></section>
 <div class="feedback" role="status" aria-live="polite" id="feedback"></div><button id="next" class="next" hidden></button>
 </main><script>
 const el = id => document.getElementById(id);
-const places = ['У витрины','У арки за фургоном','У скамейки'];
+const places = ['У витрины за выездом','Перед полосой тёмной плитки','На середине тёмной полосы'];
 const replies = ['«Давай. Только до поворота, дальше пешком».','«Я лучше слезу. Отсюда пешком вместе дойдём».','«Ладно, вставай. Поедем медленно».'];
 const notes = [
- ['У витрины тротуар хорошо виден. Посмотри, что скрывает высокий кузов.','В арке видна фара. Фургон закрывает почти всю машину, а её путь проходит через тротуар. Перед таким выездом снизь скорость и приготовься остановиться.','Скамейка видна целиком. Где машина могла бы приблизиться, оставаясь за кузовом?'],
+ ['Витрина уже за выездом. Посмотри, где до неё тротуар пересекается с дорогой из двора.','Да, перед выездом. Стрелка показывает, откуда может выехать машина. За фургоном двор плохо просматривается, поэтому скорость стоит снизить до тёмной полосы.','На тёмной полосе ты уже на пути машины из двора. Где можно сбавить скорость заранее?'],
  ['Даже на коротком отрезке вас на одноместном самокате окажется двое. Как можно добраться вместе?','Вы идёте до входа вместе. Друг успевает договорить, а самокат ты катишь рядом.','Малая скорость не добавляет пассажирского места. Что можно предложить другу?']
 ];
 let stage=0, solved=false, hinted=[false,false];
@@ -43,7 +43,7 @@ function show(n){
 }
 [places,replies].forEach((list,s)=>list.forEach((t,i)=>{const b=document.createElement('button');b.textContent=s===0?(i+1)+'. '+t:t;b.onclick=()=>selectAnswer(i);el(s===0?'places':'replies').append(b)}));
 const ns='http://www.w3.org/2000/svg';
-[[61,193],[547,155],[682,264]].forEach(([x,y],i)=>{const g=document.createElementNS(ns,'g');g.setAttribute('class','target');g.setAttribute('aria-hidden','true');g.setAttribute('transform','translate('+x+' '+y+')');
+[[220,178],[317,304],[269,244]].forEach(([x,y],i)=>{const g=document.createElementNS(ns,'g');g.setAttribute('class','target');g.setAttribute('aria-hidden','true');g.setAttribute('transform','translate('+x+' '+y+')');
  const pad=document.createElementNS(ns,'circle');pad.setAttribute('r',42);pad.setAttribute('class','pad');const dot=document.createElementNS(ns,'circle');dot.setAttribute('r',19);const t=document.createElementNS(ns,'text');t.setAttribute('y',8);t.textContent=i+1;g.append(pad,dot,t);g.onclick=()=>selectAnswer(i);el('markers').append(g)});
 el('next').onclick=()=>show(stage+1);
 el('restart').onclick=()=>{hinted=[false,false];el('street').classList.remove('reveal');document.querySelectorAll('#places button,#replies button').forEach(b=>{b.disabled=false;b.classList.remove('chosen')});show(0)};
