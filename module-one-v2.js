@@ -56,3 +56,63 @@
  window.addEventListener('blur',resetAll);
  document.addEventListener('visibilitychange',() => { if (document.hidden) resetAll(); });
 })();
+
+(() => {
+ 'use strict';
+ const artworkSelector = [
+  '#quiz-panel .quiz-image',
+  '.m1-device-card > .lesson-scene',
+  '.intro-cover-photo > .m1-device-group',
+  ':is([data-intro-page="0"], [data-intro-page="2"]) .lesson-copy > .reading-section:first-child .lesson-scene > .m1-device-group'
+ ].join(', ');
+ const artworkElements = document.querySelectorAll(artworkSelector);
+ if (!artworkElements.length) return;
+ artworkElements.forEach(artwork => artwork.classList.add('touch-holo-artwork'));
+ const reflections = new WeakMap();
+ let touch;
+
+ function stopTouch(event) {
+  if (!touch || (event && event.pointerId !== touch.id)) return;
+  touch.frame.classList.remove('is-touch-lit');
+  touch = undefined;
+ }
+
+ function moveTouch(event) {
+  if (!touch || event.pointerId !== touch.id) return;
+  const { x, y, width, height } = touch.artwork.getBoundingClientRect();
+  const offsetX = (event.clientX - x) / width;
+  const offsetY = (event.clientY - y) / height;
+  const inside = offsetX >= 0 && offsetX <= 1 && offsetY >= 0 && offsetY <= 1;
+  if (inside) {
+   touch.reflection.style.setProperty('--touch-x', `${offsetX * 100}%`);
+   touch.reflection.style.setProperty('--touch-y', `${offsetY * 100}%`);
+  }
+  touch.frame.classList.toggle('is-touch-lit', inside);
+ }
+
+ document.addEventListener('pointerdown', event => {
+  if (event.pointerType !== 'touch' || !event.isPrimary) return;
+  const artwork = event.target.closest('.touch-holo-artwork');
+  if (!artwork) return;
+  stopTouch();
+  let reflection = reflections.get(artwork);
+  if (!reflection) {
+   reflection = document.createElement('span');
+   reflection.className = 'touch-holo-reflection';
+   reflection.setAttribute('aria-hidden', 'true');
+   artwork.append(reflection);
+   reflections.set(artwork, reflection);
+  }
+  const frame = artwork.closest('.intro-cover-photo, .lesson-scene, .quiz-image');
+  touch = { id: event.pointerId, artwork, frame, reflection };
+  moveTouch(event);
+ }, { passive: true });
+ document.addEventListener('pointermove', moveTouch, { passive: true });
+ document.addEventListener('pointerup', stopTouch);
+ document.addEventListener('pointercancel', stopTouch);
+ document.addEventListener('lostpointercapture', stopTouch);
+ window.addEventListener('blur', () => stopTouch());
+ document.addEventListener('visibilitychange', () => {
+  if (document.hidden) stopTouch();
+ });
+})();
