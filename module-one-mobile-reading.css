@@ -34,7 +34,7 @@
 }
 
 .module-one-v2 #lesson-article .lesson-copy p + p {
-  margin-block-start: 1rem;
+  margin-block-start: 1.15rem;
 }
 
 .module-one-v2 #lesson-article .lesson-copy :is(strong, .mobile-key-point),
@@ -43,9 +43,41 @@
   font-weight: 750;
 }
 
-.module-one-v2 #lesson-article .lesson-copy .mobile-sentence {
+.module-one-v2 #lesson-article .lesson-copy .reading-paragraph {
   display: block;
-  margin-block-start: .7em;
+  margin-block-start: 1rem;
+}
+
+.module-one-v2 #lesson-article .lesson-copy .reading-paragraph--emphasis,
+.module-one-v2 #lesson-article .lesson-copy .reading-paragraph--emphasis strong {
+  color: #c3effa;
+  font-weight: 750;
+}
+
+.module-one-v2 #lesson-article .lesson-copy .reading-paragraph--note {
+  margin-block-start: 1.25rem;
+  padding: .8rem .9rem;
+  border-inline-start: 3px solid #a2ff51;
+  border-radius: .25rem .65rem .65rem .25rem;
+  background: #21382f;
+  color: #edf7e7;
+}
+
+.module-one-v2 #lesson-article .lesson-copy .reading-paragraph--note strong {
+  color: #edf7e7;
+}
+
+.module-one-v2 #lesson-article .lesson-copy .reading-paragraph--note + .reading-paragraph {
+  margin-block-start: 1.15rem;
+}
+
+.module-one-v2 #lesson-article .lesson-copy :is(.followup-copy h3, .lesson-fact h3) {
+  margin-block-end: .8em;
+}
+
+.module-one-v2 #lesson-article .quiz-scope {
+  max-width: 55ch;
+  line-height: 1.6;
 }
 
 .module-one-v2 #lesson-article .lesson-copy .reading-takeaway {

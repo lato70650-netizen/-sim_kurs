@@ -347,12 +347,30 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
         };
       });
       assert.ok(reading.fits,'unlocked lesson fits at '+width+'px: '+i);
+      const paragraphs = await page.locator('.lesson-copy .reading-paragraph').evaluateAll(elements =>
+        elements.map(element => {
+          const css = getComputedStyle(element);
+          return {display: css.display, gap: parseFloat(css.marginBlockStart)};
+        })
+      );
+      assert.ok(paragraphs.length >= 4,'each lesson has deliberate paragraph breaks '+i);
       if(width<=767){
+        assert.ok(paragraphs.every(p => p.display === 'block' && p.gap >= 16),'mobile gaps separate thoughts in lesson '+i);
         assert.ok(reading.heading >= reading.text + 4,'mobile lesson heading hierarchy '+i);
         assert.ok(reading.text >= 17 && reading.lineHeight >= reading.text * 1.6,'mobile lesson line spacing '+i);
         assert.ok(reading.emphasis >= 700,'mobile lesson emphasis '+i);
       } else {
+        assert.ok(paragraphs.every(p => p.display === 'inline'),'desktop paragraph layout preserved '+i);
         assert.ok(reading.emphasis < 700,'mobile emphasis does not carry over to desktop '+i);
+      }
+      if(i===1 && width<=390){
+        const note = page.locator('.reading-section').filter({hasText:'Зачем разбираться в СИМ'});
+        assert.equal(await note.locator('.reading-paragraph').count(),2);
+        const callout = note.locator('.reading-paragraph--note');
+        assert.equal(await callout.evaluate(element => getComputedStyle(element).borderInlineStartWidth),'3px');
+        if(width===390){
+          await note.screenshot({path:out+'/lesson-1-mobile-reading-390.png'});
+        }
       }
       await page.locator('#complete-lesson').click();
     }
