@@ -595,5 +595,58 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
     console.log('PASS preview '+width+'px: image, cards, no overflow, disclosure, real links, no JS/404');
     await ctx.close();
   }
+  const touchContext = await browser.newContext({
+    viewport: {width:390,height:844}, isMobile:true, hasTouch:true,
+  });
+  const phone = await touchContext.newPage();
+  const input = await touchContext.newCDPSession(phone);
+  await phone.goto(root+'introduction.html');
+  await phone.evaluate(() => localStorage.setItem('sim-introduction-progress-v1',
+    JSON.stringify({completed:5,quizComplete:false})));
+  for (const [route, selector, color] of [
+    ['introduction.html','.intro-cover-photo .touch-holo-artwork','rgb(180, 255, 128)'],
+    ['lesson-1.html','.lesson-scene .touch-holo-artwork','rgb(180, 255, 128)'],
+    ['lesson-2.html','.m1-device-card .touch-holo-artwork','rgb(180, 255, 128)'],
+    ['lesson-3.html','.lesson-scene .touch-holo-artwork','rgb(180, 255, 128)'],
+    ['introduction-quiz.html','.quiz-image.touch-holo-artwork','rgb(116, 215, 239)'],
+  ]) {
+    await phone.goto(root+route);
+    const artwork = phone.locator(selector).first();
+    await artwork.scrollIntoViewIfNeeded();
+    const box = await artwork.boundingBox();
+    const x = Math.round(box.x + box.width * .35);
+    const y = Math.round(box.y + box.height * .4);
+    const reflection = artwork.locator('.touch-holo-reflection');
+    const frame = phone.locator('.is-touch-lit');
+    assert.equal(await frame.count(),0,'no glow before touching '+route);
+    await input.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x,y}]});
+    await frame.waitFor();
+    await phone.waitForFunction(expected =>
+      getComputedStyle(document.querySelector('.is-touch-lit')).borderTopColor === expected, color);
+    assert.equal(await reflection.evaluate(el=>getComputedStyle(el).opacity),
+      route==='introduction-quiz.html' ? '1' : '0.72');
+    const startX = await reflection.evaluate(el=>el.style.getPropertyValue('--touch-x'));
+    await input.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:x+35,y}]});
+    await phone.waitForFunction(oldX =>
+      document.querySelector('.touch-holo-reflection').style.getPropertyValue('--touch-x') !== oldX, startX);
+    await input.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+    await frame.waitFor({state:'detached'});
+    await phone.waitForFunction(() =>
+      getComputedStyle(document.querySelector('.touch-holo-reflection')).opacity === '0');
+    await input.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x,y}]});
+    await frame.waitFor();
+    await input.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});
+    await frame.waitFor({state:'detached'});
+    if (route==='introduction-quiz.html') {
+      await phone.emulateMedia({reducedMotion:'reduce'});
+      await input.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x,y}]});
+      await frame.waitFor();
+      assert.equal(await reflection.evaluate(el=>getComputedStyle(el).display),'none');
+      await input.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+      await frame.waitFor({state:'detached'});
+    }
+  }
+  await touchContext.close();
+  console.log('PASS touch artwork: matching colors, moving highlight, release, cancel, reduced motion');
   await browser.close();
 })().catch(e=>{console.error(e); process.exit(1)});
