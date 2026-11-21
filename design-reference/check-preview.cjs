@@ -334,6 +334,26 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
     for(let i=1;i<=5;i++){
       await page.goto(root+'lesson-'+i+'.html');
       assert.ok(await page.locator('#lesson-article').isVisible(),'lesson visible '+i);
+      const reading = await page.locator('.lesson-copy').evaluate(copy => {
+        const heading = getComputedStyle(copy.querySelector('.reading-section>h2'));
+        const paragraph = getComputedStyle(copy.querySelector('p'));
+        const emphasis = getComputedStyle(copy.querySelector('.mobile-key-point'));
+        return {
+          fits: document.documentElement.scrollWidth <= innerWidth + 1,
+          heading: parseFloat(heading.fontSize),
+          text: parseFloat(paragraph.fontSize),
+          lineHeight: parseFloat(paragraph.lineHeight),
+          emphasis: parseInt(emphasis.fontWeight, 10),
+        };
+      });
+      assert.ok(reading.fits,'unlocked lesson fits at '+width+'px: '+i);
+      if(width<=767){
+        assert.ok(reading.heading >= reading.text + 4,'mobile lesson heading hierarchy '+i);
+        assert.ok(reading.text >= 17 && reading.lineHeight >= reading.text * 1.6,'mobile lesson line spacing '+i);
+        assert.ok(reading.emphasis >= 700,'mobile lesson emphasis '+i);
+      } else {
+        assert.ok(reading.emphasis < 700,'mobile emphasis does not carry over to desktop '+i);
+      }
       await page.locator('#complete-lesson').click();
     }
     await page.goto(root+'introduction-quiz.html');
@@ -354,6 +374,9 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
       assert.equal(size.width, cardWidth, 'same image width ' + asset);
       assert.equal(await page.locator('#question-position').innerText(), 'Вопрос ' + (index + 1) + ' из 10');
       await page.locator('[data-answer=' + correct + ']').click();
+      const status = page.locator('#quiz-feedback .quiz-feedback-status');
+      assert.equal(await status.textContent(), 'Верно.');
+      assert.equal(await status.evaluate(el=>getComputedStyle(el).display), width<=767 ? 'block' : 'inline');
       await page.locator('#next-question').click();
     }
     assert.ok(await page.locator('#quiz-result').isVisible(),'real quiz completed');

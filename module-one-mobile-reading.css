@@ -1,0 +1,74 @@
+/* Shared reading styles for the first module on narrow screens. */
+.module-one-v2 :is(.intro-cover h1, #lesson-article h1) {
+  font-size: clamp(1.875rem, 8.2vw, 2.5rem);
+  line-height: 1.14;
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+.module-one-v2 .intro-cover>div>p:not(.intro-meta),
+.module-one-v2 .intro-explainer,
+.module-one-v2 #lesson-article :is(.lesson-copy p, .reading-comparison dd, .quiz-intro, #quiz-feedback, #quiz-result>p) {
+  font-size: 1.0625rem;
+  line-height: 1.68;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.module-one-v2 .intro-topics .intro-item h2,
+.module-one-v2 #lesson-article :is(.lesson-copy h2, .lesson-copy h3, #quiz-result h2) {
+  text-wrap: pretty;
+  overflow-wrap: break-word;
+}
+
+.module-one-v2 #lesson-article .lesson-copy .reading-section>h2 {
+  font-size: clamp(1.375rem, 5.9vw, 1.75rem);
+  line-height: 1.25;
+  margin-block-end: .8em;
+}
+
+.module-one-v2 #lesson-article .lesson-copy :is(h3, .reading-comparison dt) {
+  font-size: 1.1875rem;
+  line-height: 1.35;
+  margin-block-end: .55em;
+}
+
+.module-one-v2 #lesson-article .lesson-copy p + p {
+  margin-block-start: 1rem;
+}
+
+.module-one-v2 #lesson-article .lesson-copy :is(strong, .mobile-key-point),
+.module-one-v2 .quiz-intro .mobile-key-point {
+  color: #c3effa;
+  font-weight: 750;
+}
+
+.module-one-v2 #lesson-article .lesson-copy .mobile-sentence {
+  display: block;
+  margin-block-start: .7em;
+}
+
+.module-one-v2 #lesson-article .lesson-copy .reading-takeaway {
+  font-size: 1.125rem;
+  line-height: 1.5;
+  padding: 1rem .95rem;
+  color: #e0f8ce;
+}
+
+.module-one-v2 #quiz-panel #question-position {
+  font-size: .875rem;
+  font-weight: 700;
+  color: #c3effa;
+}
+
+.module-one-v2 #quiz-panel .quiz-task-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #c3effa;
+}
+
+.module-one-v2 #quiz-feedback .quiz-feedback-status {
+  display: block;
+  margin-block-end: .35em;
+  font-weight: 750;
+}
