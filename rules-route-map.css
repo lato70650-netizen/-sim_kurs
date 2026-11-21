@@ -8,11 +8,10 @@
   overflow: hidden;
 }
 
-.route-practice-map svg {
+.route-practice-map img {
   display: block;
   width: 100%;
   height: auto;
-  font-family: inherit;
 }
 
 .route-practice-map figcaption {
@@ -20,4 +19,41 @@
   border-top: 1px solid #39566d;
   font-size: .875rem;
   font-weight: 650;
+}
+
+.route-map-preview {
+  min-height: 100vh;
+  margin: 0;
+  color: #edf7ff;
+  background: #101b2c;
+}
+
+.route-map-preview main {
+  width: min(100% - 2rem, 31rem);
+  margin-inline: auto;
+  padding-block: clamp(1.25rem, 4vw, 2.5rem) 2rem;
+}
+
+.route-map-preview-label {
+  margin: 0 0 .45rem;
+  color: #9fe8ff;
+  font-size: .9rem;
+}
+
+.route-map-preview h1 {
+  margin: 0;
+  font-size: clamp(1.65rem, 6vw, 2.3rem);
+  line-height: 1.15;
+}
+
+.route-map-preview-question {
+  margin: 0 0 .65rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.route-map-preview a {
+  color: #9fe8ff;
+  text-decoration: underline;
+  text-underline-offset: .2em;
 }

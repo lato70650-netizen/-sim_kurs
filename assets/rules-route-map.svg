@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" font-family="Manrope, Arial, sans-serif" viewBox="0 0 400 410" role="img" aria-labelledby="route-map-title route-map-description">
+    <title id="route-map-title">Два пути до секции</title>
+    <desc id="route-map-description">Слева путь 1 от дома до секции идёт по велодорожке, обозначенной синим знаком с велосипедом, затем по тротуару. Справа путь 2 идёт вдоль дороги по обочине. У въезда в соседний проезд стоит красный знак с белым прямоугольником.</desc>
+    <defs>
+      <pattern id="route-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+        <path d="M20 0H0V20" fill="none" stroke="#28465a" opacity=".38"/>
+      </pattern>
+    </defs>
+    <rect width="400" height="410" fill="#102638"/>
+    <rect width="400" height="410" fill="url(#route-grid)"/>
+    <g fill="#1b3843" stroke="#305262">
+      <rect x="20" y="105" width="47" height="72" rx="10"/>
+      <rect x="125" y="196" width="115" height="45" rx="10"/>
+      <rect x="126" y="258" width="106" height="49" rx="10"/>
+      <rect x="22" y="250" width="43" height="57" rx="10"/>
+    </g>
+    <path d="M354 54V360M348 107H243V58" fill="none" stroke="#4a5864" stroke-width="57" stroke-linejoin="round"/>
+    <path d="M354 70V356" fill="none" stroke="#a5acb0" stroke-width="2" stroke-dasharray="12 12"/>
+    <path d="M308 132V319" fill="none" stroke="#77838b" stroke-width="31"/>
+    <path d="M323 142V316" fill="none" stroke="#c0c7c9" stroke-width="2"/>
+    <path d="M92 183V130Q92 89 142 72L174 55" fill="none" stroke="#82939d" stroke-width="33" stroke-linejoin="round"/>
+    <path d="M153 365H120Q92 365 92 337V174" fill="none" stroke="#246078" stroke-width="33" stroke-linejoin="round"/>
+    <path d="M153 365H120Q92 365 92 337V133Q92 89 142 72L174 55" fill="none" stroke="#9fe8ff" stroke-width="5" stroke-linecap="round"/>
+    <path d="M249 365H275Q307 365 307 331V118Q307 107 296 107H258Q243 107 243 93V55" fill="none" stroke="#ded1ff" stroke-width="5" stroke-linecap="round" stroke-dasharray="8 7"/>
+    <g fill="#172d45" stroke="#9fe8ff" stroke-width="2">
+      <circle cx="92" cy="325" r="15"/>
+      <circle cx="307" cy="325" r="15" stroke="#ded1ff"/>
+    </g>
+    <g fill="#f5fbff" font-size="18" font-weight="750" text-anchor="middle">
+      <text x="92" y="331">1</text>
+      <text x="307" y="331">2</text>
+    </g>
+    <image href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3MDAiIGhlaWdodD0iNzAwIiB2ZXJzaW9uPSIxLjEiPgo8dGl0bGU+NC40LjEg0JLQtdC70L7RgdC40L/QtdC00L3QsNGPINC00L7RgNC+0LbQutCwPC90aXRsZT4KPGNpcmNsZSBzdHlsZT0iZmlsbDojZmZmZmZmOyIgY3g9IjM1MCIgY3k9IjM1MCIgcj0iMzUwIi8+CjxjaXJjbGUgc3R5bGU9ImZpbGw6bm9uZTtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6MnB4OyIgY3g9IjM1MCIgY3k9IjM1MCIgcj0iMzQ5Ii8+CjxjaXJjbGUgc3R5bGU9ImZpbGw6IzBkNjllMTsiIGN4PSIzNTAiIGN5PSIzNTAiIHI9IjMzMCIvPgo8cGF0aCBzdHlsZT0iZmlsbDojZmZmZmZmOyIgZD0ibSAzNzIuMTExLDQxNi43OTMgYyAxLjc2OSwxLjM0OCAzLjkzMiwyLjA3OCA2LjE1NywyLjA3OCBsIDQ5LjM2NCwwIGMgNi4xOTksNDQuNjU3IDQ0LjM4MCw3Ny45MDMgODkuNDY1LDc3LjkwMyBjIDQ5Ljg4NCwwIDkwLjMyMiwtNDAuNDM5IDkwLjMyMiwtOTAuMzIyIGMgMCwtNDkuODg0IC00MC40MzgsLTkwLjMyMyAtOTAuMzIyLC05MC4zMjMgYyAtMTQuMDY1LDAgLTI3LjkzNSwzLjI4NSAtNDAuNTA2LDkuNTkyIGwgLTMzLjM4OCwtNDcuNjgwIGwgOC43NTQsLTIwLjYyMiBsIDUuMzAxLDAgYyA3LjQ4MywwIDEzLjU0OSwtNi4wNjUgMTMuNTQ5LC0xMy41NDggYyAwLC03LjQ4MyAtNi4wNjYsLTEzLjU0OCAtMTMuNTQ5LC0xMy41NDggbCAtNjIuMDk3LDAgYyAtNy40ODIsMCAtMTMuNTQ4LDYuMDY1IC0xMy41NDgsMTMuNTQ4IGMgMCw3LjQ4MyA2LjA2NiwxMy41NDggMTMuNTQ4LDEzLjU0OCBsIDM5LjYyNCwwIGwgLTUuMjcyLDEyLjQyMCBsIC0xNTUuNzAwLDAgYyAwLjcxMywtMi42MTUgMS4wNzUsLTUuMzE0IDEuMDc1LC04LjAyNSBjIDAsLTEwLjk1NCAtNS44NzgsLTIxLjA2NyAtMTUuMzk2LC0yNi40ODggbCAtNS45NTYsLTMuMzkyIGMgLTQuMjMwLC0yLjQxMCAtNi44NDIsLTYuOTA0IC02Ljg0MiwtMTEuNzczIGMgMCwtNy40ODIgNi4wNjUsLTEzLjU0OCAxMy41NDgsLTEzLjU0OCBsIDQ0LjU5NywwIGMgNC45ODgsMCA5LjAzMiwtNC4wNDQgOS4wMzIsLTkuMDMyIGMgMCwtNC45ODkgLTQuMDQ0LC05LjAzMyAtOS4wMzIsLTkuMDMzIGwgLTQ0LjU5NywwIGMgLTE3LjQ1OSwwIC0zMS42MTMsMTQuMTU0IC0zMS42MTMsMzEuNjEzIGMgMCwxMS4zNjAgNi4wOTUsMjEuODQ3IDE1Ljk2NywyNy40NzAgbCA1Ljk1NSwzLjM5MiBjIDMuODc4LDIuMjA4IDYuMjczLDYuMzI4IDYuMjczLDEwLjc5MSBjIDAsMS44MTQgLTAuMzk4LDMuNjA1IC0xLjE2NCw1LjI0OSBsIC0yOC4zMjgsNjAuNzQ5IGMgLTEzLjU1NSwtNy42NTkgLTI4Ljg2MCwtMTEuNjgzIC00NC40MjksLTExLjY4MyBjIC00OS44ODQsMCAtOTAuMzIyLDQwLjQzOSAtOTAuMzIyLDkwLjMyMyBjIDAsNDkuODgzIDQwLjQzOCw5MC4zMjIgOTAuMzIyLDkwLjMyMiBjIDQ5Ljg4NCwwIDkwLjMyMywtNDAuNDM5IDkwLjMyMywtOTAuMzIyIGMgMCwtMjYuMDc2IC0xMS4yNjksLTUwLjg3OSAtMzAuOTA5LC02OC4wMzEgbCA3LjA1NSwtMTUuMTMwIHogbSAtMTg5LjIwOCw2Ni40MzMgYyAtNDIuNDAxLDAgLTc2Ljc3NCwtMzQuMzczIC03Ni43NzQsLTc2Ljc3NCBjIDAsLTQyLjQwMiAzNC4zNzMsLTc2Ljc3NSA3Ni43NzQsLTc2Ljc3NSBjIDEzLjU5MywwIDI2Ljk0MiwzLjYwOSAzOC42ODMsMTAuNDU4IGwgLTE5LjYwNSw0Mi4wNDMgYyAtMS4xNzUsMi41MjAgLTMuMDk3LDQuNjE4IC01LjUwNSw2LjAwOCBsIC0xOC4wODksMTAuNDQzIGMgLTIuNzk0LDEuNjE0IC00LjUxNiw0LjU5NiAtNC41MTYsNy44MjMgYyAwLDQuOTg4IDQuMDQ0LDkuMDMyIDkuMDMyLDkuMDMyIGMgMS41ODYsMCAzLjE0MywtMC40MTggNC41MTYsLTEuMjEwIGwgMTguMDg5LC0xMC40NDQgYyA1LjYxOSwtMy4yNDQgMTAuMTAzLC04LjEzNyAxMi44NDUsLTE0LjAxNyBsIDE3Ljk1OSwtMzguNTE0IGMgMTQuOTM0LDE0LjQ2MyAyMy4zNjUsMzQuMzYzIDIzLjM2NSw1NS4xNTMgYyAwLDQyLjQwMSAtMzQuMzczLDc2Ljc3NCAtNzYuNzc0LDc2Ljc3NCB6IG0gMzM0LjE5NCwwIGMgLTM3LjYwOCwwIC02OS42ODAsLTI3LjI0MyAtNzUuNzYzLC02NC4zNTUgbCA3OCwwIGMgNi44NTksMCAxMi40MTksLTUuNTYwIDEyLjQxOSwtMTIuNDE5IGMgMCwtMi41NDkgLTAuNzg0LC01LjAzNiAtMi4yNDYsLTcuMTI0IGwgLTQ0LjAwNSwtNjIuODQ4IGMgOS45MzAsLTQuNDg0IDIwLjcwMCwtNi44MDMgMzEuNTk1LC02LjgwMyBjIDQyLjQwMSwwIDc2Ljc3NCwzNC4zNzMgNzYuNzc0LDc2Ljc3NSBjIDAsNDIuNDAxIC0zNC4zNzMsNzYuNzc0IC03Ni43NzQsNzYuNzc0IHogbSAtNzYuMzY3LC04NC42NzggYyAyLjA3NSwtMjAuMDQ5IDExLjk1MiwtMzguNDc4IDI3LjQ5NywtNTEuMzA4IGwgMzUuOTI3LDUxLjMwOCB6IG0gLTQzLjc3MywwIGwgNDAuOTc4LC05Ni41MzcgbCAyMy4zODYsMzMuMzk3IGMgLTE5LjYzNiwxNS40MTYgLTMyLjAxNiwzOC4yNzIgLTM0LjIwMCw2My4xNDAgeiBtIC0yMC40MTIsLTMuOTI1IGwgLTExNi4zNzUsLTg4LjY1NCBsIDguMDU1LC0xNS44MDggbCAxNTIuNjYyLDAgeiIvPgo8L3N2Zz4K" x="43" y="204" width="39" height="39"/>
+    <image href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNzAwIiBoZWlnaHQ9IjcwMCIgdmVyc2lvbj0iMS4xIj4KICA8dGl0bGU+My4xINCS0YrQtdC30LQg0LfQsNC/0YDQtdGJ0ZHQvTwvdGl0bGU+CiAgPGNpcmNsZSBzdHlsZT0iZmlsbDojZmZmZmZmOyIgY3g9IjM1MCIgY3k9IjM1MCIgcj0iMzUwIi8+CiAgPGNpcmNsZSBzdHlsZT0iZmlsbDpub25lO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDoyOyIgY3g9IjM1MCIgY3k9IjM1MCIgcj0iMzQ5Ii8+CiAgPGNpcmNsZSBzdHlsZT0iZmlsbDojZmYwMDAwOyIgY3g9IjM1MCIgY3k9IjM1MCIgcj0iMzMwIi8+CiAgPHJlY3Qgc3R5bGU9ImZpbGw6I2ZmZmZmZjsiIHRyYW5zZm9ybT0ic2NhbGUoMS4xMjkwMzIyNikgdHJhbnNsYXRlKC0yMCAtMjApIiB4PSIxMTYiIHk9IjI3MCIgd2lkdGg9IjQyOCIgaGVpZ2h0PSIxMjAiIHJ4PSI4Ljg2IiByeT0iOC44NiIvPgo8L3N2Zz4K" x="259" y="122" width="39" height="39"/>
+    <g fill="#d7eaf3" font-size="16" font-weight="650">
+      <text x="116" y="149">Тротуар</text>
+      <text x="135" y="224">Велодорожка</text>
+      <text x="153" y="287">Обочина</text>
+      <path d="M229 282H285" stroke="#aec1ce" stroke-width="1.5"/>
+    </g>
+    <g fill="#1a354b" stroke="#66899e" stroke-width="1.5">
+      <rect x="119" y="18" width="162" height="45" rx="12"/>
+      <rect x="142" y="345" width="116" height="45" rx="12"/>
+    </g>
+    <g fill="#f5fbff" font-size="18" font-weight="750" text-anchor="middle">
+      <text x="200" y="46">Спортцентр</text>
+      <text x="200" y="373">Дом</text>
+    </g>
+  </svg>
