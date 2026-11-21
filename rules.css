@@ -10,3 +10,15 @@
 @media(max-width:700px){.age-grid,.sign-grid,.crossing-steps{grid-template-columns:1fr}.sign-card,.rules-text-block,.rules-practice{padding:22px}.sign-images img{width:90px;height:90px}.rules-story{font-size:16px}.rules-practice #question-text{font-size:23px}.rules-practice>h2{font-size:27px}.crossing-steps li{display:flex;align-items:center;gap:18px}.crossing-steps li:before{margin:0;min-width:22px}.rules-practice #next-question{width:100%}.rules-practice .quiz-choices button{font-size:15px}.intro-cover{gap:28px}}
 
 .rules-photo-0{background-position:0 0}.rules-photo-1{background-position:50% 0}.rules-photo-2{background-position:100% 0}.rules-photo-3{background-position:0 100%}.rules-photo-4{background-position:50% 100%}
+
+.rules-artwork img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (hover: hover) and (pointer: fine) {
+  .rules-night #lesson-main .lesson-scene:has(.rules-artwork:hover) {
+    border-color: #b4ff80;
+    box-shadow: 0 0 0 1px rgb(172 255 131 / 40%), 0 0 19px 4px rgb(135 255 96 / 50%), 0 0 33px 7px rgb(44 239 202 / 24%);
+  }
+}
