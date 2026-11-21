@@ -11,81 +11,71 @@ window.SIM_INTRO = {
       "text": "Самокат без двигателя: человек отталкивается ногой.",
       "correct": false,
       "explanation": "Не СИМ. У обычного самоката нет двигателя.",
-      "imageSet": "regular",
-      "imageIndex": 0,
-      "reviewLesson": 4
+      "reviewLesson": 4,
+      "image": "kick-scooter"
     },
     {
       "text": "Обычный городской электросамокат.",
       "correct": true,
       "explanation": "СИМ. В задании выбрана обычная модель электросамоката соответствующей категории.",
-      "imageSet": "sim",
-      "imageIndex": 0,
-      "reviewLesson": 2
+      "reviewLesson": 2,
+      "image": "electric-scooter"
     },
     {
       "text": "Обычный скейтборд без двигателя.",
       "correct": false,
       "explanation": "Не СИМ. Обычный скейтборд не имеет двигателя.",
-      "imageSet": "regular",
-      "imageIndex": 1,
-      "reviewLesson": 4
+      "reviewLesson": 4,
+      "image": "skateboard"
     },
     {
       "text": "Электроскейтборд.",
       "correct": true,
       "explanation": "СИМ. В отличие от обычного скейтборда, эта модель имеет электрический привод и относится к соответствующей категории.",
-      "imageSet": "sim",
-      "imageIndex": 4,
-      "reviewLesson": 2
+      "reviewLesson": 2,
+      "image": "electric-skateboard"
     },
     {
       "text": "Гироскутер.",
       "correct": true,
       "explanation": "СИМ. Гироскутер — один из распространённых видов СИМ.",
-      "imageSet": "sim",
-      "imageIndex": 1,
-      "reviewLesson": 2
+      "reviewLesson": 2,
+      "image": "hoverboard"
     },
     {
       "text": "Обычный велосипед с педалями, без двигателя.",
       "correct": false,
       "explanation": "Не СИМ. Велосипед относится к самостоятельной категории транспорта.",
-      "imageSet": "regular",
-      "imageIndex": 2,
-      "reviewLesson": 4
+      "reviewLesson": 4,
+      "image": "bicycle"
     },
     {
       "text": "Моноколесо.",
       "correct": true,
       "explanation": "СИМ. Моноколесо — один из рассматриваемых видов СИМ.",
-      "imageSet": "sim",
-      "imageIndex": 3,
-      "reviewLesson": 2
+      "reviewLesson": 2,
+      "image": "unicycle"
     },
     {
       "text": "Мопед.",
       "correct": false,
       "explanation": "Не СИМ. Мопед — отдельная категория со своими требованиями.",
-      "imageSet": "regular",
-      "imageIndex": 3,
-      "reviewLesson": 5
+      "reviewLesson": 5,
+      "image": "moped"
     },
     {
       "text": "Сигвей.",
       "correct": true,
       "explanation": "СИМ. Сигвей входит в рассматриваемую группу устройств.",
-      "imageSet": "sim",
-      "imageIndex": 2,
-      "reviewLesson": 2
+      "reviewLesson": 2,
+      "image": "segway"
     },
     {
       "text": "Роликовые коньки без двигателя.",
       "correct": false,
       "explanation": "Не СИМ. У обычных роликовых коньков нет двигателя.",
-      "imageSet": "regular",
-      "imageIndex": 4,
-      "reviewLesson": 4
+      "reviewLesson": 4,
+      "image": "inline-skates"
     }
   ],
   "summary": "СИМ бывают разными: у них отличаются колёса, управление и способы остановки. Опыт на одном устройстве не заменяет освоения другого. Не всякий аппарат с электродвигателем относится к СИМ. Для настоящего СИМ не требуется водительское удостоверение, но действуют правила, возрастные условия и требования к использованию. Прежде чем ехать, нужно знать не только своё устройство, но и разрешённые для вас места движения."

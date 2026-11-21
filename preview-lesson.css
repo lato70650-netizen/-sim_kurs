@@ -1,0 +1,736 @@
+/* Preview only: cohesive shadows, readable teaching content and safe interaction states.
+   Applied only to copied pages, never to live lessons or archived variant A. */
+body.approved-lesson-preview {
+ --m1-bg:#101b2c; --m1-raised:#14243a; --m1-surface:#1d3046;
+ --m1-line:#3b566f; --m1-primary:#a2ff51; --m1-info:#56d9f2;
+ background:radial-gradient(ellipse 64% 450px at 90% 0%,rgba(67,125,158,.14),transparent 90%),#101b2c;
+}
+.approved-lesson-preview .header {
+ border-bottom:1px solid rgba(136,177,206,.2);
+ box-shadow:0 8px 25px rgba(1,9,24,.16);
+}
+.approved-lesson-preview .intro-home,
+.approved-lesson-preview .compact-course-nav {
+ background:linear-gradient(150deg,#20394e,#15263b);
+ border:1px solid rgba(124,171,200,.35);
+ border-radius:18px;
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 12px 27px rgba(0,6,23,.28);
+}
+.approved-lesson-preview .breadcrumbs {color:#c9d9e6}
+.approved-lesson-preview #lesson-article {min-width:0}
+.approved-lesson-preview #lesson-article h1 {text-shadow:0 5px 20px rgba(0,7,25,.27)}
+.approved-lesson-preview .lesson-copy .reading-section,
+.approved-lesson-preview .reading-takeaway,
+.approved-lesson-preview .followup-copy,
+.approved-lesson-preview .lesson-fact,
+.approved-lesson-preview .reading-comparison>div,
+.approved-lesson-preview .rules-text-block,
+.approved-lesson-preview .age-rule,
+.approved-lesson-preview .sign-card,
+.approved-lesson-preview .crossing-steps li,
+.approved-lesson-preview .rules-practice {
+ border-radius:20px;
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 12px 28px rgba(0,9,24,.22);
+}
+.approved-lesson-preview .lesson-scene {
+ border-radius:22px;
+ border:1px solid rgba(106,177,210,.3);
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 22px 44px rgba(0,8,24,.42),0 0 22px rgba(86,217,242,.09);
+}
+.approved-lesson-preview .m1-device-group img,
+.approved-lesson-preview .scene-photo img {filter:drop-shadow(0 19px 17px rgba(0,5,18,.48))}
+.approved-lesson-preview .button,
+.approved-lesson-preview .step-link:not(.is-locked),
+.approved-lesson-preview .quiz-choices button:not(:disabled),
+.approved-lesson-preview #next-question,
+.approved-lesson-preview #retry-quiz,
+.approved-lesson-preview #retry-practice {
+ border-radius:14px;
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 9px 21px rgba(0,7,22,.29);
+ transition:box-shadow .2s ease,transform .2s ease,background .2s ease;
+}
+.approved-lesson-preview .button,
+.approved-lesson-preview .step-link:not(.is-locked) {
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.38),0 10px 23px rgba(0,5,18,.35),0 7px 24px rgba(162,255,81,.16);
+}
+.approved-lesson-preview #quiz-panel,
+.approved-lesson-preview #quiz-result {
+ border:1px solid rgba(86,217,242,.3);
+ border-radius:24px;
+ background:linear-gradient(145deg,#213b51,#15283b);
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 25px 52px rgba(0,8,24,.37),0 0 24px rgba(86,217,242,.08);
+}
+.approved-lesson-preview .quiz-choices button:focus-visible,
+.approved-lesson-preview .button:focus-visible,
+.approved-lesson-preview a:focus-visible,
+.approved-lesson-preview summary:focus-visible {outline:3px solid #ffca65;outline-offset:4px}
+.approved-lesson-preview .quiz-choices button.answer-correct,
+.approved-lesson-preview .quiz-choices button.answer-correct:disabled {
+ border-color:var(--m1-primary);background:#203d2b;color:#eaffdc;
+}
+.approved-lesson-preview .quiz-choices button.answer-wrong,
+.approved-lesson-preview .quiz-choices button.answer-incorrect {
+ border-color:#ff6b75;
+}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){
+ .approved-lesson-preview .button:hover {transform:translateY(-2px);box-shadow:0 15px 30px rgba(0,7,22,.4),0 8px 27px rgba(162,255,81,.2)}
+}
+@media(max-width:700px){
+ .approved-lesson-preview .lesson-scene {border-radius:18px}
+ .approved-lesson-preview #quiz-panel,
+ .approved-lesson-preview #quiz-result {border-radius:20px}
+ .approved-lesson-preview .lesson-copy p {max-width:100%}
+}
+@media(prefers-reduced-motion:reduce){
+ .approved-lesson-preview .button,
+ .approved-lesson-preview .quiz-choices button {transition:none}
+}
+
+/* Lesson 2: visible device details, not a collapsed accordion.
+   Keep the modern dark appearance and preserve all original explanation copy. */
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog {
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:24px;
+}
+.approved-lesson-preview[data-intro-page="1"] .lesson-copy .m1-device-card {
+  display:grid;
+  grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);
+  gap:14px 30px;
+  align-items:start;
+  padding:clamp(20px,2.8vw,34px);
+  border:1px solid rgba(96,167,195,.4);
+  background:linear-gradient(145deg,#213b51,#172b41);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.11),0 22px 42px rgba(0,8,23,.3);
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-card > h2 {
+  grid-column:1/-1;
+  margin:0 0 6px;
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-card > .lesson-scene {
+  grid-column:1;
+  margin:0;
+  min-width:0;
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-card > .m1-device-disclosure {
+  grid-column:2;
+  min-width:0;
+  align-self:center;
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-card .m1-device-text,
+.approved-lesson-preview[data-intro-page="1"] .m1-device-card .reading-split,
+.approved-lesson-preview[data-intro-page="1"] .m1-device-card .reading-text {
+  display:block;
+  width:auto;
+  max-width:none;
+  min-width:0;
+  margin:0;
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-card .visible-copy p {
+  font-size:clamp(15px,1.3vw,17px);
+  line-height:1.78;
+  color:#e1e9f2;
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-card .visible-copy p + p {margin-top:14px}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-card .reading-followup {
+  margin-top:22px;
+  display:grid;
+  gap:14px;
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-card .followup-copy {
+  padding:18px 20px;
+  border-radius:16px;
+  background:rgba(7,24,39,.34);
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-card .followup-copy h3 {font-size:18px;margin-bottom:6px}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-card .followup-copy p {font-size:15px;line-height:1.75}
+@media(max-width:760px) {
+  .approved-lesson-preview[data-intro-page="1"] .lesson-copy .m1-device-card {
+    grid-template-columns:minmax(0,1fr);
+    gap:14px;
+  }
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-card > h2,
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-card > .lesson-scene,
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-card > .m1-device-disclosure {
+    grid-column:1;
+  }
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-card > .m1-device-disclosure {align-self:start}
+}
+
+/* Readability improvements adapted from feature/readable-lesson-text-20261120.
+   Do not constrain the entire lesson width: lesson 2 intentionally shows image + prose side-by-side. */
+.approved-lesson-preview #lesson-article .lesson-copy {
+  overflow-wrap:break-word;
+}
+.approved-lesson-preview #lesson-article .lesson-copy .reading-section:not(.m1-device-card) {
+  margin-block:0 2.25rem;
+}
+.approved-lesson-preview #lesson-article .lesson-copy .reading-section h2 {
+  line-height:1.3;
+  text-wrap:balance;
+  margin-block:0 1.15rem;
+}
+.approved-lesson-preview #lesson-article .lesson-copy .reading-section h3 {
+  line-height:1.35;
+  text-wrap:balance;
+}
+.approved-lesson-preview #lesson-article .lesson-copy p {
+  line-height:1.85;
+}
+.approved-lesson-preview #lesson-article .lesson-copy p + p {
+  margin-top:1rem;
+}
+.approved-lesson-preview #lesson-article .lesson-copy ul,
+.approved-lesson-preview #lesson-article .lesson-copy ol {
+  padding-inline-start:1.5rem;
+  line-height:1.75;
+  margin-block:1rem 1.5rem;
+}
+.approved-lesson-preview #lesson-article .lesson-copy li + li {
+  margin-top:.6rem;
+}
+.approved-lesson-preview #lesson-article .lesson-copy .reading-takeaway,
+.approved-lesson-preview #lesson-article .lesson-copy .first-aid-urgent {
+  line-height:1.65;
+}
+/* Keep the five device descriptions full-width within their dedicated text columns. */
+.approved-lesson-preview[data-intro-page="1"] .m1-device-card .visible-copy p {
+  max-width:none;
+  line-height:1.78;
+}
+@media(max-width:700px) {
+  .approved-lesson-preview #lesson-article .lesson-copy .reading-section:not(.m1-device-card) {
+    margin-block-end:1.75rem;
+  }
+  .approved-lesson-preview #lesson-article .lesson-copy p {
+    line-height:1.75;
+  }
+}
+
+
+/* Readable lesson 1 pilot: visually distinct concepts, never a new treatment for device cards. */
+.approved-lesson-preview #lesson-article .lesson-copy > .reading-section .visible-copy p + p {
+  margin-top:1.05rem;
+}
+.approved-lesson-preview #lesson-article .lesson-copy .visible-copy strong {
+  font-weight:750;
+  color:#f5fbff;
+}
+.approved-lesson-preview #lesson-article .lesson-copy .lesson-fact .visible-copy strong,
+.approved-lesson-preview #lesson-article .lesson-copy .lesson-fact strong {
+  color:#d8f4ee;
+}
+
+/* Site-wide readable instructional typography: both learning modules, all lessons,
+   exercises and lesson overview pages. Device-card geometry/text remain unchanged. */
+.approved-lesson-preview #lesson-article > h1 {
+  line-height:1.16;
+  letter-spacing:-.023em;
+  text-wrap:balance;
+  margin-bottom:clamp(14px,2vw,23px);
+}
+.approved-lesson-preview #lesson-article .lesson-copy > .reading-section:not(.m1-device-card) {
+  margin-block:0 clamp(35px,4.8vw,55px);
+}
+.approved-lesson-preview #lesson-article .lesson-copy .reading-section:not(.m1-device-card) > h2,
+.approved-lesson-preview #lesson-article .lesson-copy .rules-text-block > h2 {
+  display:block;
+  padding-left:16px;
+  border-left:3px solid #77d7db;
+  font-size:clamp(23px,2.1vw,29px);
+  line-height:1.35;
+  letter-spacing:-.016em;
+  color:#f7fbff;
+  text-wrap:balance;
+  margin-bottom:22px;
+}
+.approved-lesson-preview #lesson-article .lesson-copy .reading-section:not(.m1-device-card) p {
+  color:#e6edf5;
+  font-size:clamp(17px,1.25vw,18px);
+  line-height:1.9;
+}
+.approved-lesson-preview #lesson-article .lesson-copy .reading-section:not(.m1-device-card) p + p {
+  margin-top:1.15em;
+}
+.approved-lesson-preview #lesson-article .lesson-copy .reading-section:not(.m1-device-card) > p,
+.approved-lesson-preview #lesson-article .lesson-copy .reading-section:not(.m1-device-card) .reading-text > p,
+.approved-lesson-preview #lesson-article .lesson-copy .reading-section:not(.m1-device-card) .visible-copy > p,
+.approved-lesson-preview #lesson-article .lesson-copy .reading-section:not(.m1-device-card) .rules-text-block > p {
+  max-width:67ch;
+}
+.approved-lesson-preview #lesson-article .lesson-copy strong {
+  font-weight:750;
+  color:#fcfff2;
+}
+.approved-lesson-preview #lesson-article .lesson-copy .reading-takeaway {
+  border-left:4px solid #a2ff51;
+  background:linear-gradient(100deg,rgba(78,129,64,.23),rgba(23,43,60,.96));
+  padding:19px 22px;
+  line-height:1.7;
+  color:#f2f9ed;
+}
+.approved-lesson-preview #lesson-article .lesson-copy .lesson-fact,
+.approved-lesson-preview #lesson-article .lesson-copy .followup-copy,
+.approved-lesson-preview #lesson-article .lesson-copy .rules-text-block {
+  padding-block:clamp(20px,2vw,28px);
+}
+.approved-lesson-preview #lesson-article .lesson-copy .lesson-fact h3,
+.approved-lesson-preview #lesson-article .lesson-copy .followup-copy h3,
+.approved-lesson-preview #lesson-article .lesson-copy .sign-card h3 {
+  line-height:1.35;
+  color:#e2f4ff;
+  text-wrap:balance;
+  margin-bottom:13px;
+}
+.approved-lesson-preview #lesson-article .lesson-copy .reading-section:not(.m1-device-card) :is(ul,ol) {
+  line-height:1.85;
+  padding-left:1.6rem;
+}
+.approved-lesson-preview #lesson-article .lesson-copy .reading-section:not(.m1-device-card) li + li {
+  margin-top:11px;
+}
+.approved-lesson-preview #lesson-article :is(.rules-practice,.quiz-panel,.lesson-actions) > p {
+  line-height:1.85;
+  max-width:67ch;
+}
+.approved-lesson-preview .intro-cover p:not(.intro-meta),
+.approved-lesson-preview .rules-story,
+.approved-lesson-preview .intro-topics .intro-item p {
+  line-height:1.85;
+  color:#e0ebf3;
+}
+.approved-lesson-preview .intro-topics .intro-item h2 {
+  line-height:1.35;
+}
+@media(max-width:700px){
+  .approved-lesson-preview #lesson-article .lesson-copy .reading-section:not(.m1-device-card) > h2,
+  .approved-lesson-preview #lesson-article .lesson-copy .rules-text-block > h2 {
+    padding-left:12px;
+    border-left-width:3px;
+    font-size:clamp(21px,5.6vw,25px);
+    margin-bottom:18px;
+  }
+  .approved-lesson-preview #lesson-article .lesson-copy .reading-section:not(.m1-device-card) p {
+    font-size:17px;
+    line-height:1.8;
+  }
+  .approved-lesson-preview #lesson-article .lesson-copy > .reading-section:not(.m1-device-card) {
+    margin-block-end:34px;
+  }
+}
+/* The approved 5 device cards: image left / exactly the original short copy right.
+   Deliberately do not apply the whole-lesson 67ch cap to these cards. */
+
+
+
+/* Approved 20 Nov 2026: five LONG device cards.
+   Title spans the card; the illustration is left of the intact explanation.
+   Constant lime+cya glow, boosted on hover, never the rejected pedestal. */
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog {
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:22px;
+}
+.approved-lesson-preview[data-intro-page="1"] .lesson-copy .m1-device-catalog > .m1-device-card {
+  display:grid;
+  grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);
+  grid-template-rows:auto auto;
+  column-gap:clamp(20px,2.2vw,32px);
+  row-gap:16px;
+  align-items:start;
+  padding:clamp(20px,2.5vw,32px);
+  border:1px solid rgba(105,175,203,.52);
+  border-radius:22px;
+  background:linear-gradient(145deg,#223d54 0%,#192d43 100%);
+  box-shadow:inset 0 1px rgba(255,255,255,.11),0 20px 39px rgba(0,8,25,.30);
+  min-width:0;
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > h2 {
+  grid-column:1 / -1;
+  grid-row:1;
+  align-self:start;
+  margin:0 0 4px;
+  font-size:clamp(23px,2.2vw,29px);
+  line-height:1.3;
+  overflow-wrap:break-word;
+  color:#f7fbff;
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene {
+  position:relative;
+  isolation:isolate;
+  display:block;
+  grid-column:1;
+  grid-row:2;
+  align-self:start;
+  width:100%;
+  max-width:none;
+  margin:0;
+  min-width:0;
+  overflow:hidden;
+  border:1.5px solid rgba(103,172,193,.56);
+  border-radius:20px;
+  /* Diffuse, grounded light UNDER the object, not a ring or a pedestal. */
+  background:
+    radial-gradient(ellipse 65% 26% at 54% 82%,rgba(130,255,103,.46) 0%,rgba(95,234,132,.25) 42%,rgba(36,211,180,.11) 66%,transparent 100%),
+    radial-gradient(ellipse 76% 43% at 53% 76%,rgba(17,171,192,.22) 0%,transparent 88%),
+    linear-gradient(145deg,#102c40 0%,#0e253b 63%,#0b1b2e 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.12),
+    0 13px 28px rgba(0,7,24,.32);
+  transition:box-shadow .24s ease,border-color .24s ease,transform .24s ease;
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:
+    linear-gradient(rgba(82,197,218,.07) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(82,197,218,.07) 1px,transparent 1px),
+    linear-gradient(135deg,rgba(16,121,147,.18),transparent 50%);
+  background-size:26px 26px,26px 26px,100% 100%;
+  -webkit-mask-image:linear-gradient(150deg,rgba(0,0,0,.45),rgba(0,0,0,.88));
+  mask-image:linear-gradient(150deg,rgba(0,0,0,.45),rgba(0,0,0,.88));
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene::after {
+  content:"";
+  position:absolute;
+  inset:12px;
+  z-index:2;
+  pointer-events:none;
+  border:1px solid rgba(111,240,229,.19);
+  border-radius:9px;
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card .scene-photo {
+  position:relative;
+  z-index:1;
+  height:clamp(220px,23vw,300px);
+  aspect-ratio:auto;
+  background-position:center;
+  background-size:contain;
+  background-repeat:no-repeat;
+  filter:drop-shadow(0 16px 14px rgba(0,6,24,.48));
+}
+/* No blanket green wash: it covered the scooter and looked like fog.
+   Keep other four original pictures clear until the user approves a new light treatment. */
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card .scene-photo::after {
+  content:none;
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card .lesson-scene figcaption {
+  position:relative;
+  z-index:2;
+  padding:7px 10px 9px;
+  font-size:11px;
+  background:rgba(10,35,50,.56);
+  color:#b9dce2;
+  text-align:center;
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .m1-device-disclosure {
+  grid-column:2;
+  grid-row:2;
+  align-self:center;
+  min-width:0;
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card .m1-device-text,
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card .reading-split,
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card .reading-text {
+  display:block;
+  width:auto;
+  min-width:0;
+  max-width:none;
+  margin:0;
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card .visible-copy p {
+  font-size:clamp(15px,1.25vw,17px);
+  line-height:1.78;
+  color:#e7eff8;
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card .visible-copy p + p {margin-top:16px}
+/* Strong frame lighting appears only while the user points at the card. */
+@media(hover:hover) {
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene:hover {
+    border-color:#b4ff80;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.22),
+      inset 0 0 24px rgba(87,238,213,.17),
+      0 0 0 1px rgba(172,255,131,.4),
+      0 0 19px 4px rgba(135,255,96,.65),
+      0 0 33px 7px rgba(44,239,202,.31),
+      0 22px 38px rgba(0,8,26,.38);
+  }
+}
+@media(hover:hover) and (prefers-reduced-motion:no-preference) {
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene:hover {
+    transform:translateY(-2px);
+  }
+}
+@media(max-width:760px) {
+  .approved-lesson-preview[data-intro-page="1"] .lesson-copy .m1-device-catalog > .m1-device-card {
+    grid-template-columns:minmax(0,1fr);
+    grid-template-rows:auto auto auto;
+    gap:15px;
+  }
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > h2,
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene,
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .m1-device-disclosure {
+    grid-column:1;
+  }
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene {grid-row:2}
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .m1-device-disclosure {grid-row:3}
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card .scene-photo {height:clamp(215px,55vw,300px)}
+}
+@media(prefers-reduced-motion:reduce) {
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene {transition:none}
+}
+
+
+/* Single supplementary card from the user's screenshot: "Главные части".
+   Match the device-gallery visual language without touching copy or layout. */
+.approved-lesson-preview[data-intro-page="1"] .m1-scooter-extra > .reading-followup > .followup-copy:first-child {
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  border:1px solid rgba(103,172,193,.56);
+  border-radius:20px;
+  background:linear-gradient(140deg,#15364c 0%,#112a40 62%,#0d2338 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.11),0 14px 28px rgba(0,7,24,.3);
+  transition:border-color .25s ease,box-shadow .25s ease,transform .25s ease;
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-scooter-extra > .reading-followup > .followup-copy:first-child::before {
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(rgba(82,197,218,.055) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(82,197,218,.055) 1px,transparent 1px),
+    linear-gradient(132deg,rgba(23,134,159,.18),transparent 66%);
+  background-size:26px 26px,26px 26px,100% 100%;
+  -webkit-mask-image:linear-gradient(130deg,rgba(0,0,0,.55),rgba(0,0,0,.18));
+  mask-image:linear-gradient(130deg,rgba(0,0,0,.55),rgba(0,0,0,.18));
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-scooter-extra > .reading-followup > .followup-copy:first-child > h3 {
+  color:#a9f3ee;
+  position:relative;
+}
+/* Supplementary explanations are reading-only: no glow or lift on hover. */
+@media(prefers-reduced-motion:reduce) {
+ .approved-lesson-preview[data-intro-page="1"] .m1-scooter-extra > .reading-followup > .followup-copy:first-child {transition:none}
+}
+
+
+/* Approved vector HUD on all five device images.
+   Precise wheel contact lights and four corner details are separate scalable elements,
+   rather than radial CSS fog; headings and explanations remain real HTML. */
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene .scooter-hud {
+  position:absolute;
+  z-index:4;
+  display:block;
+  width:100%;
+  height:clamp(220px,23vw,300px);
+  top:0;
+  left:0;
+  overflow:hidden;
+  pointer-events:none;
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene::after {
+  content:none;
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card .scene-photo::after,
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card .scene-photo::before {
+  content:none;
+}
+@media(max-width:760px){
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene .scooter-hud {
+    height:clamp(215px,55vw,300px);
+  }
+}
+
+/* Approved five-device treatment: no persistent glow, mist or contact lights.
+   Keep vector corner markings; only the frame gets green glow on its own hover. */
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene {
+  background:linear-gradient(145deg,#102c40 0%,#0e253b 63%,#0b1b2e 100%);
+}
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card .scene-photo::before,
+.approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card .scene-photo::after {
+  content:none;
+}
+
+/* Restore the existing pointer-following holographic reflection on all device images.
+   SVG corner accents previously suppressed this shared ::after reflection.
+   Only an image hover moves the subtle white/cyan highlight; no lime fog. */
+@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene.m1-holo-media::after{
+    content:"";
+    position:absolute;
+    inset:0 0 36px;
+    z-index:5;
+    pointer-events:none;
+    border:0;
+    border-radius:16px;
+    opacity:0;
+    background:
+      radial-gradient(ellipse at var(--holo-x,50%) var(--holo-y,50%),
+        rgb(255 255 255 / 26%),rgb(144 235 255 / 10%) 25%,transparent 62%),
+      linear-gradient(115deg,transparent 28%,rgb(255 255 255 / 8%) 47%,transparent 65%);
+    mask-image:radial-gradient(ellipse closest-side,#000 20%,transparent 100%);
+    -webkit-mask-image:radial-gradient(ellipse closest-side,#000 20%,transparent 100%);
+    transition:opacity 220ms var(--m1-ease);
+  }
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene.m1-holo-media.is-holo-active::after{
+    opacity:.72;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .approved-lesson-preview[data-intro-page="1"] .m1-device-catalog > .m1-device-card > .lesson-scene::after{content:none}
+}
+
+/* Lesson 1: same approved technology-panel decoration as the overview hero.
+   Scope to the first illustration only; preserve all lesson layout and prose. */
+.approved-lesson-preview[data-intro-page="0"] .lesson-copy > .reading-section:first-child .lesson-scene {
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  border:1px solid rgba(103,172,193,.56);
+  border-radius:22px;
+  background:linear-gradient(145deg,#102c40 0%,#0e253b 63%,#0b1b2e 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 13px 28px rgba(0,7,24,.32);
+  transition:box-shadow .24s ease,border-color .24s ease;
+}
+.approved-lesson-preview[data-intro-page="0"] .lesson-copy > .reading-section:first-child .lesson-scene > .m1-device-group {
+  isolation:isolate;
+}
+.approved-lesson-preview[data-intro-page="0"] .lesson-copy > .reading-section:first-child .lesson-scene .overview-hud {
+  position:absolute;
+  inset:0;
+  display:block;
+  width:100%;
+  height:100%;
+  z-index:4;
+  pointer-events:none;
+}
+@media(hover:hover) {
+  .approved-lesson-preview[data-intro-page="0"] .lesson-copy > .reading-section:first-child .lesson-scene:has(> .m1-device-group:hover) {
+    border-color:#b4ff80;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.22),
+       0 0 0 1px rgba(172,255,131,.4),
+       0 0 19px 4px rgba(135,255,96,.65),
+       0 0 33px 7px rgba(44,239,202,.31),
+       0 22px 38px rgba(0,8,26,.38);
+  }
+}
+@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
+  .approved-lesson-preview[data-intro-page="0"] .lesson-copy > .reading-section:first-child .lesson-scene > .m1-device-group.m1-holo-media::after {
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:5;
+    pointer-events:none;
+    opacity:0;
+    border:0;
+    background:
+      radial-gradient(ellipse at var(--holo-x,50%) var(--holo-y,50%),
+        rgb(255 255 255 / 26%),rgb(144 235 255 / 10%) 25%,transparent 62%),
+      linear-gradient(115deg,transparent 28%,rgb(255 255 255 / 8%) 47%,transparent 65%);
+    mask-image:radial-gradient(ellipse closest-side,#000 20%,transparent 100%);
+    -webkit-mask-image:radial-gradient(ellipse closest-side,#000 20%,transparent 100%);
+    transition:opacity 220ms var(--m1-ease);
+  }
+  .approved-lesson-preview[data-intro-page="0"] .lesson-copy > .reading-section:first-child .lesson-scene > .m1-device-group.m1-holo-media.is-holo-active::after {
+    opacity:.72;
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  .approved-lesson-preview[data-intro-page="0"] .lesson-copy > .reading-section:first-child .lesson-scene {
+    transition:none;
+  }
+  .approved-lesson-preview[data-intro-page="0"] .lesson-copy > .reading-section:first-child .lesson-scene > .m1-device-group::after {
+    content:none;
+  }
+}
+
+/* Lesson 3: reuse approved panel styling exactly as in lesson one.
+   Scope to the first illustration only; preserve all lesson layout and prose. */
+.approved-lesson-preview[data-intro-page="2"] .lesson-copy > .reading-section:first-child .lesson-scene {
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  border:1px solid rgba(103,172,193,.56);
+  border-radius:22px;
+  background:linear-gradient(145deg,#102c40 0%,#0e253b 63%,#0b1b2e 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 13px 28px rgba(0,7,24,.32);
+  transition:box-shadow .24s ease,border-color .24s ease;
+}
+.approved-lesson-preview[data-intro-page="2"] .lesson-copy > .reading-section:first-child .lesson-scene > .m1-device-group {
+  isolation:isolate;
+}
+.approved-lesson-preview[data-intro-page="2"] .lesson-copy > .reading-section:first-child .lesson-scene .overview-hud {
+  position:absolute;
+  inset:0;
+  display:block;
+  width:100%;
+  height:100%;
+  z-index:4;
+  pointer-events:none;
+}
+@media(hover:hover) {
+  .approved-lesson-preview[data-intro-page="2"] .lesson-copy > .reading-section:first-child .lesson-scene:has(> .m1-device-group:hover) {
+    border-color:#b4ff80;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.22),
+       0 0 0 1px rgba(172,255,131,.4),
+       0 0 19px 4px rgba(135,255,96,.65),
+       0 0 33px 7px rgba(44,239,202,.31),
+       0 22px 38px rgba(0,8,26,.38);
+  }
+}
+@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
+  .approved-lesson-preview[data-intro-page="2"] .lesson-copy > .reading-section:first-child .lesson-scene > .m1-device-group.m1-holo-media::after {
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:5;
+    pointer-events:none;
+    opacity:0;
+    border:0;
+    background:
+      radial-gradient(ellipse at var(--holo-x,50%) var(--holo-y,50%),
+        rgb(255 255 255 / 26%),rgb(144 235 255 / 10%) 25%,transparent 62%),
+      linear-gradient(115deg,transparent 28%,rgb(255 255 255 / 8%) 47%,transparent 65%);
+    mask-image:radial-gradient(ellipse closest-side,#000 20%,transparent 100%);
+    -webkit-mask-image:radial-gradient(ellipse closest-side,#000 20%,transparent 100%);
+    transition:opacity 220ms var(--m1-ease);
+  }
+  .approved-lesson-preview[data-intro-page="2"] .lesson-copy > .reading-section:first-child .lesson-scene > .m1-device-group.m1-holo-media.is-holo-active::after {
+    opacity:.72;
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  .approved-lesson-preview[data-intro-page="2"] .lesson-copy > .reading-section:first-child .lesson-scene {
+    transition:none;
+  }
+  .approved-lesson-preview[data-intro-page="2"] .lesson-copy > .reading-section:first-child .lesson-scene > .m1-device-group::after {
+    content:none;
+  }
+}
+
+
+/* Course-wide editorial hierarchy: semantic strong emphasis inside teaching prose.
+   Markdown is not used at runtime; HTML carries the content and CSS the appearance.
+   Gentle cyan keeps the key reading anchors obvious without highlighting whole blocks. */
+.approved-lesson-preview .lesson-copy .visible-copy strong,
+.approved-lesson-preview .lesson-copy .followup-copy strong,
+.approved-lesson-preview .lesson-copy .rules-text-block strong {
+  color:#bdeaf7;
+  font-weight:790;
+}
+
+/* Override older, more-specific white emphasis in the lesson reading hierarchy. */
+.approved-lesson-preview #lesson-article .lesson-copy .visible-copy strong,
+.approved-lesson-preview #lesson-article .lesson-copy .lesson-fact strong,
+.approved-lesson-preview #lesson-article .lesson-copy .followup-copy strong,
+.approved-lesson-preview #lesson-article .lesson-copy .rules-text-block strong {
+  color:#bdeaf7;
+  font-weight:790;
+}

@@ -1,0 +1,191 @@
+/* Approved homepage prototype — scoped overrides only. Original site remains unchanged. */
+.approved-preview {--bg:#101b2c;--surface:#1d3046;--lime:#a2ff51;--cyan:#56d9f2;--warning:#ffca65;color:#f6f8fc;background:#09192b;}
+.approved-preview .header {min-height:72px;max-width:1440px;}
+.approved-preview .brand {font-size:25px;letter-spacing:.015em}
+.approved-preview .header nav {gap:30px}
+.approved-preview .header nav > a:first-child {color:#f6f8fc}
+.approved-preview .hero {max-width:none;min-height:600px;background:#081729}
+.approved-preview .hero-image {object-position:center 38%;filter:saturate(1.12)}
+.approved-preview .hero-shade {background:linear-gradient(90deg,rgba(8,23,39,.97) 0%,rgba(8,23,39,.86) 25%,rgba(8,23,39,.48) 49%,rgba(8,23,39,.05) 77%),linear-gradient(0deg,rgba(9,25,43,.96),transparent 24%)}
+.approved-preview .hero-content {padding-top:64px;padding-bottom:110px}
+.approved-preview .hero h1 {font-size:clamp(47px,5vw,72px);line-height:1.03}
+.approved-preview .hero-content > p {max-width:560px;font-size:17px;line-height:1.6}
+.approved-preview .primary {border-radius:14px;padding:16px 25px}
+.approved-preview .hero-foot {bottom:85px;justify-content:flex-start}
+.approved-preview .course {position:relative;z-index:2;margin-top:-79px;padding-top:0;padding-bottom:30px}
+.approved-preview .section-heading {margin-bottom:22px;align-items:center}
+.approved-preview .section-heading h2 {font-size:clamp(29px,3vw,41px)}
+.approved-preview .module-grid {gap:20px}
+.approved-preview .module-card {position:relative;overflow:hidden;border:1px solid rgba(97,150,189,.5);border-radius:24px;background:linear-gradient(135deg,#1d354c 0%,#12293f 95%);box-shadow:0 16px 36px rgba(2,10,20,.5),inset 0 1px rgba(255,255,255,.08)}
+.approved-preview .module-1 {border-color:#a2ff51;box-shadow:0 0 0 1px rgba(162,255,81,.45),0 0 22px rgba(162,255,81,.16)}
+.approved-preview .module-2 {border-color:#56d9f2;box-shadow:0 0 0 1px rgba(86,217,242,.3),0 0 22px rgba(86,217,242,.12)}
+.approved-preview .module-3 {border-color:#ffca65;box-shadow:0 0 0 1px rgba(255,202,101,.25),0 0 18px rgba(255,202,101,.1)}
+.approved-preview .module-main {min-height:310px;padding:25px 22px 80px}
+.approved-preview .module-text {max-width:61%}
+.approved-preview .module-text h3 {font-size:clamp(21px,2vw,29px);line-height:1.17}
+.approved-preview .module-text>p {font-size:14px;line-height:1.55}
+.approved-preview .module-art-1 {inset:40px -35px 70px 48%}
+.approved-preview .module-art-2 {inset:50px -9px 78px 62%}
+.approved-preview .module-art-3 {inset:45px -17px 78px 59%}
+.approved-preview .module-task {font-size:13px;line-height:1.5}
+.approved-preview .module-entry {position:absolute;bottom:21px;left:22px;width:calc(100% - 44px);margin:0;border-radius:13px;min-height:46px;padding:11px 14px}
+.approved-preview .module-main>.coming {bottom:74px;left:22px;max-width:63%;font-size:13px}
+.approved-preview .module-main>.unavailable {bottom:20px}
+.approved-preview .module-program {border-top-color:rgba(255,255,255,.13)}
+.approved-preview .learning {margin-bottom:65px;padding:28px 30px;gap:36px;border-radius:24px;background:linear-gradient(90deg,#14283e,#172b40);box-shadow:inset 0 1px rgba(255,255,255,.08)}
+.approved-preview .learning h2 {font-size:30px}
+.approved-preview .learning ol {gap:12px}
+.approved-preview .learning li {padding:15px;border:1px solid rgba(136,179,215,.17);border-radius:16px;background:rgba(45,72,98,.55)}
+.approved-preview .learning li h3 {margin-bottom:3px;color:#f6f8fc;font-size:17px}
+.approved-preview .learning li p {font-size:12px}
+@media(max-width:1100px){
+ .approved-preview .course {margin-top:-50px}
+ .approved-preview .module-grid {gap:12px}
+ .approved-preview .module-main {min-height:360px}
+ .approved-preview .module-text h3 {font-size:22px}
+}
+@media(max-width:700px){
+ .approved-preview .header {min-height:78px}
+ .approved-preview .hero {display:flex;min-height:0;flex-direction:column}
+ .approved-preview .hero-image {position:relative;order:2;width:100%;height:auto;aspect-ratio:1.3;object-position:62% center}
+ .approved-preview .hero-content {padding:34px 0 20px}
+ .approved-preview .hero-shade {background:linear-gradient(180deg,#09192b,transparent 80%);pointer-events:none}
+ .approved-preview .hero h1 {font-size:clamp(38px,10vw,56px)}
+ .approved-preview .hero-foot {position:relative;order:3;bottom:auto;padding:14px 0 24px}
+ .approved-preview .course {margin-top:0;padding-top:15px}
+ .approved-preview .section-heading {display:block}
+ .approved-preview .section-heading h2 {margin-bottom:12px}
+ .approved-preview .module-grid {grid-template-columns:1fr;gap:18px}
+ .approved-preview .module-main {min-height:320px}
+ .approved-preview .module-text {max-width:60%}
+ .approved-preview .module-art-1 {inset:35px -25px 70px 50%}
+ .approved-preview .module-art-2 {inset:45px -10px 75px 60%}
+ .approved-preview .module-art-3 {inset:48px -12px 75px 60%}
+ .approved-preview .learning {padding:22px;gap:20px;margin-bottom:30px}
+ .approved-preview .learning ol {grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){.approved-preview .module-card,.approved-preview .primary{transition:none}}
+
+/* Browser review corrections, 2026-11-16: avoid overlapping hero/card copy. */
+@media(min-width:701px){
+  .approved-preview .hero-foot {bottom:165px}
+}
+.approved-preview .hero-content {position:relative;z-index:2}
+.approved-preview .module-3 .module-main>.coming {
+  position:absolute;left:22px;right:92px;bottom:24px;z-index:3;
+  width:auto;max-width:none;margin:0;padding:0;
+  color:#dbe5ef;font-size:12px;line-height:1.45;
+}
+@media(max-width:700px){
+  .approved-preview .hero-shade {z-index:0}
+  .approved-preview .hero-content {position:relative;z-index:2}
+  .approved-preview .module-3 .module-main>.coming {left:15px;right:70px;bottom:20px;font-size:11px}
+  .approved-preview .module-3 .module-main {min-height:355px}
+}
+
+/* Final desktop spacing after visual review: keep navigation line clear of CTA and section title. */
+@media(min-width:701px){
+  .approved-preview .hero-foot {bottom:105px}
+  .approved-preview .course {margin-top:-35px}
+}
+
+
+/* Depth and polish — approved direction: visual quality over pixel-perfect tracing. */
+.approved-preview .module-card {
+  box-shadow:
+    0 10px 18px rgba(1,8,20,.27),
+    0 25px 58px rgba(0,8,24,.42),
+    0 0 24px rgba(var(--glow),.10),
+    inset 0 1px 0 rgba(255,255,255,.16),
+    inset 0 -1px 0 rgba(0,0,0,.16);
+  background:
+    radial-gradient(ellipse at 88% 72%,rgba(var(--glow),.13),transparent 65%),
+    linear-gradient(142deg,#233c53 0%,#192e43 56%,#101f32 100%);
+  transition:transform 220ms ease,box-shadow 220ms ease,border-color 220ms ease;
+}
+.approved-preview .module-1 {border-color:rgba(162,255,81,.84)}
+.approved-preview .module-2 {border-color:rgba(86,217,242,.85)}
+.approved-preview .module-3 {border-color:rgba(255,202,101,.86)}
+.approved-preview .module-card .card-object {
+  filter:drop-shadow(0 18px 18px rgba(0,6,18,.58)) drop-shadow(0 0 13px rgba(var(--glow),.12));
+}
+.approved-preview .module-badge {
+  box-shadow:0 5px 14px rgba(0,0,0,.24),0 0 13px rgba(var(--glow),.14);
+}
+.approved-preview .primary,
+.approved-preview .module-entry:not(.unavailable) {
+  box-shadow:0 9px 22px rgba(0,0,0,.38),0 7px 25px rgba(162,255,81,.15),inset 0 1px 0 rgba(255,255,255,.35);
+  transition:box-shadow 200ms ease,transform 200ms ease,background 200ms ease;
+}
+.approved-preview .module-2 .module-entry {box-shadow:0 9px 23px rgba(0,0,0,.38),0 6px 22px rgba(86,217,242,.12),inset 0 1px 0 rgba(255,255,255,.25)}
+.approved-preview .learning {
+  border:1px solid rgba(135,173,209,.15);
+  box-shadow:0 18px 45px rgba(0,8,24,.34),inset 0 1px 0 rgba(255,255,255,.10);
+}
+.approved-preview .learning li {
+  box-shadow:0 9px 20px rgba(0,9,25,.19),inset 0 1px 0 rgba(255,255,255,.065);
+}
+@media(hover:hover) and (prefers-reduced-motion:no-preference) {
+ .approved-preview .module-card:hover {
+   transform:translateY(-5px);
+   box-shadow:0 18px 29px rgba(0,6,20,.32),0 33px 65px rgba(0,8,24,.52),0 0 29px rgba(var(--glow),.20),inset 0 1px 0 rgba(255,255,255,.23);
+ }
+ .approved-preview .primary:hover,
+ .approved-preview .module-entry:hover {transform:translateY(-2px);box-shadow:0 13px 28px rgba(0,0,0,.43),0 8px 24px rgba(162,255,81,.20)}
+}
+@media(prefers-reduced-motion:reduce) {
+ .approved-preview .module-card,.approved-preview .primary,.approved-preview .module-entry {transition:none}
+}
+
+/* Course-wide reading hierarchy on the main landing page; preserve original copy/layout. */
+.approved-preview .hero-content > p {
+  font-size:clamp(17px,1.5vw,19px);
+  line-height:1.85;
+  max-width:49ch;
+  color:#eef4fb;
+}
+.approved-preview .section-heading > p {
+  max-width:49ch;
+  font-size:clamp(16px,1.3vw,18px);
+  line-height:1.8;
+  color:#dceaf4;
+}
+.approved-preview .section-heading > h2,
+.approved-preview .learning h2,
+.approved-preview .scooter-scene h2 {
+  line-height:1.17;
+  letter-spacing:-.02em;
+  text-wrap:balance;
+}
+.approved-preview .module-text h3 {
+  line-height:1.28;
+  text-wrap:balance;
+}
+.approved-preview .module-text > p,
+.approved-preview .module-task,
+.approved-preview .module-program {
+  line-height:1.85;
+}
+.approved-preview .learning li {
+  line-height:1.7;
+}
+@media(max-width:700px) {
+ .approved-preview .hero-content > p {font-size:17px;line-height:1.75}
+ .approved-preview .section-heading > p {font-size:16px;line-height:1.75}
+}
+
+/* Equalize the two launch-button baselines without changing text or art.
+   Grid cards stretch to the same row height, their main areas fill the row,
+   and both absolutely-bottom-aligned CTAs share a baseline. */
+@media (min-width:701px) {
+  .approved-preview .module-grid > .module-card {
+    display:flex;
+    flex-direction:column;
+  }
+  .approved-preview .module-grid > .module-card > .module-main {
+    flex:1 0 auto;
+  }
+  .approved-preview .module-grid > .module-card > .module-program {
+    flex:0 0 auto;
+  }
+}

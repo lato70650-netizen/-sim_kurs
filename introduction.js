@@ -93,10 +93,10 @@
   const next = document.getElementById('next-question');
   function renderQuestion(focus = false) {
     const q = data.quiz[current];
-    document.getElementById('question-position').textContent = `Пример ${current + 1} из ${data.quiz.length}`;
+    document.getElementById('question-position').textContent = `Вопрос ${current + 1} из ${data.quiz.length}`;
     const heading = document.getElementById('question-text'); heading.textContent = q.text.replace(/\.$/, '');
     const picture = document.getElementById('question-image');
-    picture.className = `quiz-image ${q.imageSet === 'regular' ? 'quiz-regular' : 'quiz-sim'} quiz-photo-${q.imageIndex}`;
+    picture.querySelector('img').src = `assets/quiz-cards/${q.image}.webp`;
     picture.setAttribute('aria-label', q.text);
     const progress = document.getElementById('quiz-progress');
     progress.setAttribute('aria-valuenow', String(current));
@@ -114,7 +114,10 @@
     answers.forEach(b => { b.classList.remove('answer-correct', 'answer-wrong'); b.setAttribute('aria-pressed', String(b === button)); });
     button.classList.add(correct ? 'answer-correct' : 'answer-wrong');
     if (!correct) reviewLessons.add(q.reviewLesson);
-    feedback.textContent = correct ? `Верно. ${q.explanation}` : `Попробуйте ещё раз. ${q.explanation}`;
+    const status = document.createElement('span');
+    status.className = 'quiz-feedback-status';
+    status.textContent = correct ? 'Верно.' : 'Попробуйте ещё раз.';
+    feedback.replaceChildren(status, ` ${q.explanation}`);
     if (correct) { const progress = document.getElementById('quiz-progress'); progress.setAttribute('aria-valuenow', String(current + 1)); progress.setAttribute('aria-valuetext', `Разобрано ${current + 1} из ${data.quiz.length}`); progress.children[current].className = 'is-done'; }
     if (correct) { answers.forEach(b => { b.disabled = true; }); next.hidden = false; }
   }));

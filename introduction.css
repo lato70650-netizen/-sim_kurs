@@ -91,7 +91,7 @@
 .quiz-progress .is-current{background:#f1a36d}.quiz-progress .is-done{background:#087467}
 .quiz-question-layout{display:grid;grid-template-columns:minmax(260px,.9fr) minmax(0,1.1fr);gap:35px;align-items:center}
 .quiz-image{width:100%;aspect-ratio:1;border-radius:12px;background-size:300% 200%;background-repeat:no-repeat;background-color:#c5dfc9}
-.quiz-sim{background-image:url('assets/lesson-scenes.png')}.quiz-regular{background-image:url('assets/quiz-transport.png')}
+.quiz-sim{background-image:url('assets/lesson-scenes.png')}.quiz-regular{background-image:url('assets/quiz-transport-studio.webp')}
 .quiz-photo-0{background-position:0 0}.quiz-photo-1{background-position:50% 0}.quiz-photo-2{background-position:100% 0}.quiz-photo-3{background-position:0 100%}.quiz-photo-4{background-position:50% 100%}
 #question-text{font-size:30px;line-height:1.25;margin-bottom:20px;letter-spacing:-.025em}
 .quiz-task-title{font-size:16px;font-weight:500;line-height:1.7;letter-spacing:0;margin:0}
