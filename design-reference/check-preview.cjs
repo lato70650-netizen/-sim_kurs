@@ -31,11 +31,13 @@ const out = process.env.PREVIEW_OUT || 'design-reference/screenshots';
       const r=el.getBoundingClientRect();
       return {top:r.top,bottom:r.bottom,height:r.height};
     }));
-    assert.equal(launch.length,2,'two landing module launch CTAs');
+    assert.equal(launch.length,3,'three landing module launch CTAs');
     if(width>=701){
       assert.ok(Math.abs(launch[0].top-launch[1].top)<=2,'landing launch buttons share a top baseline at '+width+': '+JSON.stringify(launch));
       assert.ok(Math.abs(launch[0].bottom-launch[1].bottom)<=2,'landing launch buttons share bottom baseline at '+width);
     }
+    await page.locator('#practice .module-entry').click();
+    assert.equal(await page.locator('#yard h1').innerText(),'По тротуару мимо двора');
     await page.goto(root+'preview-homepage.html',{waitUntil:'load'});
 
 
