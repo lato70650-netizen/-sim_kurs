@@ -356,22 +356,82 @@ body:has(#signal:not([hidden])) header {
     box-shadow: var(--practice-artwork-glow);
   }
 }
+.scene-context p {
+  margin: 7px 0;
+}
+.scene-context p:last-child {
+  margin-bottom: 12px;
+}
+.scene-prompt {
+  color: #f5f8fc;
+  font-weight: 700;
+}
+.feedback p {
+  margin: 0;
+}
+.feedback p + p {
+  margin-top: 6px;
+}
+@media (max-width: 700px) {
+  main > section:not(#finish) h1 {
+    line-height: 1.12;
+    text-wrap: balance;
+  }
+  main > section:not(#finish) h2 {
+    line-height: 1.23;
+    text-wrap: balance;
+  }
+  .scene-context p, .cross-copy p, .signal-copy p, .feedback p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  .scene-context p + p {
+    margin-top: 10px;
+  }
+  .crossing-context {
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr);
+    align-items: start;
+    gap: 9px 12px;
+    margin-bottom: 10px;
+  }
+  .crossing-context .cross-sign,
+  .crossing-context p {
+    margin: 0;
+  }
+  .signal-copy p + p,
+  .feedback p + p {
+    margin-top: 9px;
+  }
+  .choices {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  :is(.choices, .lines) button {
+    font-size: 1rem;
+    line-height: 1.4;
+    padding: 11px 14px;
+  }
+  .finish-copy p:not(.finish-achievement) {
+    text-wrap: pretty;
+  }
+}
 </style><link rel="stylesheet" href="module-one-touch.css">
 <script defer src="module-one-v2.js?v=practice-glow-1"></script>
 </head><body>
 <header><b>СИМ / Практика</b><a href="rules">К урокам ↗</a></header><main>
 <div class="steps" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
 <section id="start"><small>До секции · Сцена 1 из 6</small><h1 tabindex="-1">Перед выходом</h1><p>Ты собираешься на тренировку и готовишь самокат к поездке.</p><div class="cross-layout"><figure class="cross-frame" data-practice-artwork><img class="cross-photo" src="assets/rules-brake.webp" alt="Перед поездкой проверяют электросамокат"></figure><div class="cross-copy"><h2>Что стоит сделать перед поездкой?</h2><div class="lines" id="start-answers"></div></div></div></section>
-<section id="yard" hidden><small>До секции · Сцена 2 из 6</small><h1 tabindex="-1">По тротуару мимо двора</h1><p>Ты подъезжаешь к арке справа. Сейчас перед тобой свободно, но из-за фургона не видно, что во дворе. Как ты поступишь?</p>
+<section id="yard" hidden><small>До секции · Сцена 2 из 6</small><h1 tabindex="-1">По тротуару мимо двора</h1><div class="scene-context"><p>Ты подъезжаешь к арке справа. Сейчас перед тобой свободно, но <strong>из-за фургона не видно, что во дворе.</strong></p><p class="scene-prompt">Как ты поступишь?</p></div>
 <figure data-practice-artwork><svg id="street" class="canvas" viewBox="0 0 760 507" role="group" aria-label="Вид с самоката вдоль тротуара. Справа арка и фургон сбоку от неё. Полоса тёмной плитки ведёт от арки через тротуар к улице. Витрина дальше по пути.">
 <image href="assets/practice-yard-rider.webp" width="760" height="507" y="0" preserveAspectRatio="none"/>
 <defs><clipPath id="clear-driveway"><path d="M0 0H568V105L561 131 552 152 551 177 541 188 532 216 528 250 531 282 544 302H0Z"/></clipPath></defs>
 <g clip-path="url(#clear-driveway)" aria-hidden="true"><g id="exit-car"><ellipse cx="96" cy="91" rx="90" ry="5" fill="#172029" opacity=".32"/><image href="assets/practice-exit-car.webp" width="190" height="95"/></g></g>
 </svg></figure><div class="choices" id="places"></div></section>
-<section id="crossing" hidden><small>До секции · Сцена 3 из 6</small><h1 tabindex="-1">Друг уже на той стороне</h1><div class="cross-layout"><figure class="cross-frame" data-practice-artwork><img class="cross-photo" src="assets/rules-crossing.webp" alt="Подросток с самокатом у края тротуара перед зеброй" width="500" height="500"></figure><div class="cross-copy"><img class="cross-sign" src="assets/rules-signs/5.19.1.svg" alt="Знак пешеходного перехода" width="66" height="66"><p>Впереди зебра и вот такой знак. Светофора нет. Друг перешёл дорогу и машет тебе рукой.</p><h2>Как доберёшься до друга?</h2><div class="lines" id="cross-answers"></div></div></div></section>
-<section id="signal" hidden><small>До секции · Сцена 4 из 6</small><h1 tabindex="-1">Можно ли перейти дорогу?</h1><div class="signal-layout"><figure class="signal-scene" data-practice-artwork><img src="assets/practice-traffic-crossing.webp" width="1440" height="810" alt="У дальнего конца зебры горит красный пешеходный сигнал. На дороге две машины движутся в разных направлениях. Рядом стоит самокат."></figure><div class="signal-copy"><p>Вы дошли до следующего перекрёстка. Ты ведёшь самокат рядом. По дороге едут машины.</p><p>Друг спрашивает: «А нам уже можно?»</p><h2>Что ответишь другу?</h2><div class="lines" id="signal-answers"></div><div id="signal-actions"></div></div></div></section>
-<section id="friend" hidden><small>До секции · Сцена 5 из 6</small><h1 tabindex="-1">«Подвези до входа»</h1><p>После перекрёстка вы с другом уже видите спортцентр. До тренировки две минуты. Твой самокат рассчитан на одного.</p><figure class="dialog" data-practice-artwork><span class="speaker">Друг</span><blockquote>«Подвезёшь меня до входа? А то пешком я к началу не успею»</blockquote></figure><h2>Что ответишь?</h2><div id="replies" class="lines"></div></section>
-<section id="parking" hidden><small>До секции · Сцена 6 из 6</small><h1 tabindex="-1">Где оставить самокат?</h1><p>Ты у спортцентра. Перед тренировкой осталось припарковать самокат. Выбери место на картинке.</p>
+<section id="crossing" hidden><small>До секции · Сцена 3 из 6</small><h1 tabindex="-1">Друг уже на той стороне</h1><div class="cross-layout"><figure class="cross-frame" data-practice-artwork><img class="cross-photo" src="assets/rules-crossing.webp" alt="Подросток с самокатом у края тротуара перед зеброй" width="500" height="500"></figure><div class="cross-copy"><div class="crossing-context"><img class="cross-sign" src="assets/rules-signs/5.19.1.svg" alt="Знак пешеходного перехода" width="66" height="66"><p>Впереди зебра и вот такой знак. <strong>Светофора нет.</strong></p></div><p>Друг перешёл дорогу и машет тебе рукой.</p><h2>Как доберёшься до друга?</h2><div class="lines" id="cross-answers"></div></div></div></section>
+<section id="signal" hidden><small>До секции · Сцена 4 из 6</small><h1 tabindex="-1">Можно ли перейти дорогу?</h1><div class="signal-layout"><figure class="signal-scene" data-practice-artwork><img src="assets/practice-traffic-crossing.webp" width="1440" height="810" alt="У дальнего конца зебры горит красный пешеходный сигнал. На дороге две машины движутся в разных направлениях. Рядом стоит самокат."></figure><div class="signal-copy"><p>Вы дошли до следующего перекрёстка. <strong>Ты ведёшь самокат рядом.</strong> По дороге едут машины.</p><p>Друг спрашивает: «А нам уже можно?»</p><h2>Что ответишь другу?</h2><div class="lines" id="signal-answers"></div><div id="signal-actions"></div></div></div></section>
+<section id="friend" hidden><small>До секции · Сцена 5 из 6</small><h1 tabindex="-1">«Подвези до входа»</h1><div class="scene-context"><p>После перекрёстка вы с другом уже видите спортцентр. До тренировки две минуты.</p><p><strong>Твой самокат рассчитан на одного.</strong></p></div><figure class="dialog" data-practice-artwork><span class="speaker">Друг</span><blockquote>«Подвезёшь меня до входа? А то пешком я к началу не успею»</blockquote></figure><h2>Что ответишь?</h2><div id="replies" class="lines"></div></section>
+<section id="parking" hidden><small>До секции · Сцена 6 из 6</small><h1 tabindex="-1">Где оставить самокат?</h1><div class="scene-context"><p>Ты у спортцентра. Перед тренировкой осталось припарковать самокат.</p><p class="scene-prompt">Выбери место на картинке.</p></div>
 <figure id="parking-map" data-practice-artwork>
 <img class="parking-unlit" src="assets/practice-parking-unlit.webp" alt="Вход в спортцентр. Слева стеклянные двери, посередине пандус, справа площадка со стойками и велосипедом." width="1100" height="733">
 <img class="parking-lit" src="assets/practice-parking.webp" alt="" width="1100" height="733">
@@ -384,7 +444,7 @@ body:has(#signal:not([hidden])) header {
       <span class="finish-check" aria-hidden="true"></span>
       <h1 tabindex="-1">Поздравляем, маршрут пройден!</h1>
       <p class="finish-achievement">Твоё достижение — <strong>«Знаток маршрута»</strong></p>
-      <p>На следующей прогулке попробуй заметить два дорожных знака и объяснить, что каждый из них меняет для твоего маршрута.</p>
+      <p>На следующей прогулке попробуй заметить <strong>два дорожных знака</strong> и объяснить, что каждый из них меняет для твоего маршрута.</p>
       <div class="finish-actions">
         <a class="finish-home" href="./#practice">К курсу</a>
         <button id="restart" type="button">Пройти ещё раз</button>
@@ -410,12 +470,12 @@ const places = ['Пока свободно, проеду как еду.','Сба
 const crossingAnswers = ['Проеду по зебре медленно, со скоростью шага.','Раз друг махнул, можно сразу идти за ним, ведя самокат.','Сойду с самоката, посмотрю по сторонам и, когда будет безопасно, перейду пешком.'];
 const replies = ['«Давай. Только до поворота, дальше пешком».','«Давай я тренера предупрежу, что ты уже рядом. Я бы тебя подвёз, но самокат рассчитан на одного».','«Ладно, вставай. Поедем медленно».'];
 const notes = [
- ['Отлично! Шлем помогает защитить голову, а световозвращающие элементы делают тебя заметнее. В городе в темноте они рекомендованы, вне населённых пунктов обязательны. Фонарь на движущемся самокате в темноте должен быть включён. Проверь и тормоз.','Яркая одежда полезна, но сама по себе не заменяет защитную экипировку и световозвращающие элементы. Шлем и световозвращающие элементы помогут защитить себя и стать заметнее.','Одного заряда недостаточно. Подумай о защите головы, заметности и проверке самоката.'],
- ['Перед тобой свободно, но видно ли, что происходит за фургоном? Попробуй ещё раз.','Из-за фургона показалась передняя часть машины. Ты заранее сбавил скорость и можешь остановиться до её пути.'],
- ['Этот знак обозначает пешеходный переход. Даже на малой скорости пересекать его верхом на самокате нельзя. Как перейти пешком?','Друг мог перейти, пока дорога была свободна. Посмотри сам: успеешь ли ты безопасно перейти с учётом скорости и расстояния до машин?','Ты сам проверил дорогу и перешёл по зебре, ведя самокат рядом. Именно здесь знак обозначает место для перехода пешком.'],
- ['Верно. Когда есть пешеходный светофор, смотри на фигурку человека. Сейчас она красная. Когда загорится зелёная, проверь дорогу и переходи пешком.','Смотри на светофор с фигуркой человека. Какой сигнал сейчас горит для вас?','Даже если дорога кажется пустой, красная фигурка означает, что переходить нельзя. Какого сигнала дождёшься?'],
+ ['Отлично! Шлем помогает защитить голову, а световозвращающие элементы делают тебя заметнее.\nВ городе в темноте они рекомендованы, вне населённых пунктов обязательны.\nФонарь на движущемся самокате в темноте должен быть включён. Проверь и тормоз.','Яркая одежда полезна, но сама по себе не заменяет защитную экипировку и световозвращающие элементы. Шлем и световозвращающие элементы помогут защитить себя и стать заметнее.','Одного заряда недостаточно. Подумай о защите головы, заметности и проверке самоката.'],
+ ['Перед тобой свободно, но видно ли, что происходит за фургоном? Попробуй ещё раз.','Из-за фургона показалась передняя часть машины.\nТы заранее сбавил скорость и можешь остановиться до её пути.'],
+ ['Этот знак обозначает пешеходный переход.\nДаже на малой скорости пересекать его верхом на самокате нельзя. Как перейти пешком?','Друг мог перейти, пока дорога была свободна.\nПосмотри сам: успеешь ли ты безопасно перейти с учётом скорости и расстояния до машин?','Ты сам проверил дорогу и перешёл по зебре, ведя самокат рядом.\nИменно здесь знак обозначает место для перехода пешком.'],
+ ['Верно. Когда есть пешеходный светофор, смотри на фигурку человека. Сейчас она красная.\nКогда загорится зелёная, проверь дорогу и переходи пешком.','Смотри на светофор с фигуркой человека. Какой сигнал сейчас горит для вас?','Даже если дорога кажется пустой, красная фигурка означает, что переходить нельзя. Какого сигнала дождёшься?'],
  ['Даже на коротком отрезке вас на одноместном самокате окажется двое. Как ещё можно помочь другу, если он опаздывает?','Друг кивает: «Спасибо! Скажи, что я уже иду». Ты едешь к спортцентру.','Малая скорость не добавляет пассажирского места. Что можно предложить другу?'],
- ['У дверей самокат окажется прямо на пути у тех, кто входит и выходит. Где он сможет остаться на всю тренировку?','Если прислонить самокат к перилам, его руль выступит на пандус. Где можно припарковаться, чтобы проход остался свободным?','Ты оставляешь самокат у стойки. Двери и пандус свободны. Теперь можно зайти и предупредить тренера, что друг уже рядом.']
+ ['У дверей самокат окажется прямо на пути у тех, кто входит и выходит. Где он сможет остаться на всю тренировку?','Если прислонить самокат к перилам, его руль выступит на пандус.\nГде можно припарковаться, чтобы проход остался свободным?','Ты оставляешь самокат у стойки. Двери и пандус свободны.\nТеперь можно зайти и предупредить тренера, что друг уже рядом.']
 ];
 let stage=0, solved=false, hinted=[false,false,false,false,false,false];
 const stages=['start','yard','crossing','signal','friend','parking','finish'];
@@ -423,7 +483,19 @@ const groups=['start-answers','places','cross-answers','signal-answers','replies
 const correct=[0,1,2,0,1,2];
 async function selectAnswer(i){
  if(solved || stage>=correct.length) return;
- el('feedback').textContent=notes[stage][i];
+ const feedbackLines = notes[stage][i].split('\n');
+ const paragraphs = feedbackLines.map((text, index) => {
+  const paragraph = document.createElement('p');
+  if(index === 0 && feedbackLines.length > 1){
+   const lead = document.createElement('strong');
+   lead.textContent = text;
+   paragraph.append(lead);
+  }else{
+   paragraph.textContent = text;
+  }
+  return paragraph;
+ });
+ el('feedback').replaceChildren(...paragraphs);
  if(i!==correct[stage]){hinted[stage]=true;return}
  solved=true;
  const group=el(groups[stage]);
