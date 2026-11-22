@@ -167,7 +167,7 @@ body:has(#signal:not([hidden])) header {
   max-width: 205px;
   height: auto;
   justify-self: center;
-  mask-image: radial-gradient(ellipse 67% 68% at center, #000 55%, transparent 74%);
+  filter: drop-shadow(0 12px 16px rgb(0 0 0 / 30%));
 }
 @media (max-width: 620px) {
   .finish-card {
@@ -362,7 +362,7 @@ body:has(#signal:not([hidden])) header {
         <button id="restart" type="button">Пройти ещё раз</button>
       </div>
     </div>
-    <img class="finish-trophy" src="assets/practice-finish-trophy.webp" alt="" width="864" height="864">
+    <img class="finish-trophy" src="prototype/assets/card-trophy.webp" alt="" width="1301" height="1209">
   </div>
   <details class="finish-review" id="finish-review">
     <summary>Разбор ответов</summary>
