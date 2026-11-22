@@ -121,9 +121,13 @@ body:has(#signal:not([hidden])) header {
   margin: clamp(20px, 5svh, 56px) auto 0;
 }
 .finish-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(140px, 22vw, 205px);
+  align-items: center;
+  gap: 16px;
   padding: clamp(22px, 4vw, 40px);
-  background: linear-gradient(135deg, #594021 0%, #392c24 52%, #202a35 100%);
-  border: 1px solid #b68c52;
+  background: linear-gradient(135deg, #19443e 0%, #15323b 52%, #101f2c 100%);
+  border: 1px solid #c6a46a;
   border-radius: 16px;
   box-shadow: 0 16px 36px rgb(0 0 0 / 26%);
 }
@@ -147,15 +151,33 @@ body:has(#signal:not([hidden])) header {
 }
 .finish-card h1 {
   margin: 0;
-  font-size: clamp(32px, 4.4vw, 50px);
+  font-size: clamp(32px, 4.2vw, 48px);
   letter-spacing: -.04em;
   text-wrap: balance;
-  color: #fff4dc;
+  color: #f7fbfb;
 }
 .finish-card p {
   max-width: 48ch;
   margin: 14px 0 22px;
-  color: #f0e2cc;
+  color: #daeaf0;
+}
+.finish-trophy {
+  display: block;
+  width: 100%;
+  max-width: 205px;
+  height: auto;
+  justify-self: center;
+  mask-image: radial-gradient(ellipse 67% 68% at center, #000 55%, transparent 74%);
+}
+@media (max-width: 620px) {
+  .finish-card {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+  .finish-trophy {
+    grid-row: 1;
+    width: 136px;
+  }
 }
 .finish-actions {
   display: flex;
@@ -168,16 +190,16 @@ body:has(#signal:not([hidden])) header {
   align-items: center;
   min-height: 48px;
   padding: 10px 16px;
-  border: 1px solid #b68c52;
+  border: 1px solid #c6a46a;
   border-radius: 12px;
 }
 .finish-actions button {
-  background: #302923;
-  color: #fff4dc;
+  background: #172f39;
+  color: #f7fbfb;
 }
 .finish-actions button:hover {
   border-color: #f4ce80;
-  background: #433426;
+  background: #23414a;
   box-shadow: none;
 }
 .finish-home {
@@ -331,13 +353,16 @@ body:has(#signal:not([hidden])) header {
 <button type="button" style="left:80%;top:59%">У стойки</button></figure></section>
 <section id="finish" hidden>
   <div class="finish-card">
-    <span class="finish-check" aria-hidden="true"></span>
-    <h1 tabindex="-1">Поздравляем, маршрут пройден!</h1>
-    <p>Теперь ты знаешь, как подготовиться к поездке и безопаснее ездить на самокате.</p>
-    <div class="finish-actions">
-      <a class="finish-home" href="./#practice">К курсу</a>
-      <button id="restart" type="button">Пройти ещё раз</button>
+    <div class="finish-copy">
+      <span class="finish-check" aria-hidden="true"></span>
+      <h1 tabindex="-1">Поздравляем, маршрут пройден!</h1>
+      <p>Теперь ты знаешь, как подготовиться к поездке и безопаснее ездить на самокате.</p>
+      <div class="finish-actions">
+        <a class="finish-home" href="./#practice">К курсу</a>
+        <button id="restart" type="button">Пройти ещё раз</button>
+      </div>
     </div>
+    <img class="finish-trophy" src="assets/practice-finish-trophy.webp" alt="" width="864" height="864">
   </div>
   <details class="finish-review" id="finish-review">
     <summary>Разбор ответов</summary>
