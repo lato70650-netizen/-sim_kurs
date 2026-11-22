@@ -16,7 +16,7 @@
 (() => {
  'use strict';
  // A bounded light/tilt response on artwork only. Reading and controls stay still.
- const media = [...document.querySelectorAll('.rules-artwork, #quiz-panel .quiz-image, .m1-device-card .lesson-scene, .approved-lesson-preview[data-intro-page="overview"] .intro-cover-photo .m1-device-group, .approved-lesson-preview[data-intro-page="0"] .lesson-copy .reading-section:first-child .lesson-scene .m1-device-group, .approved-lesson-preview[data-intro-page="2"] .lesson-copy .reading-section:first-child .lesson-scene .m1-device-group')];
+ const media = [...document.querySelectorAll('[data-practice-artwork], .rules-artwork, #quiz-panel .quiz-image, .m1-device-card .lesson-scene, .approved-lesson-preview[data-intro-page="overview"] .intro-cover-photo .m1-device-group, .approved-lesson-preview[data-intro-page="0"] .lesson-copy .reading-section:first-child .lesson-scene .m1-device-group, .approved-lesson-preview[data-intro-page="2"] .lesson-copy .reading-section:first-child .lesson-scene .m1-device-group')];
  if (!media.length) return;
  const enabled = matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
  const resets = [];
@@ -60,6 +60,7 @@
 (() => {
  'use strict';
  const artworkSelector = [
+  '[data-practice-artwork]',
   '.rules-artwork',
   '#quiz-panel .quiz-image',
   '.m1-device-card > .lesson-scene',
@@ -104,7 +105,7 @@
    artwork.append(reflection);
    reflections.set(artwork, reflection);
   }
-  const frame = artwork.closest('.intro-cover-photo, .lesson-scene, .quiz-image');
+  const frame = artwork.closest('[data-practice-artwork], .intro-cover-photo, .lesson-scene, .quiz-image');
   touch = { id: event.pointerId, artwork, frame, reflection };
   moveTouch(event);
  }, { passive: true });

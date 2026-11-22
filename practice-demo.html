@@ -242,21 +242,72 @@ body:has(#signal:not([hidden])) header {
 #parking-map.reveal .parking-lit {
   opacity: 1;
 }
-</style></head><body>
+[data-practice-artwork] {
+  position: relative;
+  isolation: isolate;
+  touch-action: pan-y pinch-zoom;
+  transition: border-color 180ms ease-out, box-shadow 180ms ease-out;
+  --practice-artwork-glow: 0 0 0 1px rgb(172 255 131 / 40%),
+    0 0 19px 4px rgb(135 255 96 / 50%),
+    0 0 33px 7px rgb(44 239 202 / 24%);
+}
+[data-practice-artwork]:is(.is-holo-active, .is-touch-lit) {
+  border-color: #b4ff80;
+  box-shadow: var(--practice-artwork-glow);
+}
+[data-practice-artwork] > .touch-holo-reflection {
+  z-index: 1;
+}
+#parking-map[data-practice-artwork] button,
+.dialog[data-practice-artwork] > :is(.speaker, blockquote) {
+  z-index: 2;
+}
+.dialog[data-practice-artwork] > :is(.speaker, blockquote) {
+  position: relative;
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  [data-practice-artwork].m1-holo-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    background:
+      radial-gradient(ellipse at var(--holo-x, 50%) var(--holo-y, 50%),
+        rgb(255 255 255 / 26%), rgb(144 235 255 / 10%) 25%, transparent 62%),
+      linear-gradient(115deg, transparent 28%, rgb(255 255 255 / 8%) 47%, transparent 65%);
+    mask-image: radial-gradient(ellipse closest-side, #000 20%, transparent 100%);
+    transition: opacity 220ms ease-out;
+  }
+  [data-practice-artwork].is-holo-active::after {
+    opacity: .72;
+  }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: reduce) {
+  [data-practice-artwork]:hover {
+    border-color: #b4ff80;
+    box-shadow: var(--practice-artwork-glow);
+  }
+}
+</style><link rel="stylesheet" href="module-one-touch.css">
+<script defer src="module-one-v2.js?v=practice-glow-1"></script>
+</head><body>
 <header><b>СИМ / Практика</b><a href="rules">К урокам ↗</a></header><main>
 <div class="steps" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
-<section id="start"><small>До секции · Сцена 1 из 6</small><h1 tabindex="-1">Перед выходом</h1><p>Ты собираешься на тренировку и готовишь самокат к поездке.</p><div class="cross-layout"><figure class="cross-frame"><img class="cross-photo" src="assets/rules-brake.webp" alt="Перед поездкой проверяют электросамокат"></figure><div class="cross-copy"><h2>Что стоит сделать перед поездкой?</h2><div class="lines" id="start-answers"></div></div></div></section>
+<section id="start"><small>До секции · Сцена 1 из 6</small><h1 tabindex="-1">Перед выходом</h1><p>Ты собираешься на тренировку и готовишь самокат к поездке.</p><div class="cross-layout"><figure class="cross-frame" data-practice-artwork><img class="cross-photo" src="assets/rules-brake.webp" alt="Перед поездкой проверяют электросамокат"></figure><div class="cross-copy"><h2>Что стоит сделать перед поездкой?</h2><div class="lines" id="start-answers"></div></div></div></section>
 <section id="yard" hidden><small>До секции · Сцена 2 из 6</small><h1 tabindex="-1">По тротуару мимо двора</h1><p>Ты подъезжаешь к арке справа. Сейчас перед тобой свободно, но из-за фургона не видно, что во дворе. Как ты поступишь?</p>
-<figure><svg id="street" class="canvas" viewBox="0 0 760 507" role="group" aria-label="Вид с самоката вдоль тротуара. Справа арка и фургон сбоку от неё. Полоса тёмной плитки ведёт от арки через тротуар к улице. Витрина дальше по пути.">
+<figure data-practice-artwork><svg id="street" class="canvas" viewBox="0 0 760 507" role="group" aria-label="Вид с самоката вдоль тротуара. Справа арка и фургон сбоку от неё. Полоса тёмной плитки ведёт от арки через тротуар к улице. Витрина дальше по пути.">
 <image href="assets/practice-yard-rider.webp" width="760" height="507" y="0" preserveAspectRatio="none"/>
 <defs><clipPath id="clear-driveway"><path d="M0 0H568V105L561 131 552 152 551 177 541 188 532 216 528 250 531 282 544 302H0Z"/></clipPath></defs>
 <g clip-path="url(#clear-driveway)" aria-hidden="true"><g id="exit-car"><ellipse cx="96" cy="91" rx="90" ry="5" fill="#172029" opacity=".32"/><image href="assets/practice-exit-car.webp" width="190" height="95"/></g></g>
 </svg></figure><div class="choices" id="places"></div></section>
-<section id="crossing" hidden><small>До секции · Сцена 3 из 6</small><h1 tabindex="-1">Друг уже на той стороне</h1><div class="cross-layout"><figure class="cross-frame"><img class="cross-photo" src="assets/rules-crossing.webp" alt="Подросток с самокатом у края тротуара перед зеброй" width="500" height="500"></figure><div class="cross-copy"><img class="cross-sign" src="assets/rules-signs/5.19.1.svg" alt="Знак пешеходного перехода" width="66" height="66"><p>Впереди зебра и вот такой знак. Светофора нет. Друг перешёл дорогу и машет тебе рукой.</p><h2>Как доберёшься до друга?</h2><div class="lines" id="cross-answers"></div></div></div></section>
-<section id="signal" hidden><small>До секции · Сцена 4 из 6</small><h1 tabindex="-1">Можно ли перейти дорогу?</h1><div class="signal-layout"><figure class="signal-scene"><img src="assets/practice-traffic-crossing.webp" width="1440" height="810" alt="У дальнего конца зебры горит красный пешеходный сигнал. На дороге две машины движутся в разных направлениях. Рядом стоит самокат."></figure><div class="signal-copy"><p>Вы дошли до следующего перекрёстка. Ты ведёшь самокат рядом. По дороге едут машины.</p><p>Друг спрашивает: «А нам уже можно?»</p><h2>Что ответишь другу?</h2><div class="lines" id="signal-answers"></div><div id="signal-actions"></div></div></div></section>
-<section id="friend" hidden><small>До секции · Сцена 5 из 6</small><h1 tabindex="-1">«Подвези до входа»</h1><p>После перекрёстка вы с другом уже видите спортцентр. До тренировки две минуты. Твой самокат рассчитан на одного.</p><figure class="dialog"><span class="speaker">Друг</span><blockquote>«Подвезёшь меня до входа? А то пешком я к началу не успею»</blockquote></figure><h2>Что ответишь?</h2><div id="replies" class="lines"></div></section>
+<section id="crossing" hidden><small>До секции · Сцена 3 из 6</small><h1 tabindex="-1">Друг уже на той стороне</h1><div class="cross-layout"><figure class="cross-frame" data-practice-artwork><img class="cross-photo" src="assets/rules-crossing.webp" alt="Подросток с самокатом у края тротуара перед зеброй" width="500" height="500"></figure><div class="cross-copy"><img class="cross-sign" src="assets/rules-signs/5.19.1.svg" alt="Знак пешеходного перехода" width="66" height="66"><p>Впереди зебра и вот такой знак. Светофора нет. Друг перешёл дорогу и машет тебе рукой.</p><h2>Как доберёшься до друга?</h2><div class="lines" id="cross-answers"></div></div></div></section>
+<section id="signal" hidden><small>До секции · Сцена 4 из 6</small><h1 tabindex="-1">Можно ли перейти дорогу?</h1><div class="signal-layout"><figure class="signal-scene" data-practice-artwork><img src="assets/practice-traffic-crossing.webp" width="1440" height="810" alt="У дальнего конца зебры горит красный пешеходный сигнал. На дороге две машины движутся в разных направлениях. Рядом стоит самокат."></figure><div class="signal-copy"><p>Вы дошли до следующего перекрёстка. Ты ведёшь самокат рядом. По дороге едут машины.</p><p>Друг спрашивает: «А нам уже можно?»</p><h2>Что ответишь другу?</h2><div class="lines" id="signal-answers"></div><div id="signal-actions"></div></div></div></section>
+<section id="friend" hidden><small>До секции · Сцена 5 из 6</small><h1 tabindex="-1">«Подвези до входа»</h1><p>После перекрёстка вы с другом уже видите спортцентр. До тренировки две минуты. Твой самокат рассчитан на одного.</p><figure class="dialog" data-practice-artwork><span class="speaker">Друг</span><blockquote>«Подвезёшь меня до входа? А то пешком я к началу не успею»</blockquote></figure><h2>Что ответишь?</h2><div id="replies" class="lines"></div></section>
 <section id="parking" hidden><small>До секции · Сцена 6 из 6</small><h1 tabindex="-1">Где оставить самокат?</h1><p>Ты у спортцентра. Перед тренировкой осталось припарковать самокат. Выбери место на картинке.</p>
-<figure id="parking-map">
+<figure id="parking-map" data-practice-artwork>
 <img class="parking-unlit" src="assets/practice-parking-unlit.webp" alt="Вход в спортцентр. Слева стеклянные двери, посередине пандус, справа площадка со стойками и велосипедом." width="1100" height="733">
 <img class="parking-lit" src="assets/practice-parking.webp" alt="" width="1100" height="733">
 <button type="button" style="left:18%;top:58%">У дверей</button>
