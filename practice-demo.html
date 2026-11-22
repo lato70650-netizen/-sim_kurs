@@ -229,6 +229,9 @@ body:has(#signal:not([hidden])) header {
   background: none;
   font-size: 16px;
 }
+#parking-map .parking-unlit {
+  filter: brightness(1.16);
+}
 #parking-map .parking-lit {
   position: absolute;
   inset: 0;
@@ -254,7 +257,7 @@ body:has(#signal:not([hidden])) header {
 <section id="friend" hidden><small>До секции · Сцена 5 из 6</small><h1 tabindex="-1">«Подвези до входа»</h1><p>После перекрёстка вы с другом уже видите спортцентр. До тренировки две минуты. Твой самокат рассчитан на одного.</p><figure class="dialog"><span class="speaker">Друг</span><blockquote>«Подвезёшь меня до входа? А то пешком я к началу не успею»</blockquote></figure><h2>Что ответишь?</h2><div id="replies" class="lines"></div></section>
 <section id="parking" hidden><small>До секции · Сцена 6 из 6</small><h1 tabindex="-1">Где оставить самокат?</h1><p>Ты у спортцентра. Перед тренировкой осталось припарковать самокат. Выбери место на картинке.</p>
 <figure id="parking-map">
-<img src="assets/practice-parking-unlit.webp" alt="Вход в спортцентр. Слева стеклянные двери, посередине пандус, справа площадка со стойками и велосипедом." width="1100" height="733">
+<img class="parking-unlit" src="assets/practice-parking-unlit.webp" alt="Вход в спортцентр. Слева стеклянные двери, посередине пандус, справа площадка со стойками и велосипедом." width="1100" height="733">
 <img class="parking-lit" src="assets/practice-parking.webp" alt="" width="1100" height="733">
 <button type="button" style="left:18%;top:58%">У дверей</button>
 <button type="button" style="left:49%;top:69%">У перил</button>
