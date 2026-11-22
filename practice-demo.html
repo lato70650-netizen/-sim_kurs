@@ -229,6 +229,16 @@ body:has(#signal:not([hidden])) header {
   background: none;
   font-size: 16px;
 }
+#parking-map .parking-lit {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 420ms ease-out;
+}
+#parking-map.reveal .parking-lit {
+  opacity: 1;
+}
 </style></head><body>
 <header><b>СИМ / Практика</b><a href="rules">К урокам ↗</a></header><main>
 <div class="steps" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
@@ -243,7 +253,9 @@ body:has(#signal:not([hidden])) header {
 <section id="signal" hidden><small>До секции · Сцена 4 из 6</small><h1 tabindex="-1">Можно ли перейти дорогу?</h1><div class="signal-layout"><figure class="signal-scene"><img src="assets/practice-traffic-crossing.webp" width="1440" height="810" alt="У дальнего конца зебры горит красный пешеходный сигнал. На дороге две машины движутся в разных направлениях. Рядом стоит самокат."></figure><div class="signal-copy"><p>Вы дошли до следующего перекрёстка. Ты ведёшь самокат рядом. По дороге едут машины.</p><p>Друг спрашивает: «А нам уже можно?»</p><h2>Что ответишь другу?</h2><div class="lines" id="signal-answers"></div><div id="signal-actions"></div></div></div></section>
 <section id="friend" hidden><small>До секции · Сцена 5 из 6</small><h1 tabindex="-1">«Подвези до входа»</h1><p>После перекрёстка вы с другом уже видите спортцентр. До тренировки две минуты. Твой самокат рассчитан на одного.</p><figure class="dialog"><span class="speaker">Друг</span><blockquote>«Подвезёшь меня до входа? А то пешком я к началу не успею»</blockquote></figure><h2>Что ответишь?</h2><div id="replies" class="lines"></div></section>
 <section id="parking" hidden><small>До секции · Сцена 6 из 6</small><h1 tabindex="-1">Где оставить самокат?</h1><p>Ты у спортцентра. Перед тренировкой осталось припарковать самокат. Выбери место на картинке.</p>
-<figure id="parking-map"><img src="assets/practice-parking.webp" alt="Вход в спортцентр. Слева стеклянные двери, посередине пандус, справа площадка со стойками и велосипедом." width="1100" height="733"/>
+<figure id="parking-map">
+<img src="assets/practice-parking-unlit.webp" alt="Вход в спортцентр. Слева стеклянные двери, посередине пандус, справа площадка со стойками и велосипедом." width="1100" height="733">
+<img class="parking-lit" src="assets/practice-parking.webp" alt="" width="1100" height="733">
 <button type="button" style="left:18%;top:58%">У дверей</button>
 <button type="button" style="left:49%;top:69%">У перил</button>
 <button type="button" style="left:80%;top:59%">У стойки</button></figure></section>
@@ -290,11 +302,16 @@ async function selectAnswer(i){
  const group=el(groups[stage]);
  [...group.querySelectorAll('button')].forEach((b,n)=>{b.disabled=true;b.classList.toggle('chosen',n===i)});
  const next = el('next');
- if(stage===1){
+ let reveal;
+ if(stages[stage]==='yard'){
   el('street').classList.add('reveal');
-  const [carAnimation] = el('exit-car').getAnimations();
-  if(carAnimation) await Promise.allSettled([carAnimation.finished]);
+  [reveal] = el('exit-car').getAnimations();
+ }else if(stages[stage]==='parking'){
+  const parking = el('parking-map');
+  parking.classList.add('reveal');
+  [reveal] = parking.querySelector('.parking-lit').getAnimations();
  }
+ if(reveal) await Promise.allSettled([reveal.finished]);
  next.hidden=false;next.textContent=['Дальше — в путь →','Дальше — к переходу →','Дальше — к светофору →','Дальше — к спортцентру →','Дальше — ко входу →','Посмотреть результат →'][stage];
 }
 function show(n){
@@ -310,5 +327,5 @@ function show(n){
 [startAnswers,places,crossingAnswers,signalAnswers,replies].forEach((list,s)=>list.forEach((t,i)=>{const b=document.createElement('button');b.textContent=t;b.onclick=()=>selectAnswer(i);el(groups[s]).append(b)}));
 el('parking-map').querySelectorAll('button').forEach((button,i)=>button.onclick=()=>selectAnswer(i));
 el('next').onclick=()=>show(stage+1);
-el('restart').onclick=()=>{hinted=[false,false,false,false,false];el('street').classList.remove('reveal');document.querySelectorAll('#start-answers button,#places button,#cross-answers button,#signal-answers button,#replies button,#parking-map button').forEach(b=>{b.disabled=false;b.classList.remove('chosen')});show(0)};
+el('restart').onclick=()=>{hinted=[false,false,false,false,false];el('street').classList.remove('reveal');el('parking-map').classList.remove('reveal');document.querySelectorAll('#start-answers button,#places button,#cross-answers button,#signal-answers button,#replies button,#parking-map button').forEach(b=>{b.disabled=false;b.classList.remove('chosen')});show(0)};
 </script></body></html>
