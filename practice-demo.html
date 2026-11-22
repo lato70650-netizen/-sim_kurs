@@ -17,11 +17,23 @@
 .cross-photo{display:block;width:100%;height:auto}
 .cross-sign{display:block}.cross-copy h2{margin:12px 0}.cross-copy p{margin:8px 0}
 @media(max-width:700px){.cross-layout{grid-template-columns:1fr;gap:12px}.cross-frame{max-width:min(100%,34svh)}.cross-sign{float:left;margin:0 12px 4px 0;width:48px;height:48px}.cross-copy h2{clear:both}}
+@media(min-width:701px){
+main:has(#start:not([hidden])){max-width:1200px;padding-block:12px}
+body:has(#start:not([hidden])) header{max-width:1200px;padding-block:12px}
+#start h1{margin:8px 0}
+#start .cross-layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;margin:10px 0}
+#start .cross-frame{max-width:min(100%, calc(100svh - 365px))}
+#start .cross-copy h2{font-size:clamp(22px,2.4vw,30px);margin:0 0 16px}
+#start .lines button{font-size:18px;padding:14px 17px}
+main:has(#start:not([hidden])) .feedback:not(:empty){margin-top:8px;padding:8px 14px}
+main:has(#start:not([hidden])) button.next{margin-top:8px}
+}
+@media(max-width:700px){#start .cross-frame{max-width:min(100%,36svh)}#start .cross-copy h2{margin:2px 0 10px}}
 .signals{display:flex;gap:32px;justify-content:center;padding:18px;background:#183044;border-radius:16px}.signals figure{margin:0;border:0;background:none;text-align:center}.signals svg{display:block;height:108px;margin:0 auto 6px}.signals figcaption{font-size:15px}
 </style></head><body>
 <header><b>СИМ / Практика</b><a href="rules">К урокам ↗</a></header><main>
 <div class="steps" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
-<section id="start"><small>До секции · Сцена 1 из 6</small><h1 tabindex="-1">Перед выходом</h1><p>Вечером ты собираешься на тренировку. Как подготовиться к поездке по городу?</p><div class="cross-layout"><figure class="cross-frame"><img class="cross-photo" src="assets/rules-brake.webp" alt="Перед поездкой проверяют электросамокат"></figure><div class="cross-copy"><h2>Что выберешь?</h2><div class="lines" id="start-answers"></div></div></div></section>
+<section id="start"><small>До секции · Сцена 1 из 6</small><h1 tabindex="-1">Перед выходом</h1><p>Ты собираешься на тренировку и готовишь самокат к поездке.</p><div class="cross-layout"><figure class="cross-frame"><img class="cross-photo" src="assets/rules-brake.webp" alt="Перед поездкой проверяют электросамокат"></figure><div class="cross-copy"><h2>Что стоит сделать перед поездкой?</h2><div class="lines" id="start-answers"></div></div></div></section>
 <section id="yard" hidden><small>До секции · Сцена 2 из 6</small><h1 tabindex="-1">По тротуару мимо двора</h1><p>Ты подъезжаешь к арке справа. Сейчас перед тобой свободно, но из-за фургона не видно, что во дворе. Как ты поступишь?</p>
 <figure><svg id="street" class="canvas" viewBox="0 0 760 507" role="group" aria-label="Вид с самоката вдоль тротуара. Справа арка и фургон сбоку от неё. Полоса тёмной плитки ведёт от арки через тротуар к улице. Витрина дальше по пути.">
 <image href="assets/practice-yard-rider.webp" width="760" height="507" y="0" preserveAspectRatio="none"/>
@@ -43,13 +55,13 @@
 <div class="feedback" role="status" aria-live="polite" id="feedback"></div><button id="next" class="next" hidden></button>
 </main><script>
 const el = id => document.getElementById(id);
-const startAnswers=['Надену шлем и световозвращающие элементы, проверю тормоз и включу фонарь.','Достаточно яркой куртки: шлем и фонарь не нужны.','Проверю заряд, а экипировку и фонарь оставлю дома.'];
+const startAnswers=['Надену шлем и световозвращающие элементы, проверю тормоз и работу фонаря.','Достаточно яркой куртки: шлем и фонарь не нужны.','Проверю заряд, а экипировку и фонарь оставлю дома.'];
 const signalAnswers=['«Подождём нашего зелёного. Потом посмотрим, безопасно ли идти».','«Машины поехали — значит, и нам зелёный».','«Вроде никого нет. Успеем перейти сейчас».'];
 const places = ['Пока свободно, проеду как еду.','Сбавлю скорость перед выездом и посмотрю вправо.'];
 const crossingAnswers = ['Проеду по зебре медленно, со скоростью шага.','Раз друг махнул, можно сразу идти за ним, ведя самокат.','Сойду с самоката, посмотрю по сторонам и, когда будет безопасно, перейду пешком.'];
 const replies = ['«Давай. Только до поворота, дальше пешком».','«Давай я тренера предупрежу, что ты уже рядом. Я бы тебя подвёз, но самокат рассчитан на одного».','«Ладно, вставай. Поедем медленно».'];
 const notes = [
- ['Отлично! Шлем помогает защитить голову, а световозвращающие элементы делают тебя заметнее. В городе в темноте они рекомендованы, вне населённых пунктов обязательны. Фонарь на движущемся самокате в темноте должен быть включён. Проверь и тормоз.','Яркая одежда полезна, но в темноте нужны включённые фары или фонари самоката. Шлем и световозвращающие элементы помогут защитить себя и стать заметнее.','Одного заряда недостаточно. Подумай о защите головы, заметности и фонаре в тёмное время суток.'],
+ ['Отлично! Шлем помогает защитить голову, а световозвращающие элементы делают тебя заметнее. В городе в темноте они рекомендованы, вне населённых пунктов обязательны. Фонарь на движущемся самокате в темноте должен быть включён. Проверь и тормоз.','Яркая одежда полезна, но сама по себе не заменяет защитную экипировку и световозвращающие элементы. Шлем и световозвращающие элементы помогут защитить себя и стать заметнее.','Одного заряда недостаточно. Подумай о защите головы, заметности и проверке самоката.'],
  ['Перед тобой свободно, но видно ли, что происходит за фургоном? Попробуй ещё раз.','Из-за фургона показалась передняя часть машины. Ты заранее сбавил скорость и можешь остановиться до её пути.'],
  ['Этот знак обозначает пешеходный переход. Даже на малой скорости пересекать его верхом на самокате нельзя. Как перейти пешком?','Друг мог перейти, пока дорога была свободна. Посмотри сам: успеешь ли ты безопасно перейти с учётом скорости и расстояния до машин?','Ты сам проверил дорогу и перешёл по зебре, ведя самокат рядом. Именно здесь знак обозначает место для перехода пешком.'],
  ['Верно. Когда есть пешеходный светофор, смотри на фигурку человека. Сейчас она красная. Когда загорится зелёная, проверь дорогу и переходи пешком.','Зелёный круг разрешает движение водителям. Какой сигнал сейчас горит для вас?','Даже если дорога кажется пустой, красная фигурка означает, что переходить нельзя. Какого сигнала дождёшься?'],
