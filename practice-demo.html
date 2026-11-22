@@ -29,14 +29,93 @@ main:has(#start:not([hidden])) .feedback:not(:empty){margin-top:8px;padding:8px 
 main:has(#start:not([hidden])) button.next{margin-top:8px}
 }
 @media(max-width:700px){#start .cross-frame{max-width:min(100%,36svh)}#start .cross-copy h2{margin:2px 0 10px}}
-.signals{display:flex;gap:32px;justify-content:center;padding:18px;background:#183044;border-radius:16px}.signals figure{margin:0;border:0;background:none;text-align:center}.signals svg{display:block;height:108px;margin:0 auto 6px}.signals figcaption{font-size:15px}
-main:has(#signal:not([hidden])){max-width:1250px;padding-block:12px}body:has(#signal:not([hidden])) header{max-width:1250px;padding-block:12px}
-#signal h1{margin:8px 0 12px} .signal-layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(340px,.9fr);align-items:center;gap:28px}
-.signal-scene{position:relative;margin:0;border:1px solid #527487;border-radius:16px;overflow:hidden;background:#122839}.signal-scene>img{display:block;width:100%;height:auto;max-height:52svh;object-fit:contain}
-.signal-overlay{position:absolute;top:14px;left:14px;display:flex;gap:10px}.signal-badge{display:flex;align-items:center;gap:8px;padding:8px 11px;background:#0b1c2def;border:1px solid #718e9f;border-radius:12px;box-shadow:0 8px 24px #0008;font-size:14px;line-height:1.35}.signal-badge svg{width:25px;height:56px;flex:none}.signal-badge b{color:#edf8fa}
-.signal-copy p{margin:0 0 12px}.signal-copy h2{font-size:clamp(22px,2.2vw,28px);margin:16px 0 12px}.signal-copy .lines button{font-size:17px}
-main:has(#signal:not([hidden])) .feedback:not(:empty){margin-top:10px}main:has(#signal:not([hidden])) button.next{margin-top:8px}
-@media(max-width:700px){.signal-layout{grid-template-columns:1fr;gap:14px}.signal-scene>img{height:auto;max-height:36svh;object-fit:contain}.signal-badge{font-size:12px;padding:5px 8px}.signal-badge svg{width:20px;height:44px}.signal-overlay{top:10px;left:10px;gap:7px}.signal-copy h2{margin:10px 0}.signal-copy p{margin-bottom:7px}}
+main:has(#signal:not([hidden])),
+body:has(#signal:not([hidden])) header {
+  max-width: 1760px;
+  padding-block: 12px;
+}
+#signal h1 {
+  margin: 8px 0 clamp(12px, 2svh, 20px);
+}
+.signal-layout {
+  display: grid;
+  grid-template-columns: min(67%, calc((100svh - 174px) * 16 / 9)) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(18px, 2.4vw, 38px);
+}
+.signal-scene {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid #527487;
+  border-radius: 16px;
+  background: #122839;
+}
+.signal-scene img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.signal-copy p {
+  margin: 0 0 10px;
+}
+.signal-copy h2 {
+  font-size: clamp(22px, 2.1vw, 30px);
+  line-height: 1.2;
+  margin: 16px 0 12px;
+}
+.signal-copy .lines button {
+  font-size: clamp(16px, 1.3vw, 19px);
+}
+#signal-actions .feedback:not(:empty) {
+  margin-top: 10px;
+}
+#signal-actions .next {
+  margin-top: 8px;
+}
+@media (min-width: 761px) and (max-width: 1170px) {
+  .signal-layout {
+    grid-template-columns: min(58%, calc((100svh - 174px) * 16 / 9)) minmax(0, 1fr);
+  }
+}
+@media (max-height: 760px), (max-width: 760px) {
+  main:has(#signal:not([hidden])) .steps {
+    margin-bottom: 8px;
+  }
+  #signal h1 {
+    font-size: clamp(30px, 4.7vw, 44px);
+    margin: 5px 0 12px;
+  }
+  .signal-copy {
+    font-size: 16px;
+    line-height: 1.35;
+  }
+  .signal-copy p {
+    margin-bottom: 6px;
+  }
+  .signal-copy h2 {
+    margin: 10px 0 8px;
+  }
+  .signal-copy .lines {
+    gap: 6px;
+  }
+  .signal-copy button {
+    padding: 8px 12px;
+  }
+  #signal-actions .feedback:not(:empty) {
+    margin-top: 8px;
+    padding: 7px 12px;
+  }
+}
+@media (max-width: 760px) {
+  .signal-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+  .signal-scene {
+    width: min(100%, calc(48svh * 16 / 9));
+    justify-self: center;
+  }
+}
 </style></head><body>
 <header><b>СИМ / Практика</b><a href="rules">К урокам ↗</a></header><main>
 <div class="steps" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
@@ -48,7 +127,7 @@ main:has(#signal:not([hidden])) .feedback:not(:empty){margin-top:10px}main:has(#
 <g clip-path="url(#clear-driveway)" aria-hidden="true"><g id="exit-car"><ellipse cx="96" cy="91" rx="90" ry="5" fill="#172029" opacity=".32"/><image href="assets/practice-exit-car.webp" width="190" height="95"/></g></g>
 </svg></figure><div class="choices" id="places"></div></section>
 <section id="crossing" hidden><small>До секции · Сцена 3 из 6</small><h1 tabindex="-1">Друг уже на той стороне</h1><div class="cross-layout"><figure class="cross-frame"><img class="cross-photo" src="assets/rules-crossing.webp" alt="Подросток с самокатом у края тротуара перед зеброй" width="500" height="500"></figure><div class="cross-copy"><img class="cross-sign" src="assets/rules-signs/5.19.1.svg" alt="Знак пешеходного перехода" width="66" height="66"><p>Впереди зебра и вот такой знак. Светофора нет. Друг перешёл дорогу и машет тебе рукой.</p><h2>Как доберёшься до друга?</h2><div class="lines" id="cross-answers"></div></div></div></section>
-<section id="signal" hidden><small>До секции · Сцена 4 из 6</small><h1 tabindex="-1">Можно ли перейти дорогу?</h1><div class="signal-layout"><figure class="signal-scene"><img src="assets/practice-traffic-crossing.webp" alt="Пешеходный переход: для пешеходов горит красный. На дороге две машины движутся в разных направлениях. Рядом стоит самокат."></figure><div class="signal-copy"><p>Вы дошли до следующего перекрёстка. Ты ведёшь самокат рядом. По дороге едут машины.</p><p>Друг спрашивает: «А нам уже можно?»</p><h2>Что ответишь другу?</h2><div class="lines" id="signal-answers"></div></div></div></section>
+<section id="signal" hidden><small>До секции · Сцена 4 из 6</small><h1 tabindex="-1">Можно ли перейти дорогу?</h1><div class="signal-layout"><figure class="signal-scene"><img src="assets/practice-traffic-crossing.webp" width="1440" height="810" alt="Пешеходный переход: для пешеходов горит красный. На дороге две машины движутся в разных направлениях. Рядом стоит самокат."></figure><div class="signal-copy"><p>Вы дошли до следующего перекрёстка. Ты ведёшь самокат рядом. По дороге едут машины.</p><p>Друг спрашивает: «А нам уже можно?»</p><h2>Что ответишь другу?</h2><div class="lines" id="signal-answers"></div><div id="signal-actions"></div></div></div></section>
 <section id="friend" hidden><small>До секции · Сцена 5 из 6</small><h1 tabindex="-1">«Подвези до входа»</h1><p>После перекрёстка вы с другом уже видите спортцентр. До тренировки две минуты. Твой самокат рассчитан на одного.</p><figure class="dialog"><span class="speaker">Друг</span><blockquote>«Подвезёшь меня до входа? А то пешком я к началу не успею»</blockquote></figure><h2>Что ответишь?</h2><div id="replies" class="lines"></div></section>
 <section id="parking" hidden><small>До секции · Сцена 6 из 6</small><h1 tabindex="-1">Где оставить самокат?</h1><p>Ты у спортцентра. Перед тренировкой осталось припарковать самокат. Выбери место на картинке.</p>
 <figure id="parking-map"><img src="assets/practice-parking.webp" alt="Вход в спортцентр. Слева стеклянные двери, посередине пандус, справа площадка со стойками и велосипедом." width="1100" height="733"/>
@@ -90,6 +169,8 @@ function show(n){
  stage=n;solved=false;
  stages.forEach((s,i)=>el(s).hidden=i!==n);
  el('feedback').textContent='';el('next').hidden=true;
+ const actions = stages[n] === 'signal' ? el('signal-actions') : document.querySelector('main');
+ actions.append(el('feedback'), el('next'));
  document.querySelectorAll('.steps i').forEach((s,i)=>s.classList.toggle('on',i<=n));
  if(n===correct.length){el('results').replaceChildren();['Подготовиться к поездке','Выбрать скорость перед выездом','Перейти дорогу по зебре','Выбрать сигнал для пешехода','Ответить другу','Припарковать самокат'].forEach((t,i)=>{const li=document.createElement('li');li.textContent=t+' — '+(hinted[i]?'после подсказки':'с первой попытки');el('results').append(li)})}
  window.scrollTo(0,0);el(stages[n]).querySelector('h1').focus({preventScroll:true});
