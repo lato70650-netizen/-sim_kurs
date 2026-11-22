@@ -116,6 +116,142 @@ body:has(#signal:not([hidden])) header {
     justify-self: center;
   }
 }
+@font-face {
+  font-family: FinishOnest;
+  src: url("assets/onest.ttf") format("truetype");
+  font-display: swap;
+  font-weight: 100 900;
+}
+main:has(#finish:not([hidden])) {
+  max-width: 1260px;
+}
+.finish-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr);
+  align-items: center;
+  margin-top: clamp(16px, 3svh, 32px);
+  background: #0d2131;
+  border: 1px solid #395a67;
+  border-radius: 18px;
+  overflow: hidden;
+}
+.finish-copy {
+  padding: clamp(22px, 4vw, 60px);
+  font-family: FinishOnest, system-ui, sans-serif;
+}
+.finish-copy h1 {
+  max-width: 14ch;
+  margin: 0;
+  font-size: clamp(38px, 5vw, 71px);
+  letter-spacing: -.04em;
+  text-wrap: balance;
+}
+.finish-copy p {
+  max-width: 38ch;
+  margin: 20px 0 26px;
+  color: #c9dce6;
+  font-size: clamp(16px, 1.5vw, 20px);
+  line-height: 1.5;
+}
+.finish-art {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: min(60svh, 550px);
+  object-fit: contain;
+  background: #0a1a2c;
+}
+.finish-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.finish-actions button,
+.finish-home {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 10px 16px;
+  border: 1px solid #567484;
+  border-radius: 12px;
+}
+.finish-home {
+  background: #9aefc5;
+  color: #0a2c25;
+  font-weight: 750;
+  text-decoration: none;
+}
+.finish-home:hover {
+  background: #b4f8d6;
+}
+.finish-home:focus-visible,
+.finish-review summary:focus-visible {
+  outline: 2px solid #9aefc5;
+  outline-offset: 3px;
+}
+.finish-review {
+  margin-top: 15px;
+  border: 1px solid #395a67;
+  border-radius: 12px;
+  background: #0e2132;
+}
+.finish-review summary {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 48px;
+  padding: 10px 16px;
+  border-radius: inherit;
+  cursor: pointer;
+  list-style: none;
+}
+.finish-review summary::-webkit-details-marker {
+  display: none;
+}
+.finish-review summary::after {
+  content: "";
+  width: 15px;
+  height: 15px;
+  flex: 0 0 15px;
+  background:
+    linear-gradient(#9aefc5, #9aefc5) center / 100% 2px no-repeat,
+    linear-gradient(#9aefc5, #9aefc5) center / 2px 100% no-repeat;
+}
+.finish-review[open] summary::after {
+  background-size: 100% 2px, 0 0;
+}
+.finish-review summary:hover {
+  background-color: #173047;
+}
+.finish-review .results {
+  margin: 0;
+  padding: 0 16px 12px;
+}
+.finish-review .results li {
+  margin: 0;
+  padding: 8px 0;
+  border-top: 1px solid #304454;
+  border-radius: 0;
+  background: none;
+  font-size: 16px;
+}
+@media (max-width: 700px) {
+  .finish-hero {
+    grid-template-columns: minmax(0, 1fr);
+    margin-top: 12px;
+  }
+  .finish-art {
+    grid-row: 1;
+    max-height: clamp(170px, 34svh, 300px);
+  }
+  .finish-copy h1 {
+    font-size: clamp(33px, 8vw, 46px);
+  }
+  .finish-copy p {
+    margin: 12px 0 16px;
+  }
+}
 </style></head><body>
 <header><b>СИМ / Практика</b><a href="rules">К урокам ↗</a></header><main>
 <div class="steps" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
@@ -134,7 +270,23 @@ body:has(#signal:not([hidden])) header {
 <button type="button" style="left:18%;top:58%">У дверей</button>
 <button type="button" style="left:49%;top:69%">У перил</button>
 <button type="button" style="left:80%;top:59%">У стойки</button></figure></section>
-<section id="finish" hidden><small>До секции · Итог поездки</small><h1 tabindex="-1">Ты у спортцентра</h1><ul class="results" id="results"></ul><button id="restart">Пройти маршрут ещё раз</button></section>
+<section id="finish" hidden>
+  <div class="finish-hero">
+    <div class="finish-copy">
+      <h1 tabindex="-1">Ура! Маршрут пройден</h1>
+      <p>Ты у спортцентра и знаешь, как сделать поездку на самокате безопаснее. Вспомни эти правила, когда поедешь по городу.</p>
+      <div class="finish-actions">
+        <a class="finish-home" href="./#practice">К курсу</a>
+        <button id="restart" type="button">Пройти ещё раз</button>
+      </div>
+    </div>
+    <img class="finish-art" src="assets/practice-finish-trophy.webp" alt="" width="864" height="864" loading="lazy" decoding="async">
+  </div>
+  <details class="finish-review" id="finish-review">
+    <summary>Разбор ответов</summary>
+    <ul class="results" id="results"></ul>
+  </details>
+</section>
 <div class="feedback" role="status" aria-live="polite" id="feedback"></div><button id="next" class="next" hidden></button>
 </main><script>
 const el = id => document.getElementById(id);
@@ -177,7 +329,7 @@ function show(n){
  const actions = stages[n] === 'signal' ? el('signal-actions') : document.querySelector('main');
  actions.append(el('feedback'), el('next'));
  document.querySelectorAll('.steps i').forEach((s,i)=>s.classList.toggle('on',i<=n));
- if(n===correct.length){el('results').replaceChildren();['Подготовиться к поездке','Выбрать скорость перед выездом','Перейти дорогу по зебре','Выбрать сигнал для пешехода','Ответить другу','Припарковать самокат'].forEach((t,i)=>{const li=document.createElement('li');li.textContent=t+' — '+(hinted[i]?'после подсказки':'с первой попытки');el('results').append(li)})}
+ if(n===correct.length){el('finish-review').open=false;el('results').replaceChildren();['Подготовиться к поездке','Выбрать скорость перед выездом','Перейти дорогу по зебре','Выбрать сигнал для пешехода','Ответить другу','Припарковать самокат'].forEach((t,i)=>{const li=document.createElement('li');li.textContent=t+' — '+(hinted[i]?'после подсказки':'с первой попытки');el('results').append(li)})}
  window.scrollTo(0,0);el(stages[n]).querySelector('h1').focus({preventScroll:true});
 }
 [startAnswers,places,crossingAnswers,signalAnswers,replies].forEach((list,s)=>list.forEach((t,i)=>{const b=document.createElement('button');b.textContent=t;b.onclick=()=>selectAnswer(i);el(groups[s]).append(b)}));
