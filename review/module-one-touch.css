@@ -1,0 +1,67 @@
+/* Touch follows the same green artwork frames and blue quiz frames as hover. */
+.module-one-v2 .touch-holo-artwork {
+  position: relative;
+  touch-action: pan-y pinch-zoom;
+}
+
+.module-one-v2 #lesson-main :is(.intro-cover-photo, .lesson-scene).is-touch-lit {
+  border-color: #b4ff80;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 22%),
+    var(--touch-frame-inset, inset 0 0 0 transparent),
+    0 0 0 1px rgb(172 255 131 / 40%),
+    0 0 19px 4px rgb(135 255 96 / 65%),
+    0 0 33px 7px rgb(44 239 202 / 31%),
+    0 22px 38px rgb(0 8 26 / 38%);
+}
+
+.module-one-v2 .m1-device-card > .lesson-scene.is-touch-lit {
+  --touch-frame-inset: inset 0 0 24px rgb(87 238 213 / 17%);
+}
+
+.module-one-v2 #quiz-panel .quiz-image.is-touch-lit {
+  border-color: #74d7ef;
+  box-shadow: 0 0 0 1px #74d7ef, 0 0 20px rgb(116 215 239 / 34%);
+}
+
+.touch-holo-reflection {
+  display: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .touch-holo-reflection {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    pointer-events: none;
+    opacity: 0;
+    background:
+      radial-gradient(ellipse at var(--touch-x, 50%) var(--touch-y, 50%),
+        rgb(255 255 255 / 26%), rgb(144 235 255 / 10%) 25%, transparent 62%),
+      linear-gradient(115deg, transparent 28%, rgb(255 255 255 / 8%) 47%, transparent 65%);
+    mask-image: radial-gradient(ellipse closest-side, #000 20%, transparent 100%);
+    transition: opacity 220ms ease-out;
+  }
+
+  .m1-device-card .lesson-scene > .touch-holo-reflection {
+    inset-block-end: 36px;
+    border-radius: 16px;
+  }
+
+  .is-touch-lit .touch-holo-reflection {
+    opacity: .72;
+    transition-duration: 0s;
+  }
+
+  #quiz-panel .quiz-image .touch-holo-reflection {
+    z-index: 1;
+    background: radial-gradient(circle 112px at var(--touch-x, 50%) var(--touch-y, 50%),
+      rgb(236 253 255 / 46%), rgb(132 224 255 / 21%) 38%, transparent 100%);
+    mask-image: none;
+  }
+
+  #quiz-panel .quiz-image.is-touch-lit .touch-holo-reflection {
+    opacity: 1;
+  }
+}

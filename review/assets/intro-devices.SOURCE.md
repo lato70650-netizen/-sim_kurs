@@ -1,0 +1,7 @@
+# Пять видов СИМ
+
+assets/intro-devices.png — создано image_gen 14 ноября 2026 года. Исходник: /workspace/generated_images/exec-0e3c7af4-3f4d-4968-a4b9-ca17ed72f059.png. Используется как иллюстрация типов устройств, не как фотография конкретных сертифицированных моделей. Подпись на странице раскрывает генерацию ИИ.
+
+## Запрос
+
+A high quality educational product photography contact sheet, landscape aspect, exactly FIVE equal vertical columns side by side, no gutters, consistent pale mint background and ground, absolutely no text, no numbers or logos, no people. Each column shows ONE complete device centered, front three-quarter view, natural soft studio shadows, all devices fully within their own column with ample breathing room. From LEFT to RIGHT: 1 a normal slender electric kick scooter with two inline wheels, tall upright handlebar stem and foot deck; 2 a small hoverboard, two side by side wheels and two foot platforms, NO handlebar or vertical stem; 3 a classic Segway personal transporter with two LARGE side by side wheels and foot platform BETWEEN the wheels, tall upright handlebar stem; 4 an electric unicycle, ONE thick centered wheel encased in a compact shell with two small fold-out foot pedals on either side, no handlebar stem; 5 an electric skateboard, long flat wooden deck on four small wheels, no handlebar. Photorealistic mechanically plausible true-to-life objects. Green black teal orange accent colors. Every object separate with no overlaps. Educational reference photographs not fantasy designs. All five columns same width, no borders.

@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0a1729"><title>До секции · Практика СИМ</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top right,#173848 0,transparent 48%),#091526;color:#f5f8fc;font:17px/1.5 system-ui,sans-serif;min-height:100vh}main,header{max-width:940px;margin:auto;padding:20px clamp(16px,4vw,44px)}header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #314454}a{color:#bce7e7}header a{text-decoration:none}header b{color:#9af3cc}h1{font-size:clamp(32px,5vw,54px);line-height:1.04;letter-spacing:-.045em;margin:12px 0}p{margin:10px 0 18px}h2{font-size:22px}small{color:#a6c0d2}.steps{display:flex;gap:5px;margin:0 0 14px}.steps i{height:4px;flex:1;background:#304454;border-radius:8px}.steps .on{background:#88ecbf}figure{margin:16px 0;background:#132c40;border:1px solid #436577;border-radius:18px;overflow:hidden}.canvas{display:block;width:100%;height:auto}#exit-car{visibility:hidden;transform-origin:0 0}.reveal #exit-car{visibility:visible;transform:translate(462px,94px) scale(1.65);animation:leave-yard 650ms ease-out both}@keyframes leave-yard{from{transform:translate(580px,94px) scale(1.65)}to{transform:translate(462px,94px) scale(1.65)}}@media(prefers-reduced-motion:reduce){.reveal #exit-car{animation:none}}.choices{display:flex;gap:9px;flex-wrap:wrap}button{font:inherit;text-align:left;cursor:pointer;padding:12px 17px;color:#eff8fc;background:#152e42;border:1px solid #466375;border-radius:12px;min-height:48px}button:enabled:hover,button:focus-visible{border-color:#8defc5;box-shadow:0 0 14px #78ebc32b}button:disabled{cursor:default;opacity:.65}button.chosen{border-color:#91efc3;opacity:1}button.next{background:#9aefc5;color:#0a2c25;font-weight:700;margin-top:12px}button[hidden],section[hidden]{display:none}.feedback:not(:empty){margin-top:16px;border-left:3px solid #95d5cc;padding:10px 16px;background:#142c3e}.dialog{padding:clamp(20px,5vw,48px);background:linear-gradient(90deg,#0b2032f5 0%,#10293be8 48%,#142c4075),url('assets/rules-district.webp') center 60%/cover}.dialog .speaker{display:inline-block;padding:3px 12px;border-radius:8px;background:#9aefc5;color:#102636;font-size:clamp(20px,2.5vw,24px);font-weight:750;line-height:1.3;margin-bottom:5px}.dialog blockquote{font-weight:650;font-size:clamp(22px,4vw,32px);max-width:560px;margin:6px 0 0}.lines{display:grid;gap:9px}.results{list-style:none;padding:0}.results li{margin:10px 0;padding:15px;background:#173047;border-radius:12px}footer{margin:24px 0;color:#abc3cf;font-size:14px}@media(max-width:540px){.choices{display:grid;grid-template-columns:1fr}header,main{padding-top:14px}}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+:is(#yard,#parking) figure{margin:10px auto;width:100%}
+@media(min-width:701px){
+ body:has(:is(#yard,#parking):not([hidden])) header{padding-block:12px}
+ main:has(:is(#yard,#parking):not([hidden])){padding-block:12px}
+ #yard h1{margin:8px 0}
+ #yard p{margin:8px 0 12px}
+ :is(#yard,#parking) figure{width:min(100%, max(260px, calc(149.9vh - 700px)))}
+ main:has(:is(#yard,#parking):not([hidden])) .feedback:not(:empty){margin-top:10px}
+}
+#parking-map{position:relative}#parking-map img{width:100%;height:auto;display:block}#parking-map button{position:absolute;transform:translate(-50%,-50%);font-weight:650;border:2px solid #bde5e0;background:#10283c;color:white;min-height:44px;padding:6px 10px;white-space:nowrap}#parking-map button.chosen{background:#aaecca;color:#10283c}#parking-map button:disabled{opacity:.85}@media(max-width:480px){#parking-map button{font-size:14px;padding:4px 7px}}main:has(#crossing:not([hidden])){max-width:1080px}
+.cross-layout{display:grid;grid-template-columns:minmax(0, .96fr) minmax(0, 1fr);align-items:center;gap:24px;margin:14px 0}
+.cross-frame{margin:0;width:100%;max-width:min(482px,57svh);justify-self:center}
+.cross-photo{display:block;width:100%;height:auto}
+.cross-sign{display:block}.cross-copy h2{margin:12px 0}.cross-copy p{margin:8px 0}
+@media(max-width:700px){.cross-layout{grid-template-columns:1fr;gap:12px}.cross-frame{max-width:min(100%,34svh)}.cross-sign{float:left;margin:0 12px 4px 0;width:48px;height:48px}.cross-copy h2{clear:both}}
+@media(min-width:701px){
+main:has(#start:not([hidden])){max-width:1200px;padding-block:12px}
+body:has(#start:not([hidden])) header{max-width:1200px;padding-block:12px}
+#start h1{margin:8px 0}
+#start .cross-layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;margin:10px 0}
+#start .cross-frame{max-width:min(100%, calc(100svh - 365px))}
+#start .cross-copy h2{font-size:clamp(22px,2.4vw,30px);margin:0 0 16px}
+#start .lines button{font-size:18px;padding:14px 17px}
+main:has(#start:not([hidden])) .feedback:not(:empty){margin-top:8px;padding:8px 14px}
+main:has(#start:not([hidden])) button.next{margin-top:8px}
+}
+@media(max-width:700px){#start .cross-frame{max-width:min(100%,36svh)}#start .cross-copy h2{margin:2px 0 10px}}
+main:has(#signal:not([hidden])),
+body:has(#signal:not([hidden])) header {
+  max-width: 1760px;
+  padding-block: 12px;
+}
+#signal h1 {
+  margin: 8px 0 clamp(12px, 2svh, 20px);
+}
+.signal-layout {
+  display: grid;
+  grid-template-columns: min(67%, calc((100svh - 174px) * 16 / 9)) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(18px, 2.4vw, 38px);
+}
+.signal-scene {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid #527487;
+  border-radius: 16px;
+  background: #122839;
+}
+.signal-scene img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.signal-copy p {
+  margin: 0 0 10px;
+}
+.signal-copy h2 {
+  font-size: clamp(22px, 2.1vw, 30px);
+  line-height: 1.2;
+  margin: 16px 0 12px;
+}
+.signal-copy .lines button {
+  font-size: clamp(16px, 1.3vw, 19px);
+}
+#signal-actions .feedback:not(:empty) {
+  margin-top: 10px;
+}
+#signal-actions .next {
+  margin-top: 8px;
+}
+@media (min-width: 761px) and (max-width: 1170px) {
+  .signal-layout {
+    grid-template-columns: min(58%, calc((100svh - 174px) * 16 / 9)) minmax(0, 1fr);
+  }
+}
+@media (max-height: 760px), (max-width: 760px) {
+  main:has(#signal:not([hidden])) .steps {
+    margin-bottom: 8px;
+  }
+  #signal h1 {
+    font-size: clamp(30px, 4.7vw, 44px);
+    margin: 5px 0 12px;
+  }
+  .signal-copy {
+    font-size: 16px;
+    line-height: 1.35;
+  }
+  .signal-copy p {
+    margin-bottom: 6px;
+  }
+  .signal-copy h2 {
+    margin: 10px 0 8px;
+  }
+  .signal-copy .lines {
+    gap: 6px;
+  }
+  .signal-copy button {
+    padding: 8px 12px;
+  }
+  #signal-actions .feedback:not(:empty) {
+    margin-top: 8px;
+    padding: 7px 12px;
+  }
+}
+@media (max-width: 760px) {
+  .signal-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+  .signal-scene {
+    width: min(100%, calc(48svh * 16 / 9));
+    justify-self: center;
+  }
+}
+#finish {
+  max-width: 760px;
+  margin: clamp(20px, 5svh, 56px) auto 0;
+}
+.finish-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(140px, 22vw, 205px);
+  align-items: center;
+  gap: 16px;
+  padding: clamp(22px, 4vw, 40px);
+  background: linear-gradient(135deg, #19443e 0%, #15323b 52%, #101f2c 100%);
+  border: 1px solid #c6a46a;
+  border-radius: 16px;
+  box-shadow: 0 16px 36px rgb(0 0 0 / 26%);
+}
+.finish-check {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  margin-bottom: 15px;
+  border-radius: 50%;
+  background: #f4ce80;
+  box-shadow: 0 4px 18px rgb(244 206 128 / 24%);
+}
+.finish-check::after {
+  content: "";
+  width: 14px;
+  height: 8px;
+  border: solid #382614;
+  border-width: 0 0 2px 2px;
+  transform: translateY(-2px) rotate(-45deg);
+}
+.finish-card h1 {
+  margin: 0;
+  font-size: clamp(32px, 4.2vw, 48px);
+  letter-spacing: -.04em;
+  text-wrap: balance;
+  color: #f7fbfb;
+}
+.finish-card p {
+  max-width: 48ch;
+  margin: 14px 0 22px;
+  color: #daeaf0;
+}
+.finish-card .finish-achievement {
+  width: fit-content;
+  margin: 14px 0 0;
+  padding: 5px 11px;
+  border: 1px solid #c6a46a;
+  border-radius: 8px;
+  color: #ffe2a0;
+  font-size: 15px;
+}
+.finish-continue {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  grid-column: 1 / -1;
+  gap: 8px 12px;
+  margin-top: 6px;
+  padding-top: 16px;
+  border-top: 1px solid #4a6a69;
+}
+.finish-continue button:disabled {
+  opacity: 1;
+  color: #bdcdd5;
+  background: #172f39;
+}
+.finish-continue small {
+  font-size: 14px;
+}
+.finish-trophy {
+  display: block;
+  width: 100%;
+  max-width: 205px;
+  height: auto;
+  justify-self: center;
+  filter: drop-shadow(0 12px 16px rgb(0 0 0 / 30%));
+}
+@media (max-width: 620px) {
+  .finish-card {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+  .finish-trophy {
+    grid-row: 1;
+    width: 136px;
+  }
+}
+.finish-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.finish-actions button,
+.finish-home {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 10px 16px;
+  border: 1px solid #c6a46a;
+  border-radius: 12px;
+}
+.finish-actions button {
+  background: #172f39;
+  color: #f7fbfb;
+}
+.finish-actions button:hover {
+  border-color: #f4ce80;
+  background: #23414a;
+  box-shadow: none;
+}
+.finish-home {
+  background: #f4ce80;
+  color: #382614;
+  font-weight: 750;
+  text-decoration: none;
+}
+.finish-home:hover {
+  background: #ffe2a0;
+}
+.finish-home:focus-visible,
+.finish-actions button:focus-visible {
+  outline: 2px solid #f4ce80;
+  outline-offset: 3px;
+}
+.finish-review summary:focus-visible {
+  outline: 2px solid #9aefc5;
+  outline-offset: 3px;
+}
+.finish-review {
+  margin-top: 15px;
+  border: 1px solid #395a67;
+  border-radius: 12px;
+  background: #0e2132;
+}
+.finish-review summary {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 48px;
+  padding: 10px 16px;
+  border-radius: inherit;
+  cursor: pointer;
+  list-style: none;
+}
+.finish-review summary::-webkit-details-marker {
+  display: none;
+}
+.finish-review summary::after {
+  content: "";
+  width: 15px;
+  height: 15px;
+  flex: 0 0 15px;
+  background:
+    linear-gradient(#9aefc5, #9aefc5) center / 100% 2px no-repeat,
+    linear-gradient(#9aefc5, #9aefc5) center / 2px 100% no-repeat;
+}
+.finish-review[open] summary::after {
+  background-size: 100% 2px, 0 0;
+}
+.finish-review summary:hover {
+  background-color: #173047;
+}
+.finish-review .results {
+  margin: 0;
+  padding: 0 16px 12px;
+}
+.finish-review .results li {
+  margin: 0;
+  padding: 8px 0;
+  border-top: 1px solid #304454;
+  border-radius: 0;
+  background: none;
+  font-size: 16px;
+}
+#parking-map .parking-unlit {
+  filter: brightness(1.16);
+}
+#parking-map .parking-lit {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 420ms ease-out;
+}
+#parking-map.reveal .parking-lit {
+  opacity: 1;
+}
+[data-practice-artwork] {
+  position: relative;
+  isolation: isolate;
+  touch-action: pan-y pinch-zoom;
+  transition: border-color 180ms ease-out, box-shadow 180ms ease-out;
+  --practice-artwork-glow: 0 0 0 1px rgb(172 255 131 / 40%),
+    0 0 19px 4px rgb(135 255 96 / 50%),
+    0 0 33px 7px rgb(44 239 202 / 24%);
+}
+[data-practice-artwork]:is(.is-holo-active, .is-touch-lit) {
+  border-color: #b4ff80;
+  box-shadow: var(--practice-artwork-glow);
+}
+[data-practice-artwork] > .touch-holo-reflection {
+  z-index: 1;
+}
+#parking-map[data-practice-artwork] button,
+.dialog[data-practice-artwork] > :is(.speaker, blockquote),
+.finish-card[data-practice-artwork] > :is(.finish-copy, .finish-continue) {
+  z-index: 2;
+}
+.dialog[data-practice-artwork] > :is(.speaker, blockquote) {
+  position: relative;
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  [data-practice-artwork].m1-holo-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    background:
+      radial-gradient(ellipse at var(--holo-x, 50%) var(--holo-y, 50%),
+        rgb(255 255 255 / 26%), rgb(144 235 255 / 10%) 25%, transparent 62%),
+      linear-gradient(115deg, transparent 28%, rgb(255 255 255 / 8%) 47%, transparent 65%);
+    mask-image: radial-gradient(ellipse closest-side, #000 20%, transparent 100%);
+    transition: opacity 220ms ease-out;
+  }
+  [data-practice-artwork].is-holo-active::after {
+    opacity: .72;
+  }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: reduce) {
+  [data-practice-artwork]:hover {
+    border-color: #b4ff80;
+    box-shadow: var(--practice-artwork-glow);
+  }
+}
+.scene-context p {
+  margin: 7px 0;
+}
+.scene-context p:last-child {
+  margin-bottom: 12px;
+}
+.scene-prompt {
+  color: #f5f8fc;
+  font-weight: 700;
+}
+.feedback p {
+  margin: 0;
+}
+.feedback p + p {
+  margin-top: 6px;
+}
+@media (max-width: 700px) {
+  main > section:not(#finish) h1 {
+    line-height: 1.12;
+    text-wrap: balance;
+  }
+  main > section:not(#finish) h2 {
+    line-height: 1.23;
+    text-wrap: balance;
+  }
+  .scene-context p, .cross-copy p, .signal-copy p, .feedback p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  .scene-context p + p {
+    margin-top: 10px;
+  }
+  .crossing-context {
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr);
+    align-items: start;
+    gap: 9px 12px;
+    margin-bottom: 10px;
+  }
+  .crossing-context .cross-sign,
+  .crossing-context p {
+    margin: 0;
+  }
+  .signal-copy p + p,
+  .feedback p + p {
+    margin-top: 9px;
+  }
+  .choices {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  :is(.choices, .lines) button {
+    font-size: 1rem;
+    line-height: 1.4;
+    padding: 11px 14px;
+  }
+  .finish-copy p:not(.finish-achievement) {
+    text-wrap: pretty;
+  }
+}
+</style><link rel="stylesheet" href="module-one-touch.css">
+<script defer src="module-one-v2.js?v=practice-glow-1"></script>
+</head><body>
+<header><b>СИМ / Практика</b><a href="rules.html">К урокам ↗</a></header><main>
+<div class="steps" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
+<section id="start"><small>До секции · Сцена 1 из 6</small><h1 tabindex="-1">Перед выходом</h1><p>Ты собираешься на тренировку и готовишь самокат к поездке.</p><div class="cross-layout"><figure class="cross-frame" data-practice-artwork><img class="cross-photo" src="assets/rules-brake.webp" alt="Перед поездкой проверяют электросамокат"></figure><div class="cross-copy"><h2>Что стоит сделать перед поездкой?</h2><div class="lines" id="start-answers"></div></div></div></section>
+<section id="yard" hidden><small>До секции · Сцена 2 из 6</small><h1 tabindex="-1">По тротуару мимо двора</h1><div class="scene-context"><p>Ты подъезжаешь к арке справа. Сейчас перед тобой свободно, но <strong>из-за фургона не видно, что во дворе.</strong></p><p class="scene-prompt">Как ты поступишь?</p></div>
+<figure data-practice-artwork><svg id="street" class="canvas" viewBox="0 0 760 507" role="group" aria-label="Вид с самоката вдоль тротуара. Справа арка и фургон сбоку от неё. Полоса тёмной плитки ведёт от арки через тротуар к улице. Витрина дальше по пути.">
+<image href="assets/practice-yard-rider.webp" width="760" height="507" y="0" preserveAspectRatio="none"/>
+<defs><clipPath id="clear-driveway"><path d="M0 0H568V105L561 131 552 152 551 177 541 188 532 216 528 250 531 282 544 302H0Z"/></clipPath></defs>
+<g clip-path="url(#clear-driveway)" aria-hidden="true"><g id="exit-car"><ellipse cx="96" cy="91" rx="90" ry="5" fill="#172029" opacity=".32"/><image href="assets/practice-exit-car.webp" width="190" height="95"/></g></g>
+</svg></figure><div class="choices" id="places"></div></section>
+<section id="crossing" hidden><small>До секции · Сцена 3 из 6</small><h1 tabindex="-1">Друг уже на той стороне</h1><div class="cross-layout"><figure class="cross-frame" data-practice-artwork><img class="cross-photo" src="assets/rules-crossing.webp" alt="Подросток с самокатом у края тротуара перед зеброй" width="500" height="500"></figure><div class="cross-copy"><div class="crossing-context"><img class="cross-sign" src="assets/rules-signs/5.19.1.svg" alt="Знак пешеходного перехода" width="66" height="66"><p>Впереди зебра и вот такой знак. <strong>Светофора нет.</strong></p></div><p>Друг перешёл дорогу и машет тебе рукой.</p><h2>Как доберёшься до друга?</h2><div class="lines" id="cross-answers"></div></div></div></section>
+<section id="signal" hidden><small>До секции · Сцена 4 из 6</small><h1 tabindex="-1">Можно ли перейти дорогу?</h1><div class="signal-layout"><figure class="signal-scene" data-practice-artwork><img src="assets/practice-traffic-crossing.webp" width="1440" height="810" alt="У дальнего конца зебры горит красный пешеходный сигнал. На дороге две машины движутся в разных направлениях. Рядом стоит самокат."></figure><div class="signal-copy"><p>Вы дошли до следующего перекрёстка. <strong>Ты ведёшь самокат рядом.</strong> По дороге едут машины.</p><p>Друг спрашивает: «А нам уже можно?»</p><h2>Что ответишь другу?</h2><div class="lines" id="signal-answers"></div><div id="signal-actions"></div></div></div></section>
+<section id="friend" hidden><small>До секции · Сцена 5 из 6</small><h1 tabindex="-1">«Подвези до входа»</h1><div class="scene-context"><p>После перекрёстка вы с другом уже видите спортцентр. До тренировки две минуты.</p><p><strong>Твой самокат рассчитан на одного.</strong></p></div><figure class="dialog" data-practice-artwork><span class="speaker">Друг</span><blockquote>«Подвезёшь меня до входа? А то пешком я к началу не успею»</blockquote></figure><h2>Что ответишь?</h2><div id="replies" class="lines"></div></section>
+<section id="parking" hidden><small>До секции · Сцена 6 из 6</small><h1 tabindex="-1">Где оставить самокат?</h1><div class="scene-context"><p>Ты у спортцентра. Перед тренировкой осталось припарковать самокат.</p><p class="scene-prompt">Выбери место на картинке.</p></div>
+<figure id="parking-map" data-practice-artwork>
+<img class="parking-unlit" src="assets/practice-parking-unlit.webp" alt="Вход в спортцентр. Слева стеклянные двери, посередине пандус, справа площадка со стойками и велосипедом." width="1100" height="733">
+<img class="parking-lit" src="assets/practice-parking.webp" alt="" width="1100" height="733">
+<button type="button" style="left:18%;top:58%">У дверей</button>
+<button type="button" style="left:49%;top:69%">У перил</button>
+<button type="button" style="left:80%;top:59%">У стойки</button></figure></section>
+<section id="finish" hidden>
+  <div class="finish-card" data-practice-artwork>
+    <div class="finish-copy">
+      <span class="finish-check" aria-hidden="true"></span>
+      <h1 tabindex="-1">Поздравляем, маршрут пройден!</h1>
+      <p class="finish-achievement">Твоё достижение — <strong>«Знаток маршрута»</strong></p>
+      <p>На следующей прогулке попробуй заметить <strong>два дорожных знака</strong> и объяснить, что каждый из них меняет для твоего маршрута.</p>
+      <div class="finish-actions">
+        <a class="finish-home" href="./#practice">К курсу</a>
+        <button id="restart" type="button">Пройти ещё раз</button>
+      </div>
+    </div>
+    <img class="finish-trophy" src="prototype/assets/card-trophy.webp" alt="" width="1301" height="1209">
+    <div class="finish-continue">
+      <button type="button" disabled aria-describedby="finish-signs-status">Потренироваться со знаками</button>
+      <small id="finish-signs-status">В продолжении курса</small>
+    </div>
+  </div>
+  <details class="finish-review" id="finish-review">
+    <summary>Разбор ответов</summary>
+    <ul class="results" id="results"></ul>
+  </details>
+</section>
+<div class="feedback" role="status" aria-live="polite" id="feedback"></div><button id="next" class="next" hidden></button>
+</main><script>
+const el = id => document.getElementById(id);
+const startAnswers=['Надену шлем и световозвращающие элементы, проверю тормоз и работу фонаря.','Достаточно яркой куртки: шлем и фонарь не нужны.','Проверю заряд, а экипировку и фонарь оставлю дома.'];
+const signalAnswers=['«Подождём нашего зелёного. Потом посмотрим, безопасно ли идти».','«Машины едут — значит, и нам зелёный».','«Вроде никого нет. Успеем перейти сейчас».'];
+const places = ['Пока свободно, проеду как еду.','Сбавлю скорость перед выездом и посмотрю вправо.'];
+const crossingAnswers = ['Проеду по зебре медленно, со скоростью шага.','Раз друг махнул, можно сразу идти за ним, ведя самокат.','Сойду с самоката, посмотрю по сторонам и, когда будет безопасно, перейду пешком.'];
+const replies = ['«Давай. Только до поворота, дальше пешком».','«Давай я тренера предупрежу, что ты уже рядом. Я бы тебя подвёз, но самокат рассчитан на одного».','«Ладно, вставай. Поедем медленно».'];
+const notes = [
+ ['Отлично! Шлем помогает защитить голову, а световозвращающие элементы делают тебя заметнее.\nВ городе в темноте они рекомендованы, вне населённых пунктов обязательны.\nФонарь на движущемся самокате в темноте должен быть включён. Проверь и тормоз.','Яркая одежда полезна, но сама по себе не заменяет защитную экипировку и световозвращающие элементы. Шлем и световозвращающие элементы помогут защитить себя и стать заметнее.','Одного заряда недостаточно. Подумай о защите головы, заметности и проверке самоката.'],
+ ['Перед тобой свободно, но видно ли, что происходит за фургоном? Попробуй ещё раз.','Из-за фургона показалась передняя часть машины.\nТы заранее сбавил скорость и можешь остановиться до её пути.'],
+ ['Этот знак обозначает пешеходный переход.\nДаже на малой скорости пересекать его верхом на самокате нельзя. Как перейти пешком?','Друг мог перейти, пока дорога была свободна.\nПосмотри сам: успеешь ли ты безопасно перейти с учётом скорости и расстояния до машин?','Ты сам проверил дорогу и перешёл по зебре, ведя самокат рядом.\nИменно здесь знак обозначает место для перехода пешком.'],
+ ['Верно. Когда есть пешеходный светофор, смотри на фигурку человека. Сейчас она красная.\nКогда загорится зелёная, проверь дорогу и переходи пешком.','Смотри на светофор с фигуркой человека. Какой сигнал сейчас горит для вас?','Даже если дорога кажется пустой, красная фигурка означает, что переходить нельзя. Какого сигнала дождёшься?'],
+ ['Даже на коротком отрезке вас на одноместном самокате окажется двое. Как ещё можно помочь другу, если он опаздывает?','Друг кивает: «Спасибо! Скажи, что я уже иду». Ты едешь к спортцентру.','Малая скорость не добавляет пассажирского места. Что можно предложить другу?'],
+ ['У дверей самокат окажется прямо на пути у тех, кто входит и выходит. Где он сможет остаться на всю тренировку?','Если прислонить самокат к перилам, его руль выступит на пандус.\nГде можно припарковаться, чтобы проход остался свободным?','Ты оставляешь самокат у стойки. Двери и пандус свободны.\nТеперь можно зайти и предупредить тренера, что друг уже рядом.']
+];
+let stage=0, solved=false, hinted=[false,false,false,false,false,false];
+const stages=['start','yard','crossing','signal','friend','parking','finish'];
+const groups=['start-answers','places','cross-answers','signal-answers','replies','parking-map'];
+const correct=[0,1,2,0,1,2];
+async function selectAnswer(i){
+ if(solved || stage>=correct.length) return;
+ const feedbackLines = notes[stage][i].split('\n');
+ const paragraphs = feedbackLines.map((text, index) => {
+  const paragraph = document.createElement('p');
+  if(index === 0 && feedbackLines.length > 1){
+   const lead = document.createElement('strong');
+   lead.textContent = text;
+   paragraph.append(lead);
+  }else{
+   paragraph.textContent = text;
+  }
+  return paragraph;
+ });
+ el('feedback').replaceChildren(...paragraphs);
+ if(i!==correct[stage]){hinted[stage]=true;return}
+ solved=true;
+ const group=el(groups[stage]);
+ [...group.querySelectorAll('button')].forEach((b,n)=>{b.disabled=true;b.classList.toggle('chosen',n===i)});
+ const next = el('next');
+ let reveal;
+ if(stages[stage]==='yard'){
+  el('street').classList.add('reveal');
+  [reveal] = el('exit-car').getAnimations();
+ }else if(stages[stage]==='parking'){
+  const parking = el('parking-map');
+  parking.classList.add('reveal');
+  [reveal] = parking.querySelector('.parking-lit').getAnimations();
+ }
+ if(reveal) await Promise.allSettled([reveal.finished]);
+ next.hidden=false;next.textContent=['Дальше — в путь →','Дальше — к переходу →','Дальше — к светофору →','Дальше — к спортцентру →','Дальше — ко входу →','Посмотреть результат →'][stage];
+}
+function show(n){
+ stage=n;solved=false;
+ stages.forEach((s,i)=>el(s).hidden=i!==n);
+ el('feedback').textContent='';el('next').hidden=true;
+ const actions = stages[n] === 'signal' ? el('signal-actions') : document.querySelector('main');
+ actions.append(el('feedback'), el('next'));
+ document.querySelectorAll('.steps i').forEach((s,i)=>s.classList.toggle('on',i<=n));
+ if(n===correct.length){el('finish-review').open=false;el('results').replaceChildren();['Подготовиться к поездке','Выбрать скорость перед выездом','Перейти дорогу по зебре','Выбрать сигнал для пешехода','Ответить другу','Припарковать самокат'].forEach((t,i)=>{const li=document.createElement('li');li.textContent=t+' — '+(hinted[i]?'после подсказки':'с первой попытки');el('results').append(li)})}
+ window.scrollTo(0,0);el(stages[n]).querySelector('h1').focus({preventScroll:true});
+}
+[startAnswers,places,crossingAnswers,signalAnswers,replies].forEach((list,s)=>list.forEach((t,i)=>{const b=document.createElement('button');b.textContent=t;b.onclick=()=>selectAnswer(i);el(groups[s]).append(b)}));
+el('parking-map').querySelectorAll('button').forEach((button,i)=>button.onclick=()=>selectAnswer(i));
+el('next').onclick=()=>show(stage+1);
+el('restart').onclick=()=>{hinted=[false,false,false,false,false];el('street').classList.remove('reveal');el('parking-map').classList.remove('reveal');document.querySelectorAll('#start-answers button,#places button,#cross-answers button,#signal-answers button,#replies button,#parking-map button').forEach(b=>{b.disabled=false;b.classList.remove('chosen')});show(0)};
+</script></body></html>
