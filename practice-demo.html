@@ -161,6 +161,33 @@ body:has(#signal:not([hidden])) header {
   margin: 14px 0 22px;
   color: #daeaf0;
 }
+.finish-card .finish-achievement {
+  width: fit-content;
+  margin: 14px 0 0;
+  padding: 5px 11px;
+  border: 1px solid #c6a46a;
+  border-radius: 8px;
+  color: #ffe2a0;
+  font-size: 15px;
+}
+.finish-continue {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  grid-column: 1 / -1;
+  gap: 8px 12px;
+  margin-top: 6px;
+  padding-top: 16px;
+  border-top: 1px solid #4a6a69;
+}
+.finish-continue button:disabled {
+  opacity: 1;
+  color: #bdcdd5;
+  background: #172f39;
+}
+.finish-continue small {
+  font-size: 14px;
+}
 .finish-trophy {
   display: block;
   width: 100%;
@@ -356,13 +383,18 @@ body:has(#signal:not([hidden])) header {
     <div class="finish-copy">
       <span class="finish-check" aria-hidden="true"></span>
       <h1 tabindex="-1">Поздравляем, маршрут пройден!</h1>
-      <p>Теперь ты знаешь, как подготовиться к поездке и безопаснее ездить на самокате.</p>
+      <p class="finish-achievement">Твоё достижение — <strong>«Знаток маршрута»</strong></p>
+      <p>На следующей прогулке попробуй заметить два дорожных знака и объяснить, что каждый из них меняет для твоего маршрута.</p>
       <div class="finish-actions">
         <a class="finish-home" href="./#practice">К курсу</a>
         <button id="restart" type="button">Пройти ещё раз</button>
       </div>
     </div>
     <img class="finish-trophy" src="prototype/assets/card-trophy.webp" alt="" width="1301" height="1209">
+    <div class="finish-continue">
+      <button type="button" disabled aria-describedby="finish-signs-status">Потренироваться со знаками</button>
+      <small id="finish-signs-status">В продолжении курса</small>
+    </div>
   </div>
   <details class="finish-review" id="finish-review">
     <summary>Разбор ответов</summary>
